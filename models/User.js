@@ -23,26 +23,25 @@ const userSchema = new Schema(
                 /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please enter a valid email address'
             ],
         },
-        // have connections tracked?
-        // connections: [
-        //     {
-        //         type: Schema.Types.ObjectId,
-        //         reference: 'User'
-        //     }
-        // ]
+        connections: [
+            {
+                type: Schema.Types.ObjectId,
+                reference: 'User'
+            }
+        ]
     },
     {
-        // toJSON: {
-        //     virtuals: true,
-        // },
+        toJSON: {
+            virtuals: true,
+        },
         id: false
     }
 )
 
 const User = model('User', userSchema);
 
-// userSchema.virtual('connectionCount').get(function () {
-//     return this.connections.length;
-// });
+userSchema.virtual('connectionCount').get(function () {
+    return this.connections.length;
+});
 
 module.exports = User;

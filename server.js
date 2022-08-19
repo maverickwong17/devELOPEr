@@ -1,7 +1,6 @@
 const path = require("path");
 const express = require("express");
 const session = require("express-session");
-const exphbs = require("express-handlebars");
 const MongoDBStore = require('connect-mongodb-session')(session);
 
 const routes = require("./routes");
@@ -23,7 +22,7 @@ io.on("connection", (socket) => {
     require("./config/socket")(io, socket, users);
 });
 
-var store = new MongoDBStore({
+var sessionStore = new MongoDBStore({
     uri: 'mongodb://localhost:27017/developerDB',
     collection: 'mySessions'
 });
@@ -37,15 +36,10 @@ const sess = {
     cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 },
     resave: true,
     saveUninitialized: true,
-    store: store,
+    store: sessionStore,
 };
 
 app.use(session(sess));
-
-const hbs = exphbs.create({ helpers });
-
-app.engine("handlebars", hbs.engine);
-app.set("view engine", "handlebars");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

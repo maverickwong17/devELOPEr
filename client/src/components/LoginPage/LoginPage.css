@@ -6,6 +6,7 @@
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(9px);
   width: 25%;
+
   padding: 1rem 2rem;
   border-radius: 16px;
   /* border-bottom-left-radius: 16px;
@@ -33,13 +34,89 @@ h4 {
 }
 .login_form span {
   margin: 0;
+  align-items: center;
+  /* background-color: red; */
+  /* display: flex; */
+  /* justify-content: ; */
 }
-.login_input .signin_btn {
+.login_form p {
+  display: flex;
+  font-size: 13px;
+  justify-content: center;
+  margin-bottom: 2px;
+}
+.side_text {
+  font-weight: 250;
+  margin: 4px 0;
+  /* font-size: 16px; */
+}
+.reset_btn {
+  border: none;
+  background: transparent;
+  color: #a30e3b;
+}
+.login_input {
+  border: none;
+  background: transparent;
+  margin: 2px;
+  padding: 16px 0;
+  font-size: 16px;
+  border-bottom: 1px solid #a30e3b;
+}
+
+.login_input:focus {
+  outline: none;
+}
+.remember_me {
+  padding: 10px 0;
+  display: flex;
+
+  /* margin: 2px; */
+}
+input[type="checkbox"] {
+  /* border: 2px solid #e67a8d; */
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+  font: inherit;
+  color: #e67a8d;
+  width: 16px;
+  height: 16px;
+  border: 0.15em solid #e67a8d;
+  border-radius: 0.15em;
+  /* margin-right: 2px; */
+  margin-right: 5px;
+  /* transform: translateY(-0.075em); */
+}
+.signup_btn {
+  border: 2px solid #e67a8d;
+  background: transparent;
+  border-radius: 72px;
+  margin: 10px 0 32px 0;
+  padding: 16px;
+  font-size: 1rem;
+  font-weight: bolder;
+}
+.checkbox {
+  border: 2px solid #e67a8d;
+}
+.signin_btn {
   background: #a30e3b;
-  padding: 10px;
+  padding: 16px;
   font-size: 1rem;
   font-weight: bolder;
   border-radius: 72px;
   border: none;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  margin: 10px 0 8px 0;
+}
+@media screen and (max-width: 815px) {
+  .login_form {
+    width: 40%;
+  }
+}
+@media screen and (max-width: 465px) {
+  .login_form {
+    width: 50%;
+  }
 }

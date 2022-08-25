@@ -1,8 +1,18 @@
 import "./App.css";
-import { ReactComponent as Logo } from './devEloper-02.svg';
+import Layout from "./components/Layout/Layout";
+import Header from "./components/Header/Header";
+import LandingPage from "./components/LandingPage/LandingPage";
 
 function App() {
-  return <div className="App"><div><Logo /></div></div>;
+  return (
+    <>
+      <LandingPage>
+        <Header />
+      </LandingPage>
+
+      <Layout />
+    </>
+  );
 }
 
 export default App;

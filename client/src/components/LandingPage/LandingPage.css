@@ -1,0 +1,14 @@
+.landing_page {
+  background: rgba(00, 00, 00, 0.3);
+  position: absolute;
+  width: 100%;
+
+  /* position: absolute; */
+  height: 100%;
+  z-index: 1;
+}
+:root {
+  width: 100%;
+  /* position: absolute; */
+  /* height: 100%; */
+}

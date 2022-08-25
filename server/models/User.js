@@ -23,18 +23,28 @@ const userSchema = new Schema(
                 /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please enter a valid email address'
             ],
         },
+        password:{},
+        firstName:{},
+        lastName:{},
+        age:{},
+        city:{},
+        job:{},
+        gender:{},
         connections: [
             {
                 type: Schema.Types.ObjectId,
                 reference: 'User'
             }
-        ]
+        ],
+        interests:{},
+        github:{},
+        linkedin:{}
     },
     {
         toJSON: {
             virtuals: true,
         },
-        id: false
+        id: true
     }
 )
 

@@ -1,7 +1,11 @@
 import React from "react";
-import "./LandingPage.css";
-const LandingPage = (props) => {
-  return <div className="landing_page">{props.children}</div>;
+
+const LandingPage = () => {
+  return (
+    <div>
+      <h1>Landing Page</h1>
+    </div>
+  );
 };
 
 export default LandingPage;

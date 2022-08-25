@@ -10,7 +10,7 @@ const Header = (props) => {
       </span>
       <ul>
         <li>
-          <a href="#" className={classes.sign_in}>
+          <a href="/signin" className={classes.sign_in}>
             sign in
           </a>
         </li>

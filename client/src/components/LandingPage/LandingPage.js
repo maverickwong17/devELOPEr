@@ -1,6 +1,18 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { Splide, SplideSlide } from '@splidejs/react-splide';
+import { AutoScroll } from '@splidejs/splide-extension-auto-scroll';
+// Default theme
+// import '@splidejs/react-splide/css';
+
+// or other themes
+import '@splidejs/react-splide/css/skyblue';
+// import '@splidejs/react-splide/css/sea-green';
+
+// or only core styles
+// import '@splidejs/react-splide/css/core';
+
 import './landing.css'
 const LandingPage = () => {
   return (
@@ -19,8 +31,37 @@ const LandingPage = () => {
         </div>
         </Col>
         <Col>
-          <img className="coverImg" src="https://pbs.twimg.com/profile_images/949787136030539782/LnRrYf6e_400x400.jpg"></img>
+          <Splide aria-label="My Favorite Images" 
+              options={ {
+                type:'loop',
+                drag:'free',
+                focus:'center',
+                perPage: 3,
+                rewind:true,
+                AutoScroll:{
+                  speed:2,
+                }   
+              } }
+          >
+            <SplideSlide>
+              <img src="https://complianz.io/wp-content/uploads/2019/03/placeholder-300x202.jpg" alt="Image 1"/>
+            </SplideSlide>
+            <SplideSlide>
+              <img src="https://complianz.io/wp-content/uploads/2019/03/placeholder-300x202.jpg" alt="Image 1"/>
+            </SplideSlide>
+            <SplideSlide>
+              <img src="https://complianz.io/wp-content/uploads/2019/03/placeholder-300x202.jpg" alt="Image 1"/>
+            </SplideSlide>
+            <SplideSlide>
+              <img src="https://complianz.io/wp-content/uploads/2019/03/placeholder-300x202.jpg" alt="Image 1"/>
+            </SplideSlide>
+            {/* <SplideSlide> ....map if wanted */}
+          </Splide>
         </Col>
+      </Row>
+      <Row>
+        <Col></Col>
+        <Col></Col>
       </Row>
     </div>
     </Container>

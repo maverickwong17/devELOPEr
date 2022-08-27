@@ -1,26 +1,25 @@
 .landingContainer{
-    background-color: #333333;
-    height: auto;
+    /* height: auto; */
     border-radius: 20px;
     color: rgb(223, 204, 204);
 }
 .matchBtn{
-    border: 2px solid #333333;
+    border: 2px solid #212121;
     color: rgb(223, 204, 204);
     margin-top: 2em;
     border-radius: 50px;
-    background: #333333;
-    box-shadow:  -7px -7px 14px #151515,
-                 7px 7px 14px #515151;
+    background: #212121;
+    box-shadow:  -5px -5px 10px #2e2e2e,
+                 7px 7px 12px #252525;
 }
 .matchBtn:hover{
-    border: 2px solid #515151;
+    border: 2px solid #141414;
     border-radius: 50px;
     background: #333333;
-    box-shadow:  -7px -7px 14px #2d2d2d,
-                 7px 7px 14px #393939,
-                inset -2px -2px 5px #2d2d2d,
-                inset -4px -4px 8px #393939;
+    box-shadow:  -7px -7px 14px #212121,
+                 7px 7px 14px #212121,
+                inset -2px -2px 5px #161616,
+                inset -4px -4px 8px #252525;
 }
 .tag{
     text-align: center;

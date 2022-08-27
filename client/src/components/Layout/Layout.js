@@ -28,7 +28,7 @@ const Layout = (props) => {
           // },
           particles: {
             number: {
-              value: 280,
+              value: 100,
               density: {
                 enable: true,
                 value_area: 800,

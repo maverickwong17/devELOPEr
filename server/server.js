@@ -1,9 +1,8 @@
 const path = require("path");
 const express = require("express");
 const { ApolloServer } = require('apollo-server-express');
-const session = require("express-session");
 const { authMiddleware } = require('./utils/auth');
-const MongoDBStore = require('connect-mongodb-session')(session);
+
 
 const routes = require("./routes");
 const { typeDefs, resolvers } = require('./schemas');
@@ -31,18 +30,18 @@ io.on("connection", (socket) => {
     require("./config/socket")(io, socket, users);
 });
 
-var sessionStore = new MongoDBStore({
-    uri: 'mongodb://localhost:27017/developerDB',
-    collection: 'mySessions'
-});
-
-sessionStore.on('error', function (error) {
-    console.log(error);
-});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../client/build')));
+}
+  
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
 
 // app.use(routes);
 

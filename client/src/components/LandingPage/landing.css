@@ -1,0 +1,19 @@
+.landingContainer{
+    background-color: #aea3a3;
+    height: 75vh;
+    border-radius: 20px;
+}
+.matchBtn{
+    border-radius: 50px;
+    background: #aea3a3;
+    border: 2px solid #aea3a3;
+    box-shadow:  -20px -20px 31px #948b8b,
+                 20px 20px 31px #c8bbbb;
+}
+.matchBtn:hover{
+    border-radius: 50px;
+    border: 2px solid #a79c9c;
+    background: #aea3a3;
+    box-shadow:  -20px -20px 31px #a79c9c,
+                 20px 20px 31px #b5aaaa;
+}

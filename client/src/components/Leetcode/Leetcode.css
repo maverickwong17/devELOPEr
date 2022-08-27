@@ -15,10 +15,11 @@
 }
 #source {
   width: 100% !important;
-  background: #cccccc52;
-  height: 50vh;
-  font-size: 15px;
+  /* background: #cccccc52; */
+  /* height: 50vh; */
+  font-size: 18px;
   resize: vertical;
+  font-family: "Noto Sans JP", sans-serif;
 }
 #input {
   background: #cccccc52;
@@ -39,4 +40,13 @@
 } */
 .language {
   width: 150px;
+}
+.run_btn,
+.run_btn:hover,
+.run_btn:focus {
+  background: #a30e3b;
+  border: none;
+}
+.run_btn:hover {
+  opacity: 0.8;
 }

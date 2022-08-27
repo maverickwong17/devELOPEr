@@ -30,3 +30,11 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const QUERY_MESSAGES = gql`
+  query messages {
+    username
+    messageText
+    createdAt
+  }
+`;

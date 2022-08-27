@@ -53,8 +53,6 @@ const userSchema = new Schema(
     }
 )
 
-const User = model('User', userSchema);
-
 userSchema.virtual('connectionCount').get(function () {
     return this.connections.length;
 });
@@ -64,12 +62,13 @@ userSchema.pre('save', async function (next) {
       const saltRounds = 10;
       this.password = await bcrypt.hash(this.password, saltRounds);
     }
-  
     next();
 });
 
 userSchema.methods.isCorrectPassword = async function (password) {
     return bcrypt.compare(password, this.password);
 };
+
+const User = model('User', userSchema);
 
 module.exports = User;

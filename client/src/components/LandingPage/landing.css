@@ -4,6 +4,7 @@
     border-radius: 20px;
 }
 .matchBtn{
+    margin-top: 2em;
     border-radius: 50px;
     background: #aea3a3;
     border: 2px solid #aea3a3;
@@ -16,4 +17,12 @@
     background: #aea3a3;
     box-shadow:  -20px -20px 31px #a79c9c,
                  20px 20px 31px #b5aaaa;
+}
+.tag{
+    text-align: center;
+}
+
+.col{
+    margin-top: 5em;
+    margin-bottom: 5em;
 }

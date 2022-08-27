@@ -6,7 +6,7 @@ const LandingPage = () => {
   return (
     <Container>
     <div className="landingContainer">
-      <Row className="align-items-center ">
+      <Row className="align-items-center mx-auto landRow">
         <Col>
         <div className="tag">
           <h1>Where They Always Promise To Callback()</h1>

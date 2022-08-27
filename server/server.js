@@ -1,17 +1,26 @@
 const path = require("path");
 const express = require("express");
+const { ApolloServer } = require('apollo-server-express');
 const session = require("express-session");
+const { authMiddleware } = require('./utils/auth');
 const MongoDBStore = require('connect-mongodb-session')(session);
 
 const routes = require("./routes");
+const { typeDefs, resolvers } = require('./schemas');
 const db = require("./config/connection");
+
 const helpers = require("./utils/helpers");
+
+const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    context: authMiddleware,
+});
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const http = require("http");
-const server = http.createServer(app);
+// const http = require("http");
 const { Server } = require("socket.io");
 const io = new Server(server);
 
@@ -27,28 +36,25 @@ var sessionStore = new MongoDBStore({
     collection: 'mySessions'
 });
 
-store.on('error', function (error) {
+sessionStore.on('error', function (error) {
     console.log(error);
 });
-
-const sess = {
-    secret: "This is a secret",
-    cookie: { maxAge: 1000 * 60 * 60 * 24 * 7 },
-    resave: true,
-    saveUninitialized: true,
-    store: sessionStore,
-};
-
-app.use(session(sess));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(routes);
+// app.use(routes);
 
-db.once('open', () => {
-    server.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}!`);
-    });
-});
+const startApolloServer = async (typeDefs, resolvers) => {
+    await server.start();
+    server.applyMiddleware({ app });
+    db.once('open', () => {
+        app.listen(PORT, () => {
+            console.log(`Server running on port ${PORT}!`);
+            console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+        })
+    })
+};
+
+startApolloServer(typeDefs, resolvers);

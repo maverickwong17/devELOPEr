@@ -34,7 +34,7 @@ const Leetcode = () => {
         "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
       },
       body: JSON.stringify({
-        language_id: 63,
+        language_id: language_id,
         source_code: encode(user_input),
         stdin: encode(""),
       }),
@@ -88,6 +88,7 @@ const Leetcode = () => {
     console.log("value:", value);
     setUserInput(value);
   }, []);
+
   return (
     <>
       <Row
@@ -132,20 +133,31 @@ const Leetcode = () => {
                 required
                 name="solution"
                 id="source"
-                value={input || "function(x){\n}"}
-                // value="console.log('hello world!');"
+                value={
+                  language_id === "63"
+                    ? "console.log(`hello`);"
+                    : language_id === "54"
+                    ? `cout << "hello"`
+                    : language_id === "71"
+                    ? `print("hello")`
+                    : `System.out.println("hello")`
+                }
                 height="450px"
                 theme="dark"
-                extensions={[
-                  javascript({ jsx: true }),
-                  cpp(),
-                  java(),
-                  python(),
-                ]}
+                extensions={
+                  language_id === 63
+                    ? javascript({ jsx: true })
+                    : language_id === 54
+                    ? cpp()
+                    : java()
+                }
                 onChange={onChange}
               />
 
               {/* <textarea
+                //            <option value="54">C++</option>
+  // <option value="62">Java</option>
+  // <option value="71">Python</option>
                 onChange={textInputHandler}
                 className="source"
                 style={{ height: "500px", padding: 0, margin: 0 }}
@@ -191,7 +203,10 @@ const Leetcode = () => {
             >
               <select
                 value={language_id}
-                onChange={(e) => setLanguageId(e.target.value)}
+                onChange={(e) => {
+                  setLanguageId(e.target.value);
+                  console.log(e.target.value);
+                }}
                 id="tags"
                 className="form-control form-inline mb-2 language"
               >

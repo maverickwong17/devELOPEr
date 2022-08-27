@@ -1,6 +1,6 @@
 .landingContainer{
     background-color: #aea3a3;
-    height: 75vh;
+    height: auto;
     border-radius: 20px;
 }
 .matchBtn{
@@ -25,4 +25,8 @@
 .col{
     margin-top: 5em;
     margin-bottom: 5em;
+}
+.coverImg{
+    object-fit: contain;
+    border-radius: 10px;
 }

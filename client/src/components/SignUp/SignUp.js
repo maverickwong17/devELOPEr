@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Form,
   Container,
@@ -8,6 +8,7 @@ import {
   Dropdown,
   DropdownButton,
 } from "react-bootstrap";
+
 import InterestButton from "../InterestButton/InterestButton";
 import data from "../../data/interestsJson";
 
@@ -47,7 +48,6 @@ const SignUp = () => {
                     <Dropdown.Item href="#/action-2">
                       Male (he/his)
                     </Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">(they/them)</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
                 <input
@@ -63,7 +63,7 @@ const SignUp = () => {
           </Row>
           <Row>
             Interests
-            <div className="grid">
+            <div className="grid justify">
               {data.map((interest) => {
                 return (
                   <InterestButton
@@ -76,7 +76,7 @@ const SignUp = () => {
           </Row>
           <Row>
             What are you looking for...
-            <div className="grid">sdcd</div>
+            <div className="grid">f</div>
           </Row>
           <Button className="signup">SIGN UP</Button>
         </Col>

@@ -68,6 +68,8 @@ h4 {
   color: #999999;
 }
 .login_input:focus {
+  color: black;
+  border-bottom: 2px solid #a30e3b;
   outline: none;
 }
 /* .reset_btn:focus {

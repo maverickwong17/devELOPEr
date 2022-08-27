@@ -1,5 +1,16 @@
-import React from "react";
-import { Form, Container, Row, Col, Button } from "react-bootstrap";
+import React, { useState } from "react";
+import {
+  Form,
+  Container,
+  Row,
+  Col,
+  Button,
+  Dropdown,
+  DropdownButton,
+} from "react-bootstrap";
+
+import InterestButton from "../InterestButton/InterestButton";
+import data from "../../data/interestsJson";
 
 import "./SignUp.css";
 const SignUp = () => {
@@ -8,13 +19,37 @@ const SignUp = () => {
       <Row className="row_gap">
         <Col className="profile_details">
           <Row>
-            Profile Details
+            <h4>Profile Details</h4>
             <div className="grid">
               <Form className="form">
                 <input className="input" type="text" placeholder="First Name" />
                 <input className="input" type="text" placeholder="Last Name" />
+                <input className="input" type="text" placeholder="Zipcode" />
+                {/* TODO: date not showing up */}
                 <input className="input" type="date" />
-                <input className="input" type="text" placeholder="Gender" />
+                {/* <input className="input" type="text" placeholder="Gender" /> */}
+                <Dropdown>
+                  <Dropdown.Toggle
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                    className="input"
+                    id="dropdown-button-dark-example1"
+                  >
+                    Gender
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu variant="dark" style={{ width: "100%" }}>
+                    <Dropdown.Item href="#/action-1" active>
+                      Female (she/hers)
+                    </Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">
+                      Male (he/his)
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
                 <input
                   className="input"
                   id="telNo"
@@ -28,13 +63,21 @@ const SignUp = () => {
           </Row>
           <Row>
             Interests
-            <div className="grid">sdcd</div>
+            <div className="grid justify">
+              {data.map((interest) => {
+                return (
+                  <InterestButton
+                    icon={interest.icon}
+                    interest={interest.interest}
+                  />
+                );
+              })}
+            </div>
           </Row>
           <Row>
             What are you looking for...
-            <div className="grid">sdcd</div>
+            <div className="grid">f</div>
           </Row>
-
           <Button className="signup">SIGN UP</Button>
         </Col>
         <Col
@@ -49,3 +92,15 @@ const SignUp = () => {
 };
 
 export default SignUp;
+//**
+// { "icon": "", "interest": "golf" },
+// { "icon": "", "interest": "running" },
+// { "icon": "", "interest": "soccer" },
+// { "icon": "", "interest": "dance" },
+// { "icon": "", "interest": "swimming" },
+// { "icon": "", "interest": "ice hockey" },
+// { "icon": "", "interest": "tennis" },
+// { "icon": "", "interest": "baseball" },
+// { "icon": "", "interest": "karate" },
+// { "icon": "", "interest": "fishing" },
+// { "icon": "", "interest": "skiing" } * /

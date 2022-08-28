@@ -8,23 +8,13 @@ import { cpp } from "@codemirror/lang-cpp";
 import { java } from "@codemirror/lang-java";
 import { python } from "@codemirror/lang-python";
 import "./Leetcode.css";
+import Sidebar from "../Sidebar/Sidebar";
 const Leetcode = () => {
-  const [input, setInput] = useState(localStorage.getItem("input") || "");
   const [output, setOutput] = useState("");
-  const [language_id, setLanguageId] = useState(
-    localStorage.getItem("language_id") || 2
-  );
+  const [language_id, setLanguageId] = useState();
   const [user_input, setUserInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const userInputHandler = (e) => {
-    e.preventDefault();
-    setUserInput(e.target.value);
-  };
-  const textInputHandler = (e) => {
-    e.preventDefault();
-    setInput(e.target.value);
-    localStorage.setItem("input", e.target.value);
-  };
+
   const runCodeHandler = async (e) => {
     setLoading(true);
     e.preventDefault();
@@ -32,7 +22,7 @@ const Leetcode = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-RapidAPI-Key": "f1e041c99cmsh2db2a8071e986aep1f423ejsnc1c24dc52c1d",
+        "X-RapidAPI-Key": "761f0ada8bmshdaf751ca2c3ab73p141081jsn478f8b517ad5",
         "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
       },
       body: JSON.stringify({
@@ -68,7 +58,7 @@ const Leetcode = () => {
           headers: {
             "x-rapidapi-host": "judge0-ce.p.rapidapi.com",
             "x-rapidapi-key":
-              "f1e041c99cmsh2db2a8071e986aep1f423ejsnc1c24dc52c1d",
+              "761f0ada8bmshdaf751ca2c3ab73p141081jsn478f8b517ad5",
             "content-type": "application/json",
           },
         });
@@ -96,39 +86,45 @@ const Leetcode = () => {
   }, []);
 
   return (
-    <Row className="grid">
-      <Row>
-        <Col>
-          {" "}
-          <h3 style={{ color: "white" }}>Coding Challenge</h3>
-          <p style={{ color: "white" }}>
-            You are given an integer n. We reorder the digits in any order
-            (including the original order) such that the leading digit is not
-            zero. Return true if and only if we can do this so that the
-            resulting number is a power of two.
-          </p>
-          <hr style={{ fill: "white" }} />
-        </Col>
-        <Col>
-          {" "}
-          <div
-            style={{
-              display: "flex",
+    <>
+      <Row className="grid">
+        <Row>
+          <Col>
+            {" "}
+            <h3 style={{ color: "white" }}>Coding Challenge</h3>
+            <p style={{ color: "white" }}>
+              You are given two integer arrays nums1 and nums2, sorted in
+              non-decreasing order, and two integers m and n, representing the
+              number of elements in nums1 and nums2 respectively.\nMerge nums1
+              and nums2 into a single array sorted in non-decreasing order.\nThe
+              final sorted array should not be returned by the function, but
+              instead be stored inside the array nums1. To accommodate this,
+              nums1 has a length of m + n, where the first m elements denote the
+              elements that should be merged, and the last n elements are set to
+              0 and should be ignored. nums2 has a length of n.
+            </p>
+            <hr style={{ fill: "white" }} />
+          </Col>
+          <Col>
+            {" "}
+            <div
+              style={{
+                display: "flex",
 
-              justifyContent: "space-between",
-              alignItems: "bottom",
-              float: "bottom",
-            }}
-          >
-            <Badge
-              bg=""
-              className=" heading my-2 "
-              style={{ color: "#a30e3b", background: "transparent" }}
+                justifyContent: "space-between",
+                alignItems: "bottom",
+                float: "bottom",
+              }}
             >
-              <FaExclamationCircle /> Output
-            </Badge>
-            {/* <div> */}
-            {/* <Dropdown>
+              <Badge
+                bg=""
+                className=" heading my-2 "
+                style={{ color: "#a30e3b", background: "transparent" }}
+              >
+                <FaExclamationCircle /> Output
+              </Badge>
+              {/* <div> */}
+              {/* <Dropdown>
               <Dropdown.Toggle
                 style={{
                   display: "flex",
@@ -155,92 +151,84 @@ const Leetcode = () => {
                 <Dropdown.Item value="62">Java</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown> */}
-            <select
-              value={language_id}
-              onChange={(e) => {
-                setLanguageId(e.target.value);
-                console.log(e.target.value);
-              }}
-              id="tags"
-              className="form-control form-inline mb-2 language input"
-            >
-              <option value="54">C++ </option>
-              <option value="62">Java</option>
-              <option value="71">Python</option>
-              <option value="63">JavaScript</option>
-            </select>
-          </div>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          {" "}
-          <CodeMirror
-            required
-            name="solution"
-            id="source"
-            value={
-              language_id === "63"
-                ? "console.log(`hello`);"
-                : language_id === "54"
-                ? `#include <iostream>
-
-                int main() {
-                    std::cout << "hello, world" << std::endl;
-                    return 0;
-                }
+              <select
+                value={language_id}
+                onChange={(e) => {
+                  setLanguageId(e.target.value);
+                  console.log(e.target.value);
+                }}
+                id="tags"
+                className="form-control form-inline mb-2 language input"
+              >
+                <option value="54">C++ </option>
+                <option value="62">Java</option>
+                <option value="71">Python</option>
+                <option value="63">JavaScript</option>
+              </select>
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            {" "}
+            <CodeMirror
+              required
+              name="solution"
+              id="source"
+              value={
+                language_id === "63"
+                  ? "console.log(`hello`);"
+                  : language_id === "54"
+                  ? `#include <iostream>\nint main(){\nstd::cout << "hello, world" << std::endl;\nreturn 0;\n}
                 `
-                : language_id === "71"
-                ? `print("hello")`
-                : `public class Main {
-                  public static void main(String[] args) {
-                      System.out.println("hello, world");
-                  }
-              }
+                  : language_id === "71"
+                  ? `print("hello")`
+                  : `public class Main {\npublic static void main(String[] args) {\nSystem.out.println("hello, world");\n}\n}
               `
-            }
-            height="450px"
-            theme="dark"
-            extensions={
-              language_id === 63
-                ? javascript({ jsx: true })
-                : language_id === 54
-                ? cpp()
-                : java()
-            }
-            onChange={onChange}
-          />
-          <div
-            style={{
-              display: "flex",
-              alignItems: "right",
-              justifyContent: "right",
-            }}
-          >
-            <Button
-              type="submit"
-              className="run_btn"
+              }
+              height="450px"
+              theme="dark"
+              extensions={
+                language_id === 63
+                  ? javascript({ jsx: true })
+                  : language_id === 54
+                  ? cpp()
+                  : java()
+              }
+              onChange={onChange}
+            />
+            <div
               style={{
-                marginTop: "10px",
+                display: "flex",
+                alignItems: "right",
+                justifyContent: "right",
               }}
-              onClick={runCodeHandler}
             >
-              <FaCog /> Run
-            </Button>
-          </div>
-        </Col>
-        <Col>
-          {" "}
-          <CodeMirror
-            height="450px"
-            theme="dark"
-            id="output"
-            value={loading ? "running submission..." : output ? output : ""}
-            readOnly="nocursor"
-          ></CodeMirror>
-        </Col>
+              <Button
+                type="submit"
+                className="run_btn"
+                style={{
+                  marginTop: "10px",
+                }}
+                onClick={runCodeHandler}
+              >
+                <FaCog /> Run
+              </Button>
+            </div>
+          </Col>
+          <Col>
+            {" "}
+            <CodeMirror
+              height="450px"
+              theme="dark"
+              id="output"
+              value={loading ? "running submission..." : output ? output : ""}
+              readOnly="nocursor"
+            ></CodeMirror>
+          </Col>
+        </Row>
       </Row>
-    </Row>
+    </>
   );
 };
 

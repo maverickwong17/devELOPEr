@@ -29,8 +29,14 @@ const userSchema = new Schema(
             required: true,
             minlength: 8
         },
-        firstName:{},
-        lastName:{},
+        firstName:{
+            type: String,
+            required: true,
+        },
+        lastName:{
+            type: String,
+            required: true,
+        },
         age:{},
         city:{},
         job:{},
@@ -43,7 +49,8 @@ const userSchema = new Schema(
         ],
         interests:{},
         github:{},
-        linkedin:{}
+        linkedin:{},
+        images:{}
     },
     {
         toJSON: {

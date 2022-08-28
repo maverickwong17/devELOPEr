@@ -35,10 +35,10 @@ const LoginPage = (props) => {
 			console.error(e);
 		}
 	
-		// setFormState({
-		// 	email: '',
-		// 	password: '',
-		// });
+		setFormState({
+			email: '',
+			password: '',
+		});
 	}
 	
   	return (

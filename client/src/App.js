@@ -1,5 +1,6 @@
 import "./App.css";
-import React from 'react';
+import React from "react";
+import Auth from "./utils/auth";
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import Header from "./components/Header/Header";
@@ -16,21 +17,21 @@ import {
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
-} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: "/graphql",
 });
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
 // https://www.apollographql.com/docs/react/api/link/apollo-link-context/
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('id_token');
+  const token = localStorage.getItem("id_token");
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
@@ -42,31 +43,36 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-
 function App() {
   return (
-    <ApolloProvider client = {client}>
+    <ApolloProvider client={client}>
       <Background>
         <Header />
         <Row>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<LandingPage />} />
-              <Route path="/signin" element={<LoginPage />} />
-              <Route path="/signup" element={<SignUp />} />
-            </Routes>
-          </BrowserRouter>
-          <Col md={1}>
-            <Sidebar />
-          </Col>
-          <Col md={11}>
-            {" "}
+          {Auth.loggedIn() ? (
+            <>
+              {" "}
+              <Col md={1}>
+                <Sidebar />
+              </Col>
+              <Col md={11}>
+                {" "}
+                <BrowserRouter>
+                  <Routes>
+                    <Route path="/leetcode" element={<Leetcode />} />
+                  </Routes>
+                </BrowserRouter>
+              </Col>
+            </>
+          ) : (
             <BrowserRouter>
               <Routes>
-                <Route path="/leetcode" element={<Leetcode />} />
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/signin" element={<LoginPage />} />
+                <Route path="/signup" element={<SignUp />} />
               </Routes>
             </BrowserRouter>
-          </Col>
+          )}
         </Row>
       </Background>
 

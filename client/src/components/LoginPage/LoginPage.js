@@ -33,7 +33,6 @@ const LoginPage = (props) => {
 		} catch (e) {
 			console.log(data)
 			console.error(e);
-			console.log(data.login.token)
 		}
 	
 		// setFormState({

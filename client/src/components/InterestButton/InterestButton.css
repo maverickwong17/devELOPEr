@@ -1,0 +1,17 @@
+.interest_btn {
+  background: #a30e3b;
+  border: none;
+  border-radius: 16px;
+  padding: 0 10px;
+  margin: 8px;
+  /* width: 25%; */
+  /* height: 10%; */
+}
+.interest_btn span:first-child {
+  padding-right: 4px;
+}
+.interest_btn:hover,
+.interest_btn:focus {
+  background: #a30e3b;
+  opacity: 0.8;
+}

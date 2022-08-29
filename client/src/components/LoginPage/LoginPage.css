@@ -64,9 +64,22 @@ h4 {
   font-size: 16px;
   border-bottom: 1px solid #a30e3b;
 }
-
+.login_input::placeholder {
+  color: #999999;
+}
 .login_input:focus {
+  color: black;
+  border-bottom: 2px solid #a30e3b;
   outline: none;
+}
+/* .reset_btn:focus {
+  background: transparent;
+} */
+.reset_btn:hover,
+.reset_btn:focus {
+  background: transparent;
+  color: #a30e3b;
+  opacity: 0.7;
 }
 .remember_me {
   padding: 10px 0;
@@ -74,10 +87,30 @@ h4 {
 
   /* margin: 2px; */
 }
+
 input[type="checkbox"] {
   /* border: 2px solid #e67a8d; */
-  /* appearance: none; */
-  background-color: #fff;
+  appearance: none;
+  background-color: transparent;
+  margin: 0;
+  font: inherit;
+  color: #e67a8d;
+  width: 16px;
+  height: 16px;
+  border: 0.15em solid #e67a8d;
+  border-radius: 0.15em;
+  /* margin-right: 2px; */
+  margin-right: 5px;
+  transform: translateY(-0.075em);
+}
+input[type="checkbox"]:hover {
+  cursor: pointer;
+}
+input[type="checkbox"]:checked {
+  /* border: 2px solid #e67a8d; */
+  /* content: "w"; */
+  appearance: none;
+  /* background-color: #e67a8d; */
   margin: 0;
   font: inherit;
   color: #e67a8d;
@@ -108,6 +141,7 @@ input[type="checkbox"] {
 .signin_btn {
   background: #a30e3b;
   padding: 16px;
+  color: black;
   font-size: 1rem;
   font-weight: bolder;
   border-radius: 72px;
@@ -118,11 +152,13 @@ input[type="checkbox"] {
   transform: perspective(1px) translateZ(0);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 }
-.signin_btn:hover {
+.signin_btn:hover,
+.signin_btn:focus {
   /* -webkit-transform: translateY(2px);
   transform: translateY(2px); */
   cursor: pointer;
-
+  color: black;
+  background: #a30e3b;
   /* background: #e5e5e5; */
   box-shadow: inset 0px 0px 5px #ffffff;
   outline: none;

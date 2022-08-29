@@ -3,15 +3,12 @@ import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import { AutoScroll } from '@splidejs/splide-extension-auto-scroll';
-// Default theme
-// import '@splidejs/react-splide/css';
 
+import '@splidejs/react-splide/css';
 // or other themes
-import '@splidejs/react-splide/css/skyblue';
+// import '@splidejs/react-splide/css/skyblue';
 // import '@splidejs/react-splide/css/sea-green';
 
-// or only core styles
-// import '@splidejs/react-splide/css/core';
 
 import './landing.css'
 const LandingPage = () => {
@@ -32,16 +29,21 @@ const LandingPage = () => {
         </Col>
         <Col>
           <Splide aria-label="My Favorite Images" 
-              options={ {
-                type:'loop',
-                drag:'free',
-                focus:'center',
-                perPage: 3,
-                rewind:true,
-                AutoScroll:{
-                  speed:2,
-                }   
-              } }
+                options={{
+                  type: "loop",
+                  gap: "10px",
+                  drag: "free",
+                  arrows: false,
+                  pagination: false,
+                  perPage: 3,
+                  autoScroll: {
+                    pauseOnHover: false,
+                    pauseOnFocus: false,
+                    rewind: false,
+                    speed: 0.5
+                  }
+                }}
+                extensions={{ AutoScroll }}
           >
             <SplideSlide>
               <img src="https://complianz.io/wp-content/uploads/2019/03/placeholder-300x202.jpg" alt="Image 1"/>

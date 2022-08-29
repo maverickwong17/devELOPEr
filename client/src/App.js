@@ -10,6 +10,7 @@ import SignUp from "./components/SignUp/SignUp";
 import Leetcode from "./components/Leetcode/Leetcode";
 import Sidebar from "./components/Sidebar/Sidebar";
 import { Col, Row } from "react-bootstrap";
+require('dotenv').congif();
 
 import {
   ApolloClient,
@@ -35,13 +36,21 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
-// console.log("httpLink", httpLink)
-// console.log(authLink)
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
+import PubNub from "pubnub";
+import { PubNubProvider } from "pubnub-react";
+import { Chat, MessageList, MessageInput } from "@pubnub/react-chat-components";
+import { isRequiredArgument } from "graphql";
+
+const pubnub = new PubNub({
+  publishKey: process.env.MY_PUBLISH_KEY,
+  subscribeKey: process.env.MY_SUBSCRIBE_KEY,
+  uuid: "myFirstUser",
+});
 
 function App() {
   return (

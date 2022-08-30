@@ -9,13 +9,14 @@ import LoginPage from "./components/LoginPage/LoginPage";
 import SignUp from "./components/SignUp/SignUp";
 import Leetcode from "./components/Leetcode/Leetcode";
 import Sidebar from "./components/Sidebar/Sidebar";
-// import Chat from "./components/Chat/Chat";
+import Chat from "./components/Chat/Chat";
 import { Col, Row } from "react-bootstrap";
 // import { v4 as uuid4 } from 'uuid';
-// require('dotenv').congif();
 import PubNub from "pubnub";
 import { PubNubProvider } from "pubnub-react";
-import { Chat, MessageList, MessageInput } from "@pubnub/react-chat-components";
+// import { Chat, MessageList, MessageInput, TypingIndicator } from "@pubnub/react-chat-components";
+// import { Picker } from "emoji-mart/react";
+// import data from '@emoji-mart/data'
 
 import {
   ApolloClient,
@@ -68,17 +69,10 @@ function App() {
               <Route path="/" element={<LandingPage />} />
               <Route path="/signin" element={<LoginPage />} />
               <Route path="/signup" element={<SignUp />} />
-              {/* <Route path="/chat" element={
+              <Route path="/chat" element={
                 <PubNubProvider client={pubnub}>
-                    {/* PubNubProvider is a part of the PubNub React SDK  and allows you to access PubNub instance
-                    in components down the tree. }
-                  <Chat {...{ currentChannel, theme }}>
-                    {/* Chat is an obligatory state provider. It allows you to configure some common component
-                    options, like the current channel and the general theme for the app. }
-                    <MessageList />
-                    <MessageInput />
-                  </Chat>
-                </PubNubProvider>} /> */}
+                  <Chat {...{ currentChannel, theme }}/> 
+                </PubNubProvider> } />
             </Routes>
           </BrowserRouter>
           <Col md={1}>
@@ -89,17 +83,21 @@ function App() {
             <BrowserRouter>
               <Routes>
                 <Route path="/leetcode" element={<Leetcode />} />
-                <Route path="/chat" element={
-                <PubNubProvider client={pubnub}>
-                    {/* PubNubProvider is a part of the PubNub React SDK  and allows you to access PubNub instance
-                    in components down the tree. */}
-                  <Chat {...{ currentChannel, theme }}>
-                    {/* Chat is an obligatory state provider. It allows you to configure some common component
-                    options, like the current channel and the general theme for the app. */}
-                    <MessageList />
-                    <MessageInput />
-                  </Chat>
-                </PubNubProvider>} />
+                {/* <Route path="/chat" element={
+                  <PubNubProvider client={pubnub}>
+                    <Chat {...{ currentChannel, theme }}>
+                      <MessageList enableReactions reactionsPicker={<Picker />}>
+                        <TypingIndicator showAsMessage />
+                      </MessageList>
+                      <MessageInput emojiPicker={<Picker data={data}/>}
+                        onBeforeSend={function noRefCheck() { }}
+                        onChange={function noRefCheck() { }}
+                        onSend={function noRefCheck() { }}
+                        placeholder="start eloping"
+                        senderInfo
+                        typingIndicator />
+                    </Chat>
+                  </PubNubProvider>} /> */}
               </Routes>
             </BrowserRouter>
           </Col>
@@ -114,14 +112,10 @@ function App() {
 export default App;
 
 
- <Route path="/chat" element={
-                <PubNubProvider client={pubnub}>
-                    {/* PubNubProvider is a part of the PubNub React SDK  and allows you to access PubNub instance
-                    in components down the tree. */}
-                  <Chat {...{ currentChannel, theme }}>
-                    {/* Chat is an obligatory state provider. It allows you to configure some common component
-                    options, like the current channel and the general theme for the app. */}
-                    <MessageList />
-                    <MessageInput />
-                  </Chat>
-                </PubNubProvider>} /> 
+//  <Route path="/chat" element={
+//                 <PubNubProvider client={pubnub}>
+//                   <Chat {...{ currentChannel, theme }}>
+//                     <MessageList />
+//                     <MessageInput />
+//                   </Chat>
+//                 </PubNubProvider>} /> 

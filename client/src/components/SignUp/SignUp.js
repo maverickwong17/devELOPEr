@@ -10,18 +10,34 @@ import {
 } from "react-bootstrap";
 import { useDropzone } from "react-dropzone";
 import InterestButton from "../InterestButton/InterestButton";
+import cuid from "cuid";
 import data from "../../data/interestsJson";
 
 import "./SignUp.css";
 const SignUp = () => {
+  const [files, setFiles] = useState([]);
   const onDrop = useCallback((acceptedFiles) => {
-    console.log(acceptedFiles);
+    acceptedFiles.map((file) => {
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        setFiles((prevState) => [
+          ...prevState,
+          { id: cuid(), src: e.target.result },
+        ]);
+      };
+      reader.readAsDataURL(file);
+      return file;
+      // reader.setFiles(acceptedFiles);
+    });
   }, []);
+  console.log(files);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+  // console.log(acceptedFiles);
   return (
     <div className="container_signup">
       <Row className="row_gap">
-        <Col className="profile_details">
+        <Col className="profile_details" md={3}>
           <Row>
             <h4>Profile Details</h4>
             <div className="grid">
@@ -77,27 +93,32 @@ const SignUp = () => {
                 );
               })}
             </div>
-          </Row>
+          </Row>{" "}
           <Row>
             What are you looking for...
             <div className="grid">f</div>
           </Row>
-          <Button className="signup">SIGN UP</Button>
         </Col>
-        <Col
-          md={8}
-          //   sm={1}
-        >
-          <Row className="grid_images">
-            <div {...getRootProps()}>
-              <input {...getInputProps()} />
-              {isDragActive ? (
-                <p>Drop the files here...</p>
-              ) : (
-                <p>Drag n drop files here...</p>
-              )}
+        <Col md={4} className="grid_images">
+          <Row style={{ height: "100%" }}>
+            Upload Images
+            <div className="grid expand">
+              {files.map((file) => (
+                <li key={file.path}>{file.path}</li>
+              ))}
+              <section>
+                <div {...getRootProps({ className: "dropzone" })}>
+                  <input {...getInputProps()} />
+                  {isDragActive ? (
+                    <p>Drop the files here...</p>
+                  ) : (
+                    <p>Drag n drop files here...</p>
+                  )}
+                </div>
+              </section>
             </div>
           </Row>{" "}
+          <Button className="signup">SIGN UP</Button>
         </Col>
       </Row>
     </div>

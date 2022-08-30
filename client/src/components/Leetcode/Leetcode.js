@@ -87,7 +87,7 @@ const Leetcode = () => {
 
   return (
     <>
-      <Row className="grid">
+      <Row className="grid_l">
         <Row>
           <Col>
             {" "}

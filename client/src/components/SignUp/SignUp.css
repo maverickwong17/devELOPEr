@@ -1,18 +1,23 @@
 .grid {
   background: rgba(00, 00, 00, 0.7);
-  /* height: 80vh; */
   margin: 0;
-
   border-radius: 8px;
-  /* width: 100%; */
 }
 .justify {
+  padding: 1rem 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 *:focus {
   outline: none;
+  color: white;
+}
+/* * {
+  color: white;
+} */
+.expand {
+  height: 90%;
 }
 h1,
 h2,
@@ -36,31 +41,18 @@ h4 {
 .container_signup {
   margin: 1rem 3rem;
   padding: 1rem;
-  /* background-color: green; */
-  /* width: 80%; */
-
-  height: 80vh;
+  /* width: 100%; */
 }
 .profile_details {
-  /* background: rgba(0, 0, 0, 0.8); */
-  /* background-color: red; */
-  top: 0;
-  padding-top: 9rem;
-  /* margin-top: 40px; */
-  height: 80vh;
-  /* height: fit-content; */
+  height: 100%;
   color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  /* margin: 1rem; */
   overflow: scroll;
-  /* align-items: center; */
 }
-.profile_details .grid {
+.profile_details::-webkit-scrollbar {
+  display: none;
+}
+.grid {
   margin-bottom: 10px;
-  /* height: 80%; */
-  /* background-color: red; */
 }
 .signup {
   background: #a30e3b;
@@ -69,20 +61,24 @@ h4 {
   font-weight: 500;
   border-radius: 30px;
   border: none;
-  width: 50%;
+  width: 45%;
   margin: 0 auto;
 
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 .row_gap {
   height: 80vh;
-  /* padding: 1rem; */
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
 }
 .grid_images {
-  background: rgba(00, 00, 00, 0.7);
-  height: 100%;
-  margin-left: 10px;
-
+  height: 70%;
+  position: relative;
+  top: 15%;
+  width: 55%;
+  display: flex;
+  flex-direction: column;
   border-radius: 8px;
 }
 .input {
@@ -96,7 +92,7 @@ h4 {
   margin: 16px 0;
 }
 .form {
-  margin: 10px 5px;
+  margin: 1rem 0.5rem;
 }
 input::placeholder {
   color: white;
@@ -114,9 +110,7 @@ input:focus {
 }
 
 input[type="date"] {
-  /* background: transparent; */
   color: white;
-  /* fill: white; */
 }
 input[type="date"]::before {
   content: attr(placeholder);

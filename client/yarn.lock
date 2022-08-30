@@ -1837,6 +1837,23 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
+"@splidejs/react-splide@^0.7.8":
+  "integrity" "sha512-zXBIsa8v3h9iv8KKxEdbN+RveJKQU/VE7Iev9GoXiFxnCzN/luyySsF1FZz/lYw9B+eWiLXehOBcWLzLo+05ng=="
+  "resolved" "https://registry.npmjs.org/@splidejs/react-splide/-/react-splide-0.7.8.tgz"
+  "version" "0.7.8"
+  dependencies:
+    "@splidejs/splide" "^4.0.7"
+
+"@splidejs/splide-extension-auto-scroll@^0.4.2":
+  "integrity" "sha512-kIKRhs1Gj5a6xKEi/h/7i/G20+kJgpfzvU3nPyLrAUYdK3Q3w8kxJ4DgeMJHzlF5iachnPUe2zXdWMhZHCHYfg=="
+  "resolved" "https://registry.npmjs.org/@splidejs/splide-extension-auto-scroll/-/splide-extension-auto-scroll-0.4.2.tgz"
+  "version" "0.4.2"
+
+"@splidejs/splide@^4.0.7":
+  "integrity" "sha512-aJAOGJN2lwjwou3mxQofc3uhe+RXpw9in0WfysFX7AMT/mj7wSqoetfm41s7J8jU6FJ3ZWaLYgSJIpBAQ5wyqw=="
+  "resolved" "https://registry.npmjs.org/@splidejs/splide/-/splide-4.0.7.tgz"
+  "version" "4.0.7"
+
 "@surma/rollup-plugin-off-main-thread@^2.2.3":
   "integrity" "sha512-lR8q/9W7hZpMWweNiAKU7NQerBnzQQLvi8qnTDU/fxItPhtZVMbPV3lbCwjhIlNBe9Bbr5V+KHshvWmVSG9cxQ=="
   "resolved" "https://registry.npmjs.org/@surma/rollup-plugin-off-main-thread/-/rollup-plugin-off-main-thread-2.2.3.tgz"
@@ -6838,6 +6855,11 @@
     "@types/retry" "0.12.0"
     "retry" "^0.13.1"
 
+"p-sleep@^1.1.0":
+  "integrity" "sha512-bwP3GKZirBUYMtiUuBrheLUQdRXVeE/pmHOaLpNJzNfAD4b5AjDn6l823brXcQFade4G/g7GMNQ3KV86E8EaEw=="
+  "resolved" "https://registry.npmjs.org/p-sleep/-/p-sleep-1.1.0.tgz"
+  "version" "1.1.0"
+
 "p-try@^2.0.0":
   "integrity" "sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ=="
   "resolved" "https://registry.npmjs.org/p-try/-/p-try-2.2.0.tgz"
@@ -7725,7 +7747,7 @@
     "strip-ansi" "^6.0.1"
     "text-table" "^0.2.0"
 
-"react-dom@^18.0.0", "react-dom@^18.2.0", "react-dom@>=16.14.0", "react-dom@>=16.6.0", "react-dom@>=16.8", "react-dom@>=16.8.0":
+"react-dom@^16.0.0 || ^17.0.0 || ^18.0.0", "react-dom@^18.0.0", "react-dom@^18.2.0", "react-dom@>=16.14.0", "react-dom@>=16.6.0", "react-dom@>=16.8", "react-dom@>=16.8.0":
   "integrity" "sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz"
   "version" "18.2.0"
@@ -7847,6 +7869,13 @@
     "workbox-webpack-plugin" "^6.4.1"
   optionalDependencies:
     "fsevents" "^2.3.2"
+
+"react-tinder-card@^1.5.0":
+  "integrity" "sha512-yCBFhqyGkj3k84BrTP+2TVkG4GerDhbQhTU5+EG3lnZTTXxCzUGQQB+zOlQccOQgY0tuItUn3m05Ea2W/d9E1A=="
+  "resolved" "https://registry.npmjs.org/react-tinder-card/-/react-tinder-card-1.5.0.tgz"
+  "version" "1.5.0"
+  dependencies:
+    "p-sleep" "^1.1.0"
 
 "react-transition-group@^4.4.2":
   "integrity" "sha512-pZcd1MCJoiKiBR2NRxeCRg13uCXbydPnmB4EOeRrY7480qNWO8IIgQG6zlDkm6uRMsURXPuKq0GWtiM59a5Q6g=="

@@ -9,7 +9,7 @@ import LoginPage from "./components/LoginPage/LoginPage";
 import SignUp from "./components/SignUp/SignUp";
 import Leetcode from "./components/Leetcode/Leetcode";
 import Sidebar from "./components/Sidebar/Sidebar";
-import Chat from "./components/Chat/Chat";
+import Chat from "./components/Messenger/Chat";
 import { Col, Row } from "react-bootstrap";
 // import { v4 as uuid4 } from 'uuid';
 import PubNub from "pubnub";
@@ -69,10 +69,6 @@ function App() {
               <Route path="/" element={<LandingPage />} />
               <Route path="/signin" element={<LoginPage />} />
               <Route path="/signup" element={<SignUp />} />
-              <Route path="/chat" element={
-                <PubNubProvider client={pubnub}>
-                  <Chat {...{ currentChannel, theme }}/> 
-                </PubNubProvider> } />
             </Routes>
           </BrowserRouter>
           <Col md={1}>
@@ -98,6 +94,12 @@ function App() {
                         typingIndicator />
                     </Chat>
                   </PubNubProvider>} /> */}
+                <Route path="/chat" element={
+                  <PubNubProvider client={pubnub}>
+                    <Chat
+                    // {...{ currentChannel, theme }}
+                    />
+                  </PubNubProvider>} />
               </Routes>
             </BrowserRouter>
           </Col>

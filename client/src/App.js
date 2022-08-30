@@ -9,8 +9,13 @@ import LoginPage from "./components/LoginPage/LoginPage";
 import SignUp from "./components/SignUp/SignUp";
 import Leetcode from "./components/Leetcode/Leetcode";
 import Sidebar from "./components/Sidebar/Sidebar";
+// import Chat from "./components/Chat/Chat";
 import { Col, Row } from "react-bootstrap";
-require('dotenv').congif();
+// import { v4 as uuid4 } from 'uuid';
+// require('dotenv').congif();
+import PubNub from "pubnub";
+import { PubNubProvider } from "pubnub-react";
+import { Chat, MessageList, MessageInput } from "@pubnub/react-chat-components";
 
 import {
   ApolloClient,
@@ -36,25 +41,25 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
+// import { isRequiredArgument } from "graphql";
+
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
-import PubNub from "pubnub";
-import { PubNubProvider } from "pubnub-react";
-import { Chat, MessageList, MessageInput } from "@pubnub/react-chat-components";
-import { isRequiredArgument } from "graphql";
+const currentChannel = "Default";
+const theme = "dark";
 
 const pubnub = new PubNub({
-  publishKey: process.env.MY_PUBLISH_KEY,
-  subscribeKey: process.env.MY_SUBSCRIBE_KEY,
+  publishKey: process.env.REACT_APP_MY_PUBLISH_KEY,
+  subscribeKey: process.env.REACT_APP_MY_SUBSCRIBE_KEY,
   uuid: "myFirstUser",
 });
 
 function App() {
   return (
-    <ApolloProvider client = {client}>
+    <ApolloProvider client={client}>
       <Background>
         <Header />
         <Row>
@@ -63,6 +68,17 @@ function App() {
               <Route path="/" element={<LandingPage />} />
               <Route path="/signin" element={<LoginPage />} />
               <Route path="/signup" element={<SignUp />} />
+              {/* <Route path="/chat" element={
+                <PubNubProvider client={pubnub}>
+                    {/* PubNubProvider is a part of the PubNub React SDK  and allows you to access PubNub instance
+                    in components down the tree. }
+                  <Chat {...{ currentChannel, theme }}>
+                    {/* Chat is an obligatory state provider. It allows you to configure some common component
+                    options, like the current channel and the general theme for the app. }
+                    <MessageList />
+                    <MessageInput />
+                  </Chat>
+                </PubNubProvider>} /> */}
             </Routes>
           </BrowserRouter>
           <Col md={1}>
@@ -73,6 +89,17 @@ function App() {
             <BrowserRouter>
               <Routes>
                 <Route path="/leetcode" element={<Leetcode />} />
+                <Route path="/chat" element={
+                <PubNubProvider client={pubnub}>
+                    {/* PubNubProvider is a part of the PubNub React SDK  and allows you to access PubNub instance
+                    in components down the tree. */}
+                  <Chat {...{ currentChannel, theme }}>
+                    {/* Chat is an obligatory state provider. It allows you to configure some common component
+                    options, like the current channel and the general theme for the app. */}
+                    <MessageList />
+                    <MessageInput />
+                  </Chat>
+                </PubNubProvider>} />
               </Routes>
             </BrowserRouter>
           </Col>
@@ -85,3 +112,16 @@ function App() {
 }
 
 export default App;
+
+
+ <Route path="/chat" element={
+                <PubNubProvider client={pubnub}>
+                    {/* PubNubProvider is a part of the PubNub React SDK  and allows you to access PubNub instance
+                    in components down the tree. */}
+                  <Chat {...{ currentChannel, theme }}>
+                    {/* Chat is an obligatory state provider. It allows you to configure some common component
+                    options, like the current channel and the general theme for the app. */}
+                    <MessageList />
+                    <MessageInput />
+                  </Chat>
+                </PubNubProvider>} /> 

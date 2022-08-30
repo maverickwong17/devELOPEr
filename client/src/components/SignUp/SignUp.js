@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import {
   Form,
   Container,
@@ -8,12 +8,16 @@ import {
   Dropdown,
   DropdownButton,
 } from "react-bootstrap";
-
+import { useDropzone } from "react-dropzone";
 import InterestButton from "../InterestButton/InterestButton";
 import data from "../../data/interestsJson";
 
 import "./SignUp.css";
 const SignUp = () => {
+  const onDrop = useCallback((acceptedFiles) => {
+    console.log(acceptedFiles);
+  }, []);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
   return (
     <div className="container_signup">
       <Row className="row_gap">
@@ -84,7 +88,16 @@ const SignUp = () => {
           md={8}
           //   sm={1}
         >
-          <Row className="grid_images"></Row>{" "}
+          <Row className="grid_images">
+            <div {...getRootProps()}>
+              <input {...getInputProps()} />
+              {isDragActive ? (
+                <p>Drop the files here...</p>
+              ) : (
+                <p>Drag n drop files here...</p>
+              )}
+            </div>
+          </Row>{" "}
         </Col>
       </Row>
     </div>

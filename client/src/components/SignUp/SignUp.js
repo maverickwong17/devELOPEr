@@ -18,16 +18,29 @@ const SignUp = () => {
   const [files, setFiles] = useState([]);
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.map((file) => {
-      const reader = new FileReader();
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("tags", `codeinfuse, medium, gist`);
+      formData.append("upload_preset", "jca5ahfc"); // Replace the preset name with your own
+      formData.append("api_key", "913953185515193"); // Replace API key with your own Cloudinary key
+      formData.append("timestamp", (Date.now() / 1000) | 0);
+      fetch("https://api.cloudinary.com/v1_1/dhuyyu7wp/image/upload", {
+        method: "POST",
+        headers: { "X-Requested-With": "XMLHttpRequest" },
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => setFiles(data.url));
+      // const reader = new FileReader();
 
-      reader.onload = function (e) {
-        setFiles((prevState) => [
-          ...prevState,
-          { id: cuid(), src: e.target.result },
-        ]);
-      };
-      reader.readAsDataURL(file);
-      return file;
+      // reader.onload = function (e) {
+      //   setFiles((prevState) => [
+      //     ...prevState,
+      //     { id: cuid(), src: e.target.result },
+      //   ]);
+      // };
+      // reader.readAsDataURL(file);
+      // return file;
       // reader.setFiles(acceptedFiles);
     });
   }, []);
@@ -103,9 +116,9 @@ const SignUp = () => {
           <Row style={{ height: "100%" }}>
             Upload Images
             <div className="grid expand">
-              {files.map((file) => (
+              {/* {files.map((file) => (
                 <li key={file.path}>{file.path}</li>
-              ))}
+              ))} */}
               <section>
                 <div {...getRootProps({ className: "dropzone" })}>
                   <input {...getInputProps()} />

@@ -13,6 +13,7 @@ const typeDefs = gql`
         age: Int
         city: String
         job: String
+        interests: [String]
     }
 
     type Auth {

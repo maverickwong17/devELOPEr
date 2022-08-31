@@ -11,6 +11,7 @@ export const QUERY_USER = gql`
       age
       city
       job
+      interests
     }
   }
 `;
@@ -26,6 +27,7 @@ export const QUERY_ME = gql`
       age
       city
       job
+      interests
     }
   }
 `;

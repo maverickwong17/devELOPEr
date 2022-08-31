@@ -32,19 +32,15 @@ const Profile = () => {
   }
 
   return (
-    <Container className=''>
-      <div className='profileContainer'>
+    <Container className='profileContainer'>
+      {/* <div className='profileContainer'> */}
         <Row className='profileHeader'>
-          <Col>
-            <h2 className='h2'>{`${user.firstName}`}</h2>
-            <p className='age'>{`${user.age}`}</p>
-          </Col>
+          <h2 className='h2'>{`${user.firstName}`}</h2>
+          <p className='age'>{`${user.age}`}</p>
         </Row>
-        <Row className='profileHeader'>
-          <Col>
-            <p className='job'>{`${user.job}`}</p>
-            <p className='city'>{`${user.city}`}</p>
-          </Col>
+        <Row className='profileHeader2'>
+          <p className='job'>{`${user.job}`}</p>
+          <p className='city'>{`${user.city}`}</p>
         </Row>
         <Row>
           <Col l={{ order: 1 }} className='containerLeftColumn'>
@@ -58,7 +54,7 @@ const Profile = () => {
             {/* image gallery */}
           </Col>
         </Row>
-      </div>
+      {/* </div> */}
     </Container>
   )
 }

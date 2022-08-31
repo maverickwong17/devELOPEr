@@ -8,7 +8,7 @@ import Auth from '../../utils/auth';
 
 const LoginPage = (props) => {
 	// const [login, { error, data }] = useMutation(LOGIN_USER);
-	const [formState, setFormState] = useState({ username: '', password: '' });
+	const [formState, setFormState] = useState({ email: '', password: '' });
 	const [login, { error, data }] = useMutation(LOGIN_USER);
 
 	const handleChange = (event) => {
@@ -49,9 +49,9 @@ const LoginPage = (props) => {
 		<h4 className="side_text">Sign In to continue</h4>
 			<input 
 				className="login_input" 
-				placeholder="Username"
-				name="username"
-				value={formState.username}
+				placeholder="email"
+				name="email"
+				value={formState.email}
 				onChange={handleChange}
 				/>
 			<input 

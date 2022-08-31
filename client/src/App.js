@@ -1,5 +1,6 @@
 import "./App.css";
-import React from 'react';
+import React from "react";
+import Auth from "./utils/auth";
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import Header from "./components/Header/Header";
@@ -24,21 +25,21 @@ import {
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
-} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: "/graphql",
 });
 
 // Construct request middleware that will attach the JWT token to every request as an `authorization` header
 // https://www.apollographql.com/docs/react/api/link/apollo-link-context/
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('id_token');
+  const token = localStorage.getItem("id_token");
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
@@ -119,11 +120,10 @@ function App() {
 
 export default App;
 
-
 //  <Route path="/chat" element={
 //                 <PubNubProvider client={pubnub}>
 //                   <Chat {...{ currentChannel, theme }}>
 //                     <MessageList />
 //                     <MessageInput />
 //                   </Chat>
-//                 </PubNubProvider>} /> 
+//                 </PubNubProvider>} />

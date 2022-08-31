@@ -6,34 +6,37 @@ import { BsFillChatDotsFill } from "react-icons/bs";
 import "./Sidebar.css";
 const Sidebar = () => {
   return (
-    <div className="menu">
-      <ul>
-        {/* {navLinks.map(({ url, name }) => ( */}
-        <li>
-          <a href="#">
-            <FaUserCircle />
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <RiHeartsFill />
-          </a>
-        </li>
+    <>
+      <div className="menu">
+        <ul>
+          {/* {navLinks.map(({ url, name }) => ( */}
+          <li>
+            <a href="/profile">
+              <FaUserCircle />
+            </a>
+          </li>
+          <li>
+            <a href="/matches">
+              <RiHeartsFill />
+            </a>
+          </li>
 
-        <li>
-          <a href="#">
-            <BsFillChatDotsFill />
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <FaRegCalendarAlt />
-          </a>
-        </li>
+          <li>
+            <a href="/messages">
+              <BsFillChatDotsFill />
+            </a>
+          </li>
+          <li>
+            <a href="/events">
+              <FaRegCalendarAlt />
+            </a>
+          </li>
 
-        {/* ))} */}
-      </ul>
-    </div>
+          {/* ))} */}
+        </ul>
+      </div>
+      <div class="vertical"></div>
+    </>
   );
 };
 

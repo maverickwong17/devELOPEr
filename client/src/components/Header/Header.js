@@ -13,6 +13,7 @@ const Header = (props) => {
       <span className={classes.logo}>
         <Logo />
       </span>
+<<<<<<< HEAD
       {Auth.loggedIn() ? (
         <a href="/signin" className={classes.sign_in} onClick={logoutHandler}>
           sign out
@@ -22,6 +23,15 @@ const Header = (props) => {
           sign in
         </a>
       )}
+=======
+      <ul>
+        <li>
+          <a href="/signin" className={classes.sign_in}>
+            Sign In
+          </a>
+        </li>
+      </ul>
+>>>>>>> main
     </div>
   );
 };

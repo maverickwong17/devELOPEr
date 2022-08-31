@@ -3,7 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import { AutoScroll } from '@splidejs/splide-extension-auto-scroll';
-
+import  HomePage  from '../home/homepage';
 import '@splidejs/react-splide/css';
 // or other themes
 // import '@splidejs/react-splide/css/skyblue';
@@ -62,7 +62,8 @@ const LandingPage = () => {
         </Col>
       </Row>
       <Row>
-        <Col></Col>
+        <Col>
+        </Col>
         <Col></Col>
       </Row>
     </div>

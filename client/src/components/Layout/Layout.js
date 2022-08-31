@@ -1,9 +1,13 @@
-import React from "react";
+import React, {useState , useEffect} from "react";
 import classes from "./Layout.module.css";
 import { useCallback } from "react";
 import { loadFull } from "tsparticles";
 import Particles from "react-tsparticles";
+import { ButtonGroup, ToggleButton } from "react-bootstrap";
 const Layout = (props) => {
+  
+  const [checked, setChecked] = useState(true);
+
   const particlesInit = useCallback(async (engine) => {
     await loadFull(engine);
   }, []);
@@ -15,6 +19,18 @@ const Layout = (props) => {
   return (
     <>
       {/* // <div className={classes.layout}>{props.children}</div> */}
+      <ButtonGroup className="mb-2">
+        <ToggleButton
+          id="toggle-check"
+          type="checkbox"
+          variant="secondary"
+          checked={checked}
+          value="1"
+          onChange={(e) => setChecked(e.currentTarget.checked)}
+        >
+          Toggle Animation
+        </ToggleButton>
+      </ButtonGroup>
       <Particles
         className={classes.layout}
         id="tsparticles"
@@ -55,7 +71,7 @@ const Layout = (props) => {
               width: 1,
             },
             move: {
-              enable: true,
+              enable: checked,
               speed: 3,
               direction: "none",
               random: false,

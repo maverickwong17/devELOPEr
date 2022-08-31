@@ -9,7 +9,14 @@ import LoginPage from "./components/LoginPage/LoginPage";
 import SignUp from "./components/SignUp/SignUp";
 import Leetcode from "./components/Leetcode/Leetcode";
 import Sidebar from "./components/Sidebar/Sidebar";
+import Chat from "./components/Messenger/Chat";
 import { Col, Row } from "react-bootstrap";
+// import { v4 as uuid4 } from 'uuid';
+import PubNub from "pubnub";
+import { PubNubProvider } from "pubnub-react";
+// import { Chat, MessageList, MessageInput, TypingIndicator } from "@pubnub/react-chat-components";
+// import { Picker } from "emoji-mart/react";
+// import data from '@emoji-mart/data'
 
 import {
   ApolloClient,
@@ -35,17 +42,25 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
-// console.log("httpLink", httpLink)
-// console.log(authLink)
+// import { isRequiredArgument } from "graphql";
+
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
+const currentChannel = "Default";
+const theme = "dark";
+
+const pubnub = new PubNub({
+  publishKey: process.env.REACT_APP_MY_PUBLISH_KEY,
+  subscribeKey: process.env.REACT_APP_MY_SUBSCRIBE_KEY,
+  uuid: "myFirstUser",
+});
 
 function App() {
   return (
-    <ApolloProvider client = {client}>
+    <ApolloProvider client={client}>
       <Background>
         <Header />
         <Row>
@@ -64,6 +79,27 @@ function App() {
             <BrowserRouter>
               <Routes>
                 <Route path="/leetcode" element={<Leetcode />} />
+                {/* <Route path="/chat" element={
+                  <PubNubProvider client={pubnub}>
+                    <Chat {...{ currentChannel, theme }}>
+                      <MessageList enableReactions reactionsPicker={<Picker />}>
+                        <TypingIndicator showAsMessage />
+                      </MessageList>
+                      <MessageInput emojiPicker={<Picker data={data}/>}
+                        onBeforeSend={function noRefCheck() { }}
+                        onChange={function noRefCheck() { }}
+                        onSend={function noRefCheck() { }}
+                        placeholder="start eloping"
+                        senderInfo
+                        typingIndicator />
+                    </Chat>
+                  </PubNubProvider>} /> */}
+                <Route path="/chat" element={
+                  <PubNubProvider client={pubnub}>
+                    <Chat
+                    // {...{ currentChannel, theme }}
+                    />
+                  </PubNubProvider>} />
               </Routes>
             </BrowserRouter>
           </Col>
@@ -76,3 +112,12 @@ function App() {
 }
 
 export default App;
+
+
+//  <Route path="/chat" element={
+//                 <PubNubProvider client={pubnub}>
+//                   <Chat {...{ currentChannel, theme }}>
+//                     <MessageList />
+//                     <MessageInput />
+//                   </Chat>
+//                 </PubNubProvider>} /> 

@@ -97,7 +97,7 @@ const SignUp = () => {
 
     const submit = {
       ...accountState,
-      input: {...formState}}
+      input: {...formState, images: files}}
 
     console.log(submit);
 
@@ -268,7 +268,6 @@ const SignUp = () => {
             <h4>What are you looking for?...</h4>
             <div className="grid">f</div>
           </Row>
-          <Button className="signup" onClick={handleFormSubmit}>SIGN UP</Button>
         </Col>
         <Col md={4} className="grid_images">
           <Row>
@@ -291,7 +290,7 @@ const SignUp = () => {
               </section>
             </div>
           </Row>{" "}
-          <Button className="signup">SIGN UP</Button>
+          <Button className="signup" onClick={handleFormSubmit}>SIGN UP</Button>
         </Col>
       </Row>
     </div>

@@ -2,7 +2,8 @@
   padding: 10px;
   padding-bottom: 70px;
   background-color: #ffffff99;
-  height: 63vh
+  height: 63vh;
+  border-radius: 15px;
 }
 
 .scrollable {

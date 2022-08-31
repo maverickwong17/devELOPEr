@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import {
   Form,
   Container,
@@ -8,6 +8,7 @@ import {
   Dropdown,
   DropdownButton,
 } from "react-bootstrap";
+import { useDropzone } from "react-dropzone";
 
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
@@ -15,10 +16,44 @@ import Auth from '../../utils/auth';
 
 import InterestButton from "../InterestButton/InterestButton";
 import interest from "../../data/interestsJson";
+import cuid from "cuid";
+import data from "../../data/interestsJson";
 
 import "./SignUp.css";
 
 const SignUp = () => {
+  const [files, setFiles] = useState([]);
+  const onDrop = useCallback((acceptedFiles) => {
+    acceptedFiles.map((file) => {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("tags", `codeinfuse, medium, gist`);
+      formData.append("upload_preset", "jca5ahfc"); // Replace the preset name with your own
+      formData.append("api_key", "913953185515193"); // Replace API key with your own Cloudinary key
+      formData.append("timestamp", (Date.now() / 1000) | 0);
+      fetch("https://api.cloudinary.com/v1_1/dhuyyu7wp/image/upload", {
+        method: "POST",
+        headers: { "X-Requested-With": "XMLHttpRequest" },
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => setFiles((prevState) => [...prevState, data.url]));
+      // const reader = new FileReader();
+
+      // reader.onload = function (e) {
+      //   setFiles((prevState) => [
+      //     ...prevState,
+      //     { id: cuid(), src: e.target.result },
+      //   ]);
+      // };
+      // reader.readAsDataURL(file);
+      // return file;
+      // reader.setFiles(acceptedFiles);
+    });
+  }, []);
+  console.log(files);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
   const [accountState, setAccountState] = useState({
     email: '',
     password: ''
@@ -93,22 +128,6 @@ const SignUp = () => {
       images: '',
 		});
   };
-
-
-  <Form.Select 
-    style={{
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    }}
-    className="input"
-    id="dropdown-button-dark-example1"
-  >
-  <option>Open this select menu</option>
-  <option value="1">She/Hers</option>
-  <option value="2">He/His</option>
-  <option value="3">They/Them</option>
-</Form.Select>
 
   return (
     <div className="container_signup">
@@ -233,7 +252,7 @@ const SignUp = () => {
             </div>
           </Row>
           <Row>
-            Interests
+            <h4>Interests</h4>
             <div className="grid justify">
               {interest.map((interest) => {
                 return (
@@ -246,24 +265,33 @@ const SignUp = () => {
             </div>
           </Row>
           <Row>
-            What are you looking for...
-            <div className="grid">placeholder text</div>
+            <h4>What are you looking for?...</h4>
+            <div className="grid">f</div>
           </Row>
           <Button className="signup" onClick={handleFormSubmit}>SIGN UP</Button>
         </Col>
-        <Col
-          md={8}
-          //   sm={1}
-        >
-          <Row className="grid_images">
+        <Col md={4} className="grid_images">
+          <Row>
+            <h4>Upload Images</h4>
+            <div className="grid expand">
+              <div className="images">
+                {files.map((file) => (
+                  <img className="image" src={file} key={file} />
+                ))}
+              </div>
+              <section className="section">
+                <div {...getRootProps({ className: "dropzone" })}>
+                  <input {...getInputProps()} />
+                  {isDragActive ? (
+                    <p>Drop the files here...</p>
+                  ) : (
+                    <p>Drag n drop files here...</p>
+                  )}
+                </div>
+              </section>
+            </div>
           </Row>{" "}
-          {/* <input 
-                  className="input" 
-                  type="file" 
-                  placeholder="image" 
-                  name="image"
-                  alt="image"
-                  /> */}
+          <Button className="signup">SIGN UP</Button>
         </Col>
       </Row>
     </div>

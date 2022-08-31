@@ -1,0 +1,5 @@
+.conversation-list {
+  display: flex;
+  flex-direction: column;
+  /* background-color: #a30e3b99; */
+}

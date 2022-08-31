@@ -4,7 +4,7 @@ import "./InterestButton.css";
 const InterestButton = (props) => {
   return (
     <>
-      <Button className="interest_btn">
+      <Button className="interest_btn" disabled={props.disabled}>
         <span>{props.icon}</span>
         <span>{props.interest}</span>
       </Button>

@@ -15,3 +15,8 @@
   background: #a30e3b;
   opacity: 0.8;
 }
+.interest_btn:disabled {
+  background: #a30e3b;
+  opacity: 1;
+  /* cursor: default; */
+}

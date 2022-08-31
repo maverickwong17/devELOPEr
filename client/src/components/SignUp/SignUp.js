@@ -19,9 +19,11 @@ import interest from "../../data/interestsJson";
 import "./SignUp.css";
 
 const SignUp = () => {
-  const [formState, setFormState] = useState({
+  const [accountState, setAccountState] = useState({
     email: '',
-    password: '',
+    password: ''
+  })
+  const [formState, setFormState] = useState({
     firstName: '',
     lastName: '',
     age: '',
@@ -35,13 +37,20 @@ const SignUp = () => {
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
+  const handleAccountChange = (event) => {
+    var { name, value } = event.target;
+		setAccountState({
+		...accountState,
+		[name]: value,
+		});
+    console.log(accountState)
+  }
+
   const handleChange = (event) => {
     var { name, value } = event.target;
-
 		setFormState({
 		...formState,
-		// [name]: value,
-		[name]: name==="gender"?  event.target.innerHTML : value,
+		[name]: value,
 		});
     console.log(formState)
 	};
@@ -50,11 +59,16 @@ const SignUp = () => {
     console.log(event)
     event.preventDefault();
     console.log('submit')
-    console.log(formState);
+
+    const submit = {
+      ...accountState,
+      input: {...formState}}
+
+    console.log(submit);
 
     try {
       const { data } = await addUser({
-        variables: { ...formState },
+        variables: { ...submit },
       });
 
       Auth.login(data.addUser.token);
@@ -109,7 +123,7 @@ const SignUp = () => {
                   placeholder="Email" 
                   name="email" 
                   value={formState.email}
-                  onChange={handleChange}
+                  onChange={handleAccountChange}
                   />
                 <input 
                   className="input" 
@@ -117,7 +131,7 @@ const SignUp = () => {
                   type="password"
                   name="password" 
                   value={formState.password}
-				          onChange={handleChange}
+				          onChange={handleAccountChange}
                   />
               </Form>
             </div>
@@ -160,60 +174,36 @@ const SignUp = () => {
                   onChange={handleChange}
                 />
                 {/* <input className="input" type="text" placeholder="Gender" /> */}
-                <Dropdown
-                  >
-                  <Dropdown.Toggle
+                <select 
                     style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
                     }}
                     className="input"
                     id="dropdown-button-dark-example1"
+                    name ="gender"
+                    onChange={handleChange}
                   >
-                    Gender
-                  </Dropdown.Toggle>
-
-                  <Dropdown.Menu variant="dark" style={{ width: "100%" }}
-
-                  >
-                    <Dropdown.Item active
-                      eventKey="She/Hers"
-                      name="gender"
-                      onClick={handleChange}
-                      value={formState.gender}
-                    >
+                  <option>
+                      Gender
+                  </option>
+                  <option                     
+                    name="gender"
+                    value='She/Hers'>
                       She/Hers
-                    </Dropdown.Item>
-                    <Dropdown.Item
-                      eventKey="He/His"
-                      name="gender"
-                      onClick={handleChange}
-                      value={formState.gender}
-                    >
+                  </option>
+                  <option                     
+                    name="gender"
+                    value="He/His"> 
                       He/His
-                    </Dropdown.Item>
-                    <Dropdown.Item
-                      eventKey="They/Them "
-                      name="gender"
-                      onClick={handleChange}
-                      value={formState.gender}
-                    >
-                      They/Them 
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-                <input
-                  type="tel"
-                  className="input"
-                  id="telNo"
-                  name="telNo"
-                  placeholder="(123)456-7890"
-                  pattern="([0-9]{3})[0-9]{3}-[0-9]{4}"
-                  maxLength='13'
-                  value={formState.telNo}
-				          onChange={handleChange}
-                />
+                  </option>
+                  <option                     
+                    name="gender"
+                    value="They/Them">
+                      They/Them
+                  </option>
+                </select>
                 <input 
                   className="input" 
                   type="text" 

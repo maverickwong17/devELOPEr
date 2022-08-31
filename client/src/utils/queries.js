@@ -6,6 +6,11 @@ export const QUERY_USER = gql`
       _id
       username
       email
+      firstName
+      lastName
+      age
+      city
+      job
     }
   }
 `;
@@ -16,6 +21,11 @@ export const QUERY_ME = gql`
       _id
       username
       email
+      firstName
+      lastName
+      age
+      city
+      job
     }
   }
 `;

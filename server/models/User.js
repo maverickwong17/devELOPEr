@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
-var validateEmail = function(email) {
+var validateEmail = function (email) {
     var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     return re.test(email)
 };
@@ -24,26 +24,42 @@ const userSchema = new Schema(
                 /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please enter a valid email address'
             ],
         },
-        password:{
+        password: {
             type: String,
             required: true,
             minlength: 8
         },
-        firstName:{},
-        lastName:{},
-        age:{},
-        city:{},
-        job:{},
-        gender:{},
+        firstName: {
+            type: String
+        },
+        lastName: {
+            type: String
+        },
+        age: {
+            type: Number
+        },
+        city: {
+            type: String
+        },
+        job: {
+            type: String
+        },
+        gender: {
+            type: String
+        },
         connections: [
             {
                 type: Schema.Types.ObjectId,
                 reference: 'User'
             }
         ],
-        interests:{},
-        github:{},
-        linkedin:{}
+        interests: [
+            {
+                type: String
+            }
+        ],
+        github: {},
+        linkedin: {}
     },
     {
         toJSON: {
@@ -59,8 +75,8 @@ userSchema.virtual('connectionCount').get(function () {
 
 userSchema.pre('save', async function (next) {
     if (this.isNew || this.isModified('password')) {
-      const saltRounds = 10;
-      this.password = await bcrypt.hash(this.password, saltRounds);
+        const saltRounds = 10;
+        this.password = await bcrypt.hash(this.password, saltRounds);
     }
     next();
 });

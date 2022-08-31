@@ -1,11 +1,17 @@
 .menu {
   /* background: #34495e; */
   height: 100vh;
-  /* width: 250px; */
+  width: 7%;
   /* opacity: 0; */
   position: absolute;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  list-style: none;
+  list-style-type: none;
   /* visibility: hidden; */
   transition: all 0.25s ease;
+  /* border-right: 1px solid black; */
   /* transform: translateX(-50%); */
 }
 a {
@@ -21,12 +27,24 @@ a {
   padding: 0;
   margin: 0;
   color: #fff;
+  list-style: none;
+  list-style-type: none;
 }
 .menu li {
   color: #fff;
   font-size: 16px;
-  border-bottom: 1px solid #999999;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.25s ease;
   animation: fadeInRight 0.25s ease forwards;
   /* opacity: 0; */
+}
+.vertical {
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  height: 100%;
+  /* width: 100%; */
+  /* display: flex;
+  justify-content: right;
+  align-items: right; */
+  /* position: absolute;
+  left: 5%; */
 }

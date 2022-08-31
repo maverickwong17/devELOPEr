@@ -6,7 +6,8 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node server.js",
-        "watch": "nodemon server.js"
+        "watch": "nodemon server.js",
+        "seed": "node config/seeds.js"
     },
     "repository": {
         "type": "git",
@@ -31,6 +32,7 @@
         "mongoose": "^6.5.2",
         "nodemon": "^2.0.19",
         "session": "^0.1.0",
-        "socket.io": "^4.5.1"
+        "socket.io": "^4.5.1",
+        "uuid": "^8.3.2"
     }
 }

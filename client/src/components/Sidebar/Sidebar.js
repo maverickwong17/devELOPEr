@@ -7,6 +7,7 @@ import { AiFillHome } from "react-icons/ai"
 import "./Sidebar.css";
 const Sidebar = () => {
   return (
+
     <div className="menu">
       <ul>
         {/* {navLinks.map(({ url, name }) => ( */}
@@ -26,20 +27,23 @@ const Sidebar = () => {
           </a>
         </li>
 
-        <li>
-          <a href="#">
-            <BsFillChatDotsFill />
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <FaRegCalendarAlt />
-          </a>
-        </li>
 
-        {/* ))} */}
-      </ul>
-    </div>
+          <li>
+            <a href="/messages">
+              <BsFillChatDotsFill />
+            </a>
+          </li>
+          <li>
+            <a href="/events">
+              <FaRegCalendarAlt />
+            </a>
+          </li>
+
+          {/* ))} */}
+        </ul>
+      </div>
+      <div class="vertical"></div>
+    </>
   );
 };
 

@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react";
+
 import { Col, Row, Badge, Button, Container, Dropdown } from "react-bootstrap";
 import { FiCode } from "react-icons/fi";
 import { FaCog, FaExclamationCircle, FaUserAlt } from "react-icons/fa";
@@ -11,10 +12,10 @@ import "./Leetcode.css";
 import Sidebar from "../Sidebar/Sidebar";
 const Leetcode = () => {
   const [output, setOutput] = useState("");
-  const [language_id, setLanguageId] = useState();
-  const [user_input, setUserInput] = useState("");
+  const [language_id, setLanguageId] = useState("63");
+  const [user_input, setUserInput] = useState(`console.log("hello");`);
   const [loading, setLoading] = useState(false);
-
+  console.log(language_id, user_input);
   const runCodeHandler = async (e) => {
     setLoading(true);
     e.preventDefault();
@@ -22,7 +23,7 @@ const Leetcode = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-RapidAPI-Key": "761f0ada8bmshdaf751ca2c3ab73p141081jsn478f8b517ad5",
+        "X-RapidAPI-Key": process.env.REACT_APP_RAPID_API_KEY,
         "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
       },
       body: JSON.stringify({
@@ -57,8 +58,7 @@ const Leetcode = () => {
           method: "GET",
           headers: {
             "x-rapidapi-host": "judge0-ce.p.rapidapi.com",
-            "x-rapidapi-key":
-              "761f0ada8bmshdaf751ca2c3ab73p141081jsn478f8b517ad5",
+            "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY,
             "content-type": "application/json",
           },
         });
@@ -87,7 +87,7 @@ const Leetcode = () => {
 
   return (
     <>
-      <Row className="grid">
+      <Row className="grid_l">
         <Row>
           <Col>
             {" "}
@@ -160,10 +160,10 @@ const Leetcode = () => {
                 id="tags"
                 className="form-control form-inline mb-2 language input"
               >
+                <option value="63">JavaScript</option>
                 <option value="54">C++ </option>
                 <option value="62">Java</option>
                 <option value="71">Python</option>
-                <option value="63">JavaScript</option>
               </select>
             </div>
           </Col>
@@ -189,9 +189,9 @@ const Leetcode = () => {
               height="450px"
               theme="dark"
               extensions={
-                language_id === 63
+                language_id === "63"
                   ? javascript({ jsx: true })
-                  : language_id === 54
+                  : language_id === "54"
                   ? cpp()
                   : java()
               }

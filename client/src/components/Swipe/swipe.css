@@ -1,6 +1,8 @@
 .userImage{
-
+    object-fit: fill;
+    border-radius: 0.75rem;
 }
+/* if no image is present going ot render a blank block instead of the icon for file not found */
 .userImage:before{
     content: "";
     position: absolute;
@@ -9,15 +11,31 @@
     right: 0;
     bottom:0;
     z-index: 0;
-    background-color: #EE204D;
+    background-color: orange;
     border-radius: 0.75rem;
 }
 .userImage:after{
-    content: "User has no Image";
+    content: "No Image for \n " attr(alt);
     display: block;
     position: absolute;
-    z-index: 1;
+    z-index: 0;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+.card {
+    position: relative;
+    background-color: #fff;
+    width: 80vw;
+    box-shadow: 0 0 60px 0 rgb(0 0 0 / 30%);
+    border-radius: 0.75rem;
+    background-size: cover;
+    background-position: 50%;
+}
+.card, .cardContainer {
+    max-width: 260px;
+    height: 300px;
+}
+.swipe{
+    position: absolute;
 }

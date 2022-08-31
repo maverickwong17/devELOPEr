@@ -17,6 +17,7 @@ import InterestButton from "../InterestButton/InterestButton";
 import interest from "../../data/interestsJson";
 
 import "./SignUp.css";
+
 const SignUp = () => {
   const [formState, setFormState] = useState({
     email: '',
@@ -35,14 +36,18 @@ const SignUp = () => {
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
   const handleChange = (event) => {
-		const { name, value } = event.target;
+    var { name, value } = event.target;
 
 		setFormState({
 		...formState,
 		[name]: value,
+		// [name]: name==="gender"?  event.target.innerHTML : value,
 		});
+    console.log(formState)
 	};
+
   const handleFormSubmit = async (event) => {
+    console.log(event)
     event.preventDefault();
     console.log('submit')
     console.log(formState);
@@ -54,7 +59,9 @@ const SignUp = () => {
 
       Auth.login(data.addUser.token);
     } catch (e) {
+      console.log(data)
       console.error(e);
+      console.log(JSON.stringify(e));
     }
   };
   return (
@@ -67,12 +74,10 @@ const SignUp = () => {
               <Form className='form'>
                 <input 
                   className="input" 
-                  placeholder="Your Email Here" 
-                  type="email"
+                  placeholder="Email" 
                   name="email" 
                   value={formState.email}
                   onChange={handleChange}
-                  required
                   />
                 <input 
                   className="input" 
@@ -81,7 +86,6 @@ const SignUp = () => {
                   name="password" 
                   value={formState.password}
 				          onChange={handleChange}
-                  required
                   />
               </Form>
             </div>
@@ -92,27 +96,24 @@ const SignUp = () => {
               <Form className="form">
                 <input 
                   className="input" 
-                  type="text" 
                   placeholder="First Name" 
-                  name="first"
+                  name="firstName"
                   value={formState.firstName}
                   onChange={handleChange}
-                  required
                 />
                 <input 
                   className="input" 
                   type="text" 
                   placeholder="Last Name" 
-                  name="last"
+                  name="lastName"
                   value={formState.lastName}
                   onChange={handleChange}
-                  required
                 />
                 <input 
                   className="input" 
                   type="number" 
                   placeholder="Zipcode" 
-                  name="zipcode"
+                  name="location"
                   min='10000'
                   value={formState.location}
                   onChange={handleChange}
@@ -121,13 +122,14 @@ const SignUp = () => {
                   className="input" 
                   type="number"
                   placeholder="Age"
-                  min="18"       
+                  min="18"     
+                  name="age"  
                   value={formState.age}
                   onChange={handleChange}
-                  required
                 />
                 {/* <input className="input" type="text" placeholder="Gender" /> */}
-                <Dropdown>
+                <Dropdown
+                  >
                   <Dropdown.Toggle
                     style={{
                       display: "flex",
@@ -136,24 +138,34 @@ const SignUp = () => {
                     }}
                     className="input"
                     id="dropdown-button-dark-example1"
-                    name="gender"
                   >
                     Gender
                   </Dropdown.Toggle>
 
-                  <Dropdown.Menu variant="dark" style={{ width: "100%" }}>
+                  <Dropdown.Menu variant="dark" style={{ width: "100%" }}
+
+                  >
                     <Dropdown.Item active
-                      eventKey="option-1"
+                      eventKey="She/Hers"
+                      name="gender"
+                      onClick={handleChange}
+                      value={formState.gender}
                     >
                       She/Hers
                     </Dropdown.Item>
                     <Dropdown.Item
-                      eventKey="option-2"
+                      eventKey="He/His"
+                      name="gender"
+                      onClick={handleChange}
+                      value={formState.gender}
                     >
                       He/His
                     </Dropdown.Item>
                     <Dropdown.Item
-                      eventKey="option-3"
+                      eventKey="They/Them "
+                      name="gender"
+                      onClick={handleChange}
+                      value={formState.gender}
                     >
                       They/Them 
                     </Dropdown.Item>
@@ -166,7 +178,7 @@ const SignUp = () => {
                   name="telNo"
                   placeholder="(123)456-7890"
                   pattern="([0-9]{3})[0-9]{3}-[0-9]{4}"
-                  maxlength='13'
+                  maxLength='13'
                   value={formState.telNo}
 				          onChange={handleChange}
                 />
@@ -194,7 +206,6 @@ const SignUp = () => {
                   name="linkedin"
                   value={formState.linkedin}
 				          onChange={handleChange}
-                  required
                   />
               </Form>
             </div>

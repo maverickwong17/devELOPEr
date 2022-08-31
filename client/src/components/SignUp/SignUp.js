@@ -40,8 +40,8 @@ const SignUp = () => {
 
 		setFormState({
 		...formState,
-		[name]: value,
-		// [name]: name==="gender"?  event.target.innerHTML : value,
+		// [name]: value,
+		[name]: name==="gender"?  event.target.innerHTML : value,
 		});
     console.log(formState)
 	};
@@ -63,7 +63,39 @@ const SignUp = () => {
       console.error(e);
       console.log(JSON.stringify(e));
     }
+
+    setFormState({
+      email: '',
+      password: '',
+      firstName: '',
+      lastName: '',
+      age: '',
+      location: '',
+      job: '',
+      gender: '',
+      interest: '',
+      github: '',
+      linkedin: '',
+      images: '',
+		});
   };
+
+
+  <Form.Select 
+    style={{
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    }}
+    className="input"
+    id="dropdown-button-dark-example1"
+  >
+  <option>Open this select menu</option>
+  <option value="1">She/Hers</option>
+  <option value="2">He/His</option>
+  <option value="3">They/Them</option>
+</Form.Select>
+
   return (
     <div className="container_signup">
       <Row className="row_gap">

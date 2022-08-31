@@ -24,7 +24,6 @@ const db = [
     }
   ];
 
-
 function Swiper () {
     // const get nearby users
     const users = db;

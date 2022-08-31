@@ -7,7 +7,7 @@ import { AiFillHome } from "react-icons/ai"
 import "./Sidebar.css";
 const Sidebar = () => {
   return (
-
+  <>
     <div className="menu">
       <ul>
         {/* {navLinks.map(({ url, name }) => ( */}
@@ -26,7 +26,6 @@ const Sidebar = () => {
             <RiHeartsFill />
           </a>
         </li>
-
 
           <li>
             <a href="/messages">

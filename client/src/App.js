@@ -50,8 +50,6 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-<<<<<<< HEAD
-=======
 const currentChannel = "Default";
 const theme = "dark";
 
@@ -61,7 +59,6 @@ const pubnub = new PubNub({
   uuid: "myFirstUser",
 });
 
->>>>>>> main
 function App() {
   return (
     <ApolloProvider client={client}>
@@ -79,20 +76,7 @@ function App() {
                 <BrowserRouter>
                   <Routes>
                     <Route path="/leetcode" element={<Leetcode />} />
-                  </Routes>
-                </BrowserRouter>
-              </Col>
-            </>
-          ) : (
-            <BrowserRouter>
-              <Routes>
-<<<<<<< HEAD
-                <Route path="/" element={<LandingPage />} />
-                <Route path="/signin" element={<LoginPage />} />
-                <Route path="/signup" element={<SignUp />} />
-=======
-                <Route path="/leetcode" element={<Leetcode />} />
-                {/* <Route path="/chat" element={
+                    {/* <Route path="/chat" element={
                   <PubNubProvider client={pubnub}>
                     <Chat {...{ currentChannel, theme }}>
                       <MessageList enableReactions reactionsPicker={<Picker />}>
@@ -107,13 +91,26 @@ function App() {
                         typingIndicator />
                     </Chat>
                   </PubNubProvider>} /> */}
-                <Route path="/chat" element={
-                  <PubNubProvider client={pubnub}>
-                    <Chat
-                    // {...{ currentChannel, theme }}
+                    <Route
+                      path="/chat"
+                      element={
+                        <PubNubProvider client={pubnub}>
+                          <Chat
+                          // {...{ currentChannel, theme }}
+                          />
+                        </PubNubProvider>
+                      }
                     />
-                  </PubNubProvider>} />
->>>>>>> main
+                  </Routes>
+                </BrowserRouter>
+              </Col>
+            </>
+          ) : (
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/signin" element={<LoginPage />} />
+                <Route path="/signup" element={<SignUp />} />
               </Routes>
             </BrowserRouter>
           )}
@@ -127,11 +124,10 @@ function App() {
 
 export default App;
 
-
 //  <Route path="/chat" element={
 //                 <PubNubProvider client={pubnub}>
 //                   <Chat {...{ currentChannel, theme }}>
 //                     <MessageList />
 //                     <MessageInput />
 //                   </Chat>
-//                 </PubNubProvider>} /> 
+//                 </PubNubProvider>} />

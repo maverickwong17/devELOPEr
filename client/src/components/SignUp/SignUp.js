@@ -15,6 +15,7 @@ import data from "../../data/interestsJson";
 
 import "./SignUp.css";
 const SignUp = () => {
+  //TODO: add to  images attr in user Model
   const [files, setFiles] = useState([]);
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.map((file) => {
@@ -30,7 +31,7 @@ const SignUp = () => {
         body: formData,
       })
         .then((response) => response.json())
-        .then((data) => setFiles(data.url));
+        .then((data) => setFiles((prevState) => [...prevState, data.url]));
       // const reader = new FileReader();
 
       // reader.onload = function (e) {
@@ -95,7 +96,7 @@ const SignUp = () => {
             </div>
           </Row>
           <Row>
-            Interests
+            <h4>Interests</h4>
             <div className="grid justify">
               {data.map((interest) => {
                 return (
@@ -108,18 +109,20 @@ const SignUp = () => {
             </div>
           </Row>{" "}
           <Row>
-            What are you looking for...
+            <h4>What are you looking for?...</h4>
             <div className="grid">f</div>
           </Row>
         </Col>
         <Col md={4} className="grid_images">
-          <Row style={{ height: "100%" }}>
-            Upload Images
+          <Row>
+            <h4>Upload Images</h4>
             <div className="grid expand">
-              {/* {files.map((file) => (
-                <li key={file.path}>{file.path}</li>
-              ))} */}
-              <section>
+              <div className="images">
+                {files.map((file) => (
+                  <img className="image" src={file} key={file} />
+                ))}
+              </div>
+              <section className="section">
                 <div {...getRootProps({ className: "dropzone" })}>
                   <input {...getInputProps()} />
                   {isDragActive ? (

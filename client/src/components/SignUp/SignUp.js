@@ -19,9 +19,18 @@ import interest from "../../data/interestsJson";
 import "./SignUp.css";
 const SignUp = () => {
   const [formState, setFormState] = useState({
-    username: '',
     email: '',
     password: '',
+    firstName: '',
+    lastName: '',
+    age: '',
+    location: '',
+    job: '',
+    gender: '',
+    interest: '',
+    github: '',
+    linkedin: '',
+    images: '',
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
@@ -61,12 +70,18 @@ const SignUp = () => {
                   placeholder="Your Email Here" 
                   type="email"
                   name="email" 
+                  value={formState.email}
+                  onChange={handleChange}
+                  required
                   />
                 <input 
                   className="input" 
                   placeholder="Password" 
                   type="password"
                   name="password" 
+                  value={formState.password}
+				          onChange={handleChange}
+                  required
                   />
               </Form>
             </div>
@@ -80,12 +95,18 @@ const SignUp = () => {
                   type="text" 
                   placeholder="First Name" 
                   name="first"
+                  value={formState.firstName}
+                  onChange={handleChange}
+                  required
                 />
                 <input 
                   className="input" 
                   type="text" 
                   placeholder="Last Name" 
                   name="last"
+                  value={formState.lastName}
+                  onChange={handleChange}
+                  required
                 />
                 <input 
                   className="input" 
@@ -93,12 +114,17 @@ const SignUp = () => {
                   placeholder="Zipcode" 
                   name="zipcode"
                   min='10000'
+                  value={formState.location}
+                  onChange={handleChange}
                 />
                 <input 
                   className="input" 
                   type="number"
-                  placeholder="Age" 
-                  min="18"
+                  placeholder="Age"
+                  min="18"       
+                  value={formState.age}
+                  onChange={handleChange}
+                  required
                 />
                 {/* <input className="input" type="text" placeholder="Gender" /> */}
                 <Dropdown>
@@ -116,13 +142,19 @@ const SignUp = () => {
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu variant="dark" style={{ width: "100%" }}>
-                    <Dropdown.Item href="#/action-1" active>
+                    <Dropdown.Item active
+                      eventKey="option-1"
+                    >
                       She/Hers
                     </Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">
+                    <Dropdown.Item
+                      eventKey="option-2"
+                    >
                       He/His
                     </Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">
+                    <Dropdown.Item
+                      eventKey="option-3"
+                    >
                       They/Them 
                     </Dropdown.Item>
                   </Dropdown.Menu>
@@ -132,25 +164,37 @@ const SignUp = () => {
                   className="input"
                   id="telNo"
                   name="telNo"
-                  placeholder="(123) 456-7890"
+                  placeholder="(123)456-7890"
+                  pattern="([0-9]{3})[0-9]{3}-[0-9]{4}"
+                  maxlength='13'
+                  value={formState.telNo}
+				          onChange={handleChange}
                 />
                 <input 
                   className="input" 
                   type="text" 
                   placeholder="Job Title" 
                   name="job"
+                  value={formState.job}
+				          onChange={handleChange}
                   />
                 <input 
                   className="input" 
-                  type="url" 
-                  placeholder="GitHub" 
-                  name="job"
+                  type="text" 
+                  placeholder="GitHub Username" 
+                  name="github"
+                  value={formState.github}
+				          onChange={handleChange}
+                  required
                   />
                 <input 
                   className="input" 
-                  type="url" 
-                  placeholder="LinkedIn" 
-                  name="job"
+                  type="text" 
+                  placeholder="LinkedIn Profile" 
+                  name="linkedin"
+                  value={formState.linkedin}
+				          onChange={handleChange}
+                  required
                   />
               </Form>
             </div>

@@ -50,8 +50,6 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-<<<<<<< HEAD
-=======
 const currentChannel = "Default";
 const theme = "dark";
 
@@ -61,7 +59,6 @@ const pubnub = new PubNub({
   uuid: "myFirstUser",
 });
 
->>>>>>> main
 function App() {
   return (
     <ApolloProvider client={client}>
@@ -86,11 +83,9 @@ function App() {
           ) : (
             <BrowserRouter>
               <Routes>
-<<<<<<< HEAD
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/signin" element={<LoginPage />} />
                 <Route path="/signup" element={<SignUp />} />
-=======
                 <Route path="/leetcode" element={<Leetcode />} />
                 {/* <Route path="/chat" element={
                   <PubNubProvider client={pubnub}>
@@ -113,7 +108,6 @@ function App() {
                     // {...{ currentChannel, theme }}
                     />
                   </PubNubProvider>} />
->>>>>>> main
               </Routes>
             </BrowserRouter>
           )}

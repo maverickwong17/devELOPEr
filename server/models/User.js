@@ -8,12 +8,6 @@ var validateEmail = function(email) {
 
 const userSchema = new Schema(
     {
-        username: {
-            type: String,
-            unique: true,
-            required: true,
-            trimmed: true
-        },
         email: {
             type: String,
             unique: true,
@@ -41,13 +35,11 @@ const userSchema = new Schema(
             type: Number,
             required: true
         },
-        city:{
+        location:{
             type: String,
-            required: true
         },
         job:{
             type: String,
-            required: true
         },
         gender:{
             type: String,
@@ -61,7 +53,6 @@ const userSchema = new Schema(
         ],
         interests:{
             type: String,
-            required: true
         },
         github:{
             type: String,
@@ -73,7 +64,6 @@ const userSchema = new Schema(
         },
         images:{
             type: String,
-            required: true
         }
     },
     {

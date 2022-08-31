@@ -1,4 +1,35 @@
 .profileContainer {
-    border: 1px white;
-    background-color: #ffffffa4;
+    border: 1px #ffffff;
+    background-color: #ffffff54;
+    color: white
+}
+
+.profileHeader {
+    display: flex;
+}
+
+.containerLeftColumn {
+border: 1px #ffffff;
+}
+
+.containerRightColumn {
+    border: 1px #ffffff;
+}
+
+.h2 {
+    display: inline
+}
+
+.age {
+    display: inline;
+    padding: 10px
+}
+
+.job {
+    display: inline
+}
+
+.city {
+    display: inline;
+    padding: 10px
 }

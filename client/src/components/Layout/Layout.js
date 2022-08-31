@@ -19,7 +19,7 @@ const Layout = (props) => {
   return (
     <>
       {/* // <div className={classes.layout}>{props.children}</div> */}
-      <ButtonGroup className="mb-2">
+      <ButtonGroup className="mb-2 position-absolute bottom-0 start-0">
         <ToggleButton
           id="toggle-check"
           type="checkbox"
@@ -28,7 +28,7 @@ const Layout = (props) => {
           value="1"
           onChange={(e) => setChecked(e.currentTarget.checked)}
         >
-          Toggle Animation
+          Animation?
         </ToggleButton>
       </ButtonGroup>
       <Particles

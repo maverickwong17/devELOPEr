@@ -10,16 +10,24 @@ import LoginPage from "./components/LoginPage/LoginPage";
 import SignUp from "./components/SignUp/SignUp";
 import Leetcode from "./components/Leetcode/Leetcode";
 import Sidebar from "./components/Sidebar/Sidebar";
+import Swipe from "./components/Swipe/swipe";
 import Profile from "./components/Profile/Profile";
 // import Chat from "./components/Messenger/Chat";
 import { Col, Row } from "react-bootstrap";
 // import { v4 as uuid4 } from 'uuid';
 import PubNub from "pubnub";
 import { PubNubProvider } from "pubnub-react";
-import { Chat, MessageList, MessageInput, TypingIndicator, ChannelList, MemberList } from "@pubnub/react-chat-components";
+import {
+  Chat,
+  MessageList,
+  MessageInput,
+  TypingIndicator,
+  ChannelList,
+  MemberList,
+} from "@pubnub/react-chat-components";
 // import { Picker } from "emoji-mart";
 // import data from '@emoji-mart/data'
-import Auth from "./utils/auth";
+
 import {
   ApolloClient,
   InMemoryCache,
@@ -76,17 +84,22 @@ function App() {
                 {" "}
                 <BrowserRouter>
                   <Routes>
+                    <Route path="/swipe" element={<Swipe />} />
                     <Route path="/leetcode" element={<Leetcode />} />
-                    <Route path='/profile' element={<Profile />} />
-                    <Route path="/chat" element={
-                      <PubNubProvider client={pubnub}>
-                        <Chat {...{ currentChannel, theme }}>
-                          <MessageList>
-                            <TypingIndicator showAsMessage />
-                          </MessageList>
-                          <MessageInput typingIndicator />
-                        </Chat>
-                      </PubNubProvider>} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route
+                      path="/chat"
+                      element={
+                        <PubNubProvider client={pubnub}>
+                          <Chat {...{ currentChannel, theme }}>
+                            <MessageList>
+                              <TypingIndicator showAsMessage />
+                            </MessageList>
+                            <MessageInput typingIndicator />
+                          </Chat>
+                        </PubNubProvider>
+                      }
+                    />
                     {/* <Route
                       path="/chat"
                       element={

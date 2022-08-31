@@ -1850,6 +1850,23 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
+"@splidejs/react-splide@^0.7.8":
+  "integrity" "sha512-zXBIsa8v3h9iv8KKxEdbN+RveJKQU/VE7Iev9GoXiFxnCzN/luyySsF1FZz/lYw9B+eWiLXehOBcWLzLo+05ng=="
+  "resolved" "https://registry.npmjs.org/@splidejs/react-splide/-/react-splide-0.7.8.tgz"
+  "version" "0.7.8"
+  dependencies:
+    "@splidejs/splide" "^4.0.7"
+
+"@splidejs/splide-extension-auto-scroll@^0.4.2":
+  "integrity" "sha512-kIKRhs1Gj5a6xKEi/h/7i/G20+kJgpfzvU3nPyLrAUYdK3Q3w8kxJ4DgeMJHzlF5iachnPUe2zXdWMhZHCHYfg=="
+  "resolved" "https://registry.npmjs.org/@splidejs/splide-extension-auto-scroll/-/splide-extension-auto-scroll-0.4.2.tgz"
+  "version" "0.4.2"
+
+"@splidejs/splide@^4.0.7":
+  "integrity" "sha512-aJAOGJN2lwjwou3mxQofc3uhe+RXpw9in0WfysFX7AMT/mj7wSqoetfm41s7J8jU6FJ3ZWaLYgSJIpBAQ5wyqw=="
+  "resolved" "https://registry.npmjs.org/@splidejs/splide/-/splide-4.0.7.tgz"
+  "version" "4.0.7"
+
 "@surma/rollup-plugin-off-main-thread@^2.2.3":
   "integrity" "sha512-lR8q/9W7hZpMWweNiAKU7NQerBnzQQLvi8qnTDU/fxItPhtZVMbPV3lbCwjhIlNBe9Bbr5V+KHshvWmVSG9cxQ=="
   "resolved" "https://registry.npmjs.org/@surma/rollup-plugin-off-main-thread/-/rollup-plugin-off-main-thread-2.2.3.tgz"
@@ -4199,9 +4216,9 @@
   "version" "10.0.0"
 
 "dotenv@^16.0.1":
-  "integrity" "sha512-1K6hR6wtk2FviQ4kEiSjFiH5rpzEVi8WW0x96aztHVMhEspNpc4DVOUTEHtEva5VThQ8IaBX1Pe4gSzpVVUsKQ=="
-  "resolved" "https://registry.npmjs.org/dotenv/-/dotenv-16.0.1.tgz"
-  "version" "16.0.1"
+  "integrity" "sha512-JvpYKUmzQhYoIFgK2MOnF3bciIZoItIIoryihy0rIA+H4Jy0FmgyKYAHCTN98P5ybGSJcIFbh6QKeJdtZd1qhA=="
+  "resolved" "https://registry.npmjs.org/dotenv/-/dotenv-16.0.2.tgz"
+  "version" "16.0.2"
 
 "duplexer@^0.1.2":
   "integrity" "sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg=="
@@ -6310,9 +6327,9 @@
     "jest-cli" "^27.5.1"
 
 "jotai@^1.3.0":
-  "integrity" "sha512-ZhZ15z+94E95aMYpH9MfwFFYP5m8TuFKkEN/6+3P4SC3dXnQc5s+DbMl+kA4RC63OcUlfi9C0nJU3YDnJfqLIg=="
-  "resolved" "https://registry.npmjs.org/jotai/-/jotai-1.8.1.tgz"
-  "version" "1.8.1"
+  "integrity" "sha512-jRKTQKChLAJGB3zG5zklJoMtpWYixUi2jK3pZd5ZRpH4pQnjYYEOAVYCzZGr4Ce5Uj7j0ffYoLM4ULAAQXUoGw=="
+  "resolved" "https://registry.npmjs.org/jotai/-/jotai-1.8.2.tgz"
+  "version" "1.8.2"
 
 "js-tokens@^3.0.0 || ^4.0.0", "js-tokens@^4.0.0":
   "integrity" "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ=="

@@ -9,44 +9,44 @@ import {
   DropdownButton,
 } from "react-bootstrap";
 
-// import { useMutation } from '@apollo/client';
-// import { ADD_USER } from '../../utils/mutations';
-// import Auth from '../../utils/auth';
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../../utils/mutations';
+import Auth from '../../utils/auth';
 
 import InterestButton from "../InterestButton/InterestButton";
 import interest from "../../data/interestsJson";
 
 import "./SignUp.css";
 const SignUp = () => {
-  // const [formState, setFormState] = useState({
-  //   username: '',
-  //   email: '',
-  //   password: '',
-  // });
-  // const [addUser, { error, data }] = useMutation(ADD_USER);
+  const [formState, setFormState] = useState({
+    username: '',
+    email: '',
+    password: '',
+  });
+  const [addUser, { error, data }] = useMutation(ADD_USER);
 
-  // const handleChange = (event) => {
-	// 	const { name, value } = event.target;
+  const handleChange = (event) => {
+		const { name, value } = event.target;
 
-	// 	setFormState({
-	// 	...formState,
-	// 	[name]: value,
-	// 	});
-	// };
+		setFormState({
+		...formState,
+		[name]: value,
+		});
+	};
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log('submit')
-    // console.log(formState);
+    console.log(formState);
 
-    // try {
-    //   const { data } = await addUser({
-    //     variables: { ...formState },
-    //   });
+    try {
+      const { data } = await addUser({
+        variables: { ...formState },
+      });
 
-    //   Auth.login(data.addUser.token);
-    // } catch (e) {
-    //   console.error(e);
-    // }
+      Auth.login(data.addUser.token);
+    } catch (e) {
+      console.error(e);
+    }
   };
   return (
     <div className="container_signup">

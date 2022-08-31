@@ -37,20 +37,44 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
-        age:{},
-        city:{},
-        job:{},
-        gender:{},
+        age:{
+            type: Number,
+            required: true
+        },
+        city:{
+            type: String,
+            required: true
+        },
+        job:{
+            type: String,
+            required: true
+        },
+        gender:{
+            type: String,
+            required: true
+        },
         connections: [
             {
                 type: Schema.Types.ObjectId,
                 reference: 'User'
             }
         ],
-        interests:{},
-        github:{},
-        linkedin:{},
-        images:{}
+        interests:{
+            type: String,
+            required: true
+        },
+        github:{
+            type: String,
+            required: true
+        },
+        linkedin:{
+            type: String,
+            required: true
+        },
+        images:{
+            type: String,
+            required: true
+        }
     },
     {
         toJSON: {

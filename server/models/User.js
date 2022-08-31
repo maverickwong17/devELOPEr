@@ -29,12 +29,24 @@ const userSchema = new Schema(
             required: true,
             minlength: 8
         },
-        firstName:{},
-        lastName:{},
-        age:{},
-        city:{},
-        job:{},
-        gender:{},
+        firstName:{
+            type: String
+        },
+        lastName:{
+            type: String
+        },
+        age:{
+            type: Number
+        },
+        city:{
+            type: String
+        },
+        job:{
+            type: String
+        },
+        gender:{
+            type: String
+        },
         connections: [
             {
                 type: Schema.Types.ObjectId,

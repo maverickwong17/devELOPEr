@@ -9,15 +9,16 @@ import LoginPage from "./components/LoginPage/LoginPage";
 import SignUp from "./components/SignUp/SignUp";
 import Leetcode from "./components/Leetcode/Leetcode";
 import Sidebar from "./components/Sidebar/Sidebar";
-import Chat from "./components/Messenger/Chat";
+import Profile from "./components/Profile/Profile";
+// import Chat from "./components/Messenger/Chat";
 import { Col, Row } from "react-bootstrap";
 // import { v4 as uuid4 } from 'uuid';
 import PubNub from "pubnub";
 import { PubNubProvider } from "pubnub-react";
-// import { Chat, MessageList, MessageInput, TypingIndicator } from "@pubnub/react-chat-components";
-// import { Picker } from "emoji-mart/react";
+import { Chat, MessageList, MessageInput, TypingIndicator, ChannelList, MemberList } from "@pubnub/react-chat-components";
+// import { Picker } from "emoji-mart";
 // import data from '@emoji-mart/data'
-
+import Auth from "./utils/auth";
 import {
   ApolloClient,
   InMemoryCache,
@@ -49,7 +50,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-const currentChannel = "Default";
+const currentChannel = "devELOPEr one";
 const theme = "dark";
 
 const pubnub = new PubNub({
@@ -64,45 +65,50 @@ function App() {
       <Background>
         <Header />
         <Row>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<LandingPage />} />
-              <Route path="/signin" element={<LoginPage />} />
-              <Route path="/signup" element={<SignUp />} />
-            </Routes>
-          </BrowserRouter>
-          <Col md={1}>
-            <Sidebar />
-          </Col>
-          <Col md={11}>
-            {" "}
+          {Auth.loggedIn() ? (
+            <>
+              {" "}
+              <Col md={1}>
+                <Sidebar />
+              </Col>
+              <Col md={11}>
+                {" "}
+                <BrowserRouter>
+                  <Routes>
+                    <Route path="/leetcode" element={<Leetcode />} />
+                    <Route path='/profile' element={<Profile />} />
+                    <Route path="/chat" element={
+                      <PubNubProvider client={pubnub}>
+                        <Chat {...{ currentChannel, theme }}>
+                          <MessageList>
+                            <TypingIndicator showAsMessage />
+                          </MessageList>
+                          <MessageInput typingIndicator />
+                        </Chat>
+                      </PubNubProvider>} />
+                    {/* <Route
+                      path="/chat"
+                      element={
+                        <PubNubProvider client={pubnub}>
+                          <Chat
+                          // {...{ currentChannel, theme }}
+                          />
+                        </PubNubProvider>
+                      }
+                    /> */}
+                  </Routes>
+                </BrowserRouter>
+              </Col>
+            </>
+          ) : (
             <BrowserRouter>
               <Routes>
-                <Route path="/leetcode" element={<Leetcode />} />
-                {/* <Route path="/chat" element={
-                  <PubNubProvider client={pubnub}>
-                    <Chat {...{ currentChannel, theme }}>
-                      <MessageList enableReactions reactionsPicker={<Picker />}>
-                        <TypingIndicator showAsMessage />
-                      </MessageList>
-                      <MessageInput emojiPicker={<Picker data={data}/>}
-                        onBeforeSend={function noRefCheck() { }}
-                        onChange={function noRefCheck() { }}
-                        onSend={function noRefCheck() { }}
-                        placeholder="start eloping"
-                        senderInfo
-                        typingIndicator />
-                    </Chat>
-                  </PubNubProvider>} /> */}
-                <Route path="/chat" element={
-                  <PubNubProvider client={pubnub}>
-                    <Chat
-                    // {...{ currentChannel, theme }}
-                    />
-                  </PubNubProvider>} />
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/signin" element={<LoginPage />} />
+                <Route path="/signup" element={<SignUp />} />
               </Routes>
             </BrowserRouter>
-          </Col>
+          )}
         </Row>
       </Background>
 

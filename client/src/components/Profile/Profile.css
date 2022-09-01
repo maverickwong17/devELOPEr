@@ -1,71 +1,75 @@
 .profileContainer {
-    border: 1px #ffffff;
-    /* background-color: #ffffff54; */
-    color: white
+  /* width: 95%; */
+  border: 1px #ffffff;
+  /* background-color: rgba(0, 0, 0, 0.7); */
+  color: white;
+  padding: 1rem;
+  height: fit-content;
+  /* height: 85vh; */
 }
 
 .profileHeader {
-    display: flex;
-    /* background: #ff000045; */
-    /* flex-direction: row; */
-    /* background-color: red; */
+  display: flex;
+  /* background: #ff000045; */
+  /* flex-direction: row; */
+  /* background-color: red; */
 }
 
 .h2 span {
-    font-size: 30px;
+  font-size: 30px;
 }
 
 .profileHeader div {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .profileHeader2 {
-    display: flex;
-    flex-direction: column;
-    background: #00f7ff45;
-    /* background-color: purple; */
+  /* width: 100%; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* background: #00f7ff45; */
+  /* background-color: purple; */
 }
 
-.containerLeftColumn {
-border: 1px #ffffff;
-/* background: #ffff0065; */
-}
-
+.containerLeftColumn,
 .containerRightColumn {
-    border: 1px #ffffff;
-    /* background: #d000ff65; */
+  border: 1px #ffffff;
+  /* background: #ffff0065; */
 }
 
 .h2 {
-    display: inline;
-    font-size: 50px
+  display: inline;
+  font-size: 50px;
 }
 
 .age {
-    display: inline;
-    padding: 10px
+  display: inline;
+  padding: 10px;
 }
 
 .job {
-    display: inline-flex;
-    background-color: #00800078
+  width: fit-content;
+  font-size: 40px;
+  /* background-color: #00800078; */
 }
 
 .city {
-    display: inline-flex;
-    flex-direction:row-reverse;
-    /* padding: 10px; */
-    background-color: #fb00ff78
+  width: fit-content;
+  font-size: 30px;
+  /* display: inline-flex; */
+  /* flex-direction: row-reverse; */
+  /* padding: 10px; */
+  /* background-color: #fb00ff78; */
 }
 
 .profileLinkButtons {
-    justify-content: center;
-    display: inline;
-    max-width: auto;
-    flex-wrap: wrap;
-    padding: 1px;
-    margin: 5px;
-    flex-direction: column;
-
+  justify-content: center;
+  display: inline;
+  /* max-width: auto; */
+  flex-wrap: wrap;
+  padding: 1px;
+  margin: 5px;
+  flex-direction: column;
 }

@@ -42,13 +42,13 @@ const Profile = () => {
       {/* <div className='profileContainer'> */}
       <Row className='profileHeader'>
         <div>
-          <h2 className='h2'>{`${user.firstName}`}</h2>
-          <p className='age'>{`${user.age}`}</p>
+          <h2 className='h2'>{`${user.firstName}, ${user.age}`}</h2>
+          {/* <p className='age'>{`${user.age}`}</p> */}
         </div>
       </Row>
       <Row className='profileHeader2'>
         <p className='job'>{`${user.job}`}</p>
-        <p className='city'>{`${user.city}`}</p>
+        <p className='city'>{`${user.location}`}</p>
       </Row>
       <Row>
         <Col l={{ order: 1 }} className='containerLeftColumn'>

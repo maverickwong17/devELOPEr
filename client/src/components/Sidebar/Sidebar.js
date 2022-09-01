@@ -17,7 +17,7 @@ const Sidebar = () => {
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="/profile">
             <FaUserCircle />
           </a>
         </li>
@@ -28,7 +28,7 @@ const Sidebar = () => {
         </li>
 
           <li>
-            <a href="/messages">
+            <a href="/chat">
               <BsFillChatDotsFill />
             </a>
           </li>

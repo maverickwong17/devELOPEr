@@ -17,6 +17,7 @@ import { Col, Row } from "react-bootstrap";
 // import { v4 as uuid4 } from 'uuid';
 import PubNub from "pubnub";
 import { PubNubProvider } from "pubnub-react";
+import MediaQuery from "react-responsive";
 import {
   Chat,
   MessageList,
@@ -35,6 +36,7 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+import ResponsiveSideBar from "./components/ResponsiveSideBar/ResponsiveSideBar";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -53,7 +55,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 // import { isRequiredArgument } from "graphql";
-
+// const isSmall = useMediaQuery({ query: "(max-width: 1275px)" });
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
@@ -67,19 +69,29 @@ const pubnub = new PubNub({
   subscribeKey: process.env.REACT_APP_MY_SUBSCRIBE_KEY,
   uuid: "myFirstUser",
 });
-
+const renderPages = () => {};
 function App() {
   return (
     <ApolloProvider client={client}>
       <Background>
         <Header />
-        <Row>
+        <MediaQuery maxWidth={1224}>
+          <Row>
+            {" "}
+            <Sidebar />
+          </Row>
+        </MediaQuery>
+
+        <Row className="center">
           {Auth.loggedIn() ? (
             <>
               {" "}
-              <Col md={1}>
-                <Sidebar />
-              </Col>
+              {}
+              <MediaQuery minWidth={1224}>
+                <Col md={1}>
+                  <Sidebar />
+                </Col>
+              </MediaQuery>
               <Col md={11}>
                 {" "}
                 <BrowserRouter>

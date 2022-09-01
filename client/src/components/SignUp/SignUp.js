@@ -70,6 +70,7 @@ const SignUp = () => {
     linkedin: '',
     range: '',
     images: '',
+    seeking: ''
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
@@ -152,15 +153,15 @@ const SignUp = () => {
             <div className="grid">
               <Form className='form'>
                 <input 
-                  className="input" 
                   placeholder="Email" 
+                  className="input" 
                   name="email" 
                   value={formState.email}
                   onChange={handleAccountChange}
                   />
                 <input 
-                  className="input" 
                   placeholder="Password" 
+                  className="input" 
                   type="password"
                   name="password" 
                   value={formState.password}
@@ -174,33 +175,33 @@ const SignUp = () => {
             <div className="grid">
               <Form className="form">
                 <input 
-                  className="input" 
                   placeholder="First Name" 
+                  className="input" 
                   name="firstName"
                   value={formState.firstName}
                   onChange={handleChange}
                 />
                 <input 
+                  placeholder="Last Name" 
                   className="input" 
                   type="text" 
-                  placeholder="Last Name" 
                   name="lastName"
                   value={formState.lastName}
                   onChange={handleChange}
                 />
                 <input 
+                  placeholder="Zipcode" 
                   className="input" 
                   type="number" 
-                  placeholder="Zipcode" 
                   name="location"
                   min='10000'
                   value={formState.location}
                   onChange={handleChange}
                 />
                 <input 
+                  placeholder="Age"
                   className="input" 
                   type="number"
-                  placeholder="Age"
                   min="18"     
                   name="age"  
                   value={formState.age}
@@ -208,6 +209,7 @@ const SignUp = () => {
                 />
                 {/* <input className="input" type="text" placeholder="Gender" /> */}
                 <select 
+                    name ="gender"
                     style={{
                     display: "flex",
                     justifyContent: "space-between",
@@ -215,7 +217,6 @@ const SignUp = () => {
                     }}
                     className="input"
                     id="dropdown-button-dark-example1"
-                    name ="gender"
                     onChange={handleChange}
                   >
                   <option>
@@ -223,8 +224,8 @@ const SignUp = () => {
                   </option>
                   <option                     
                     name="gender"
-                    value='She/Hers'>
-                      She/Hers
+                    value='She/Her'>
+                      She/Her
                   </option>
                   <option                     
                     name="gender"
@@ -238,26 +239,26 @@ const SignUp = () => {
                   </option>
                 </select>
                 <input 
+                  placeholder="Job Title" 
                   className="input" 
                   type="text" 
-                  placeholder="Job Title" 
                   name="job"
                   value={formState.job}
 				          onChange={handleChange}
                   />
                 <input 
+                  placeholder="GitHub Username" 
                   className="input" 
                   type="text" 
-                  placeholder="GitHub Username" 
                   name="github"
                   value={formState.github}
 				          onChange={handleChange}
                   required
                   />
                 <input 
+                  placeholder="LinkedIn Profile" 
                   className="input" 
                   type="text" 
-                  placeholder="LinkedIn Profile" 
                   name="linkedin"
                   value={formState.linkedin}
 				          onChange={handleChange}
@@ -281,6 +282,7 @@ const SignUp = () => {
           <Row>
             <h4>What are you looking for?...  </h4>
             <div className="grid">
+            <Form className="form">
               <select 
                   style={{
                   display: "flex",
@@ -289,16 +291,16 @@ const SignUp = () => {
                   }}
                   className="input"
                   id="dropdown-button-dark-example1"
-                  name ="gender"
+                  name ="seeking"
                   onChange={handleChange}
                 >
                 <option>
-                    Gender
+                    Looking For...
                 </option>
                 <option                     
                   name="gender"
-                  value='She/Hers'>
-                    She/Hers
+                  value='She/Her'>
+                    She/Her
                 </option>
                 <option                     
                   name="gender"
@@ -311,17 +313,18 @@ const SignUp = () => {
                     They/Them
                 </option>
               </select>
+            </Form>
               <Slider
-                  min={18}
-                  size= 'large'
-                  sx={{
-                    color: "#a30e3b",
-                  }}
-                  getAriaLabel={() => 'Age range'}
-                  value={ageRange}
-                  onChange={handleAge}
-                  valueLabelDisplay="auto"
-                />
+                min={18}
+                size= 'large'
+                sx={{
+                  color: "#a30e3b",
+                }}
+                getAriaLabel={() => 'Age range'}
+                value={ageRange}
+                onChange={handleAge}
+                valueLabelDisplay="auto"
+              />
             </div>
           </Row>
         </Col>

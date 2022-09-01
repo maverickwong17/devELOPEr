@@ -28,6 +28,7 @@ export const ADD_USER = gql`
           github
           linkedin
           images
+          range
         }
       }
     }

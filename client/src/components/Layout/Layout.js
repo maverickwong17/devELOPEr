@@ -19,7 +19,7 @@ const Layout = (props) => {
   return (
     <>
       {/* // <div className={classes.layout}>{props.children}</div> */}
-      <ButtonGroup className="mb-2 position-absolute bottom-0 start-0">
+      <ButtonGroup className="mb-2 position-absolute bottom-0 end-0">
         <ToggleButton
           id="toggle-check"
           type="checkbox"

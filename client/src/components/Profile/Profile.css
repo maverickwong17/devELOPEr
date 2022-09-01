@@ -6,6 +6,7 @@
 
 .profileHeader {
     display: flex;
+    background: #ff000045;
     /* flex-direction: row; */
     /* background-color: red; */
 }
@@ -18,15 +19,18 @@
 .profileHeader2 {
     display: flex;
     flex-direction: row;
+    background: #00f7ff45;
     /* background-color: purple; */
 }
 
 .containerLeftColumn {
 border: 1px #ffffff;
+background: #ffff0065;
 }
 
 .containerRightColumn {
     border: 1px #ffffff;
+    background: #d000ff65;
 }
 
 .h2 {

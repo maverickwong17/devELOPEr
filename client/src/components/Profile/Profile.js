@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/client';
 import { Navigate, useParams } from "react-router-dom";
 import { Col, Row, Container, Button } from "react-bootstrap";
 import { QUERY_USER, QUERY_ME } from '../../utils/queries';
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 import InterestList from './InterestList';
 import Auth from '../../utils/auth';
 
@@ -23,7 +24,7 @@ const Profile = () => {
     return <div>Loading...</div>;
   }
 
-  if (!user?.email) {
+  if (!user) {
     return (
       <h4>
         You need to be logged in to see this. Use the navigation links above to
@@ -32,9 +33,9 @@ const Profile = () => {
     );
   }
   console.log(user)
-
-  let interests = user.interests;
-  console.log(interests)
+  let interests = user.interest;
+  let images = user.images;
+  // console.log(interests)
 
   return (
     <Container className='profileContainer'>
@@ -59,8 +60,21 @@ const Profile = () => {
           </div>
           {/* email/linkedin/github icons*/}
         </Col>
-        <Col l={{ order: 2 }} className='containerRightColumn'>image gallery
-          {/* image gallery */}
+        <Col l={{ order: 2 }} className='containerRightColumn'>
+          <ResponsiveMasonry
+            columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
+          >
+            <Masonry>
+              {images.map((image, i) => (
+                <img
+                  key={i}
+                  src={image}
+                  style={{ width: "100%", display: "block", margin: 2 }}
+                  alt=""
+                />
+              ))}
+            </Masonry>
+          </ResponsiveMasonry>
         </Col>
       </Row>
       {/* </div> */}

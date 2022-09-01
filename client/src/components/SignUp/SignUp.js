@@ -163,7 +163,6 @@ const SignUp = () => {
                 <input
                   className="input"
                   placeholder="Password"
->>>>>>> 3d786c1965ca406e4e51a9bb0746434911acc54a
                   type="password"
                   name="password"
                   value={formState.password}
@@ -230,7 +229,6 @@ const SignUp = () => {
                   </option>
                   <option name="gender" value="He/His">
                     He/His
->>>>>>> 3d786c1965ca406e4e51a9bb0746434911acc54a
                   </option>
                   <option name="gender" value="They/Them">
                     They/Them
@@ -248,7 +246,6 @@ const SignUp = () => {
                   className="input"
                   type="text"
                   placeholder="GitHub Username"
->>>>>>> 3d786c1965ca406e4e51a9bb0746434911acc54a
                   name="github"
                   value={formState.github}
                   onChange={handleChange}

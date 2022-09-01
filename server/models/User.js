@@ -1,7 +1,9 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
-var validateEmail = function (email) {
+const profileSchema = require("./Profile")
+
+var validateEmail = function(email) {
     var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     return re.test(email)
 };
@@ -23,37 +25,13 @@ const userSchema = new Schema(
             required: true,
             minlength: 8
         },
-        firstName: {
-            type: String
-        },
-        lastName: {
-            type: String
-        },
-        age: {
-            type: Number
-        },
-        city: {
-            type: String
-        },
-        job: {
-            type: String
-        },
-        gender: {
-            type: String
-        },
         connections: [
             {
                 type: Schema.Types.ObjectId,
                 reference: 'User'
             }
         ],
-        interests: [
-            {
-                type: String
-            }
-        ],
-        github: {},
-        linkedin: {}
+        profile: profileSchema
     },
     {
         toJSON: {

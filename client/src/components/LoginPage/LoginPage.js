@@ -7,9 +7,8 @@ import { LOGIN_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 
 const LoginPage = (props) => {
-	// const [login, { error, data }] = useMutation(LOGIN_USER);
-	const [formState, setFormState] = useState({ username: '', password: '' });
-	const [login, { error, data }] = useMutation(LOGIN_USER);
+	const [formState, setFormState] = useState({ email: '', password: '' });
+	const [login, { error }] = useMutation(LOGIN_USER);
 
 	const handleChange = (event) => {
 		const { name, value } = event.target;
@@ -31,14 +30,13 @@ const LoginPage = (props) => {
 			console.log(data.login.token)
 			Auth.login(data.login.token);
 		} catch (e) {
-			console.log(data)
 			console.error(e);
 		}
 	
-		// setFormState({
-		// 	email: '',
-		// 	password: '',
-		// });
+		setFormState({
+			email: '',
+			password: '',
+		});
 	}
 	
   	return (
@@ -49,9 +47,9 @@ const LoginPage = (props) => {
 		<h4 className="side_text">Sign In to continue</h4>
 			<input 
 				className="login_input" 
-				placeholder="Username"
-				name="username"
-				value={formState.username}
+				placeholder="email"
+				name="email"
+				value={formState.email}
 				onChange={handleChange}
 				/>
 			<input 

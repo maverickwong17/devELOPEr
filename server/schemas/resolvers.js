@@ -34,22 +34,29 @@ const resolvers = {
         },
         me: async (parent, args, context) => {
             if (context.user) {
-              return User.findOne({ _id: context.user._id })
+              return User.findOne({ _id: context.user._id });
             }
             throw new AuthenticationError('You need to be logged in!');
         },
     },
 
     Mutation: {
-        addUser: async (parent, { email, password }) => {
-            const user = await User.create({ email, password });
+        addUser: async (parent, body) => {
+            const email = body.email
+            const password = body.password
+            const user = await User.create({email,password});
             const token = signToken(user);
+            const update = await User.findOneAndUpdate(
+                { email: email },
+                { profile : body.input },
+                { new: true }
+            )
             return { token, user };
         },
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
             if (!user) {
-              throw new AuthenticationError('No user found with this username');
+              throw new AuthenticationError('No user found with this email');
             }
             const correctPw = await user.isCorrectPassword(password);
             if (!correctPw) {

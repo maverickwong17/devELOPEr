@@ -10,6 +10,7 @@ import LoginPage from "./components/LoginPage/LoginPage";
 import SignUp from "./components/SignUp/SignUp";
 import Leetcode from "./components/Leetcode/Leetcode";
 import Sidebar from "./components/Sidebar/Sidebar";
+import Swipe from "./components/Swipe/swipe";
 import Profile from "./components/Profile/Profile";
 // import Chat from "./components/Messenger/Chat";
 import DevChat from "./components/Chat/Chat";
@@ -17,10 +18,18 @@ import { Col, Row } from "react-bootstrap";
 // import { v4 as uuid4 } from 'uuid';
 import PubNub from "pubnub";
 import { PubNubProvider } from "pubnub-react";
-// import { Chat, MessageList, MessageInput, TypingIndicator, ChannelList, MemberList } from "@pubnub/react-chat-components";
+import MediaQuery from "react-responsive";
+import {
+  Chat,
+  MessageList,
+  MessageInput,
+  TypingIndicator,
+  ChannelList,
+  MemberList,
+} from "@pubnub/react-chat-components";
 // import { Picker } from "emoji-mart";
 // import data from '@emoji-mart/data'
-// import Auth from "./utils/auth";
+
 import {
   ApolloClient,
   InMemoryCache,
@@ -28,6 +37,7 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+import ResponsiveSideBar from "./components/ResponsiveSideBar/ResponsiveSideBar";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -46,7 +56,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 // import { isRequiredArgument } from "graphql";
-
+// const isSmall = useMediaQuery({ query: "(max-width: 1275px)" });
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
@@ -60,23 +70,34 @@ const pubnub = new PubNub({
   subscribeKey: process.env.REACT_APP_MY_SUBSCRIBE_KEY,
   uuid: "myFirstUser",
 });
-
+const renderPages = () => {};
 function App() {
   return (
     <ApolloProvider client={client}>
       <Background>
         <Header />
-        <Row>
+        <MediaQuery maxWidth={1224}>
+          <Row>
+            {" "}
+            <Sidebar />
+          </Row>
+        </MediaQuery>
+
+        <Row className="center">
           {Auth.loggedIn() ? (
             <>
               {" "}
-              <Col md={1}>
-                <Sidebar />
-              </Col>
+              {}
+              <MediaQuery minWidth={1224}>
+                <Col md={1}>
+                  <Sidebar />
+                </Col>
+              </MediaQuery>
               <Col md={11}>
                 {" "}
                 <BrowserRouter>
                   <Routes>
+                    <Route path="/swipe" element={<Swipe />} />
                     <Route path="/leetcode" element={<Leetcode />} />
                     <Route path='/profile' element={<Profile />} />
                     <Route path="/chat" element={

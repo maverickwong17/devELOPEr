@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Thought, Message } = require('../models');
+const { User, Message } = require('../models');
 const { signToken } = require('../utils/auth');
 const { GraphQLScalarType, Kind } = require('graphql');
 
@@ -26,8 +26,8 @@ const resolvers = {
         users: async () => {
             return User.find();
         },
-        user: async (parent, { username }) => {
-            return User.findOne({ username });
+        user: async (parent, { email }) => {
+            return User.findOne({ email });
         },
         messages: async () => {
             return Message.find();
@@ -41,13 +41,13 @@ const resolvers = {
     },
 
     Mutation: {
-        addUser: async (parent, { username, email, password }) => {
-            const user = await User.create({ username, email, password });
+        addUser: async (parent, { email, password }) => {
+            const user = await User.create({ email, password });
             const token = signToken(user);
             return { token, user };
         },
-        login: async (parent, { username, password }) => {
-            const user = await User.findOne({ username });
+        login: async (parent, { email, password }) => {
+            const user = await User.findOne({ email });
             if (!user) {
               throw new AuthenticationError('No user found with this username');
             }

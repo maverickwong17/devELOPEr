@@ -9,13 +9,13 @@ import Auth from '../../utils/auth';
 import "./Profile.css";
 
 const Profile = () => {
-  const { username: userParam } = useParams();
+  const { email: userParam } = useParams();
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-    variables: { username: userParam },
+    variables: { email: userParam },
   });
 
-  const user = data?.me || data?.user || {};
-  if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+  const user = data?.me.profile || data?.user.profile || {};
+  if (Auth.loggedIn() && Auth.getProfile().data.email === userParam) {
     return <Navigate to="/profile" />;
   }
 
@@ -23,7 +23,7 @@ const Profile = () => {
     return <div>Loading...</div>;
   }
 
-  if (!user?.username) {
+  if (!user?.email) {
     return (
       <h4>
         You need to be logged in to see this. Use the navigation links above to
@@ -31,6 +31,7 @@ const Profile = () => {
       </h4>
     );
   }
+  console.log(user)
 
   let interests = user.interests;
   console.log(interests)

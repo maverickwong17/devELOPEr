@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Picker } from "emoji-mart";
-import DarkModeToggle from "react-dark-mode-toggle";
+// import { Picker } from "emoji-mart";
+// import DarkModeToggle from "react-dark-mode-toggle";
 import { usePubNub } from "pubnub-react";
 import {
     usePresence,
     UserEntity,
     TypingIndicator,
+    // Picker,
     //   Themes,
     MessageList,
     MessageInput,
@@ -29,10 +30,10 @@ import "./Chat.css";
 import rawUsers from "../../data/chat-data/users.json";
 import rawMessages from "../../data/chat-data/messages.json";
 import directChannels from "../../data/chat-data/direct.json";
-import socialChannels from "../../data/chat-data/social.json";
+// import socialChannels from "../../data/chat-data/social.json";
 
 const users = rawUsers;
-const socialChannelList = socialChannels;
+// const socialChannelList = socialChannels;
 const directChannelList = directChannels;
 const allChannelIds = [...directChannelList].map((c) => c.id);
 
@@ -41,11 +42,9 @@ function DevChat() {
     // const [theme, setTheme] = useState<Themes>("light");
     const [showMembers, setShowMembers] = useState(false);
     const [showChannels, setShowChannels] = useState(true);
-    // const [welcomeMessages, setWelcomeMessages] = useState({ channel: string, MessageEnvelope })(
-    //   {}
-    // );
-    const [presenceData] = usePresence({ channels: allChannelIds }); // usePresnce is one of the custom hooks provided by Chat Components
-    const [currentChannel, setCurrentChannel] = useState(socialChannelList[0]);
+    // const [welcomeMessages, setWelcomeMessages] = useState({ channel: string, MessageEnvelope });
+    const [presenceData] = usePresence({ channels: allChannelIds }); // usePresence is one of the custom hooks provided by Chat Components
+    const [currentChannel, setCurrentChannel] = useState(directChannelList[0]);
 
     const presentUUIDs = presenceData[currentChannel.id]?.occupants?.map((o) => o.uuid);
     const presentUsers = users.filter((u) => presentUUIDs?.includes(u.id));
@@ -55,12 +54,38 @@ function DevChat() {
     useEffect(() => {
         const messages = {};
         [...rawMessages].forEach((message) => {
+            // console.log(message)
             if (!messages.hasOwnProperty(message.channel)) messages[message.channel] = [];
             if (message.uuid === "current_user" && currentUser?.id) message.uuid = currentUser?.id;
             messages[message.channel].push(message);
         });
+        // console.log(messages)
         //   setWelcomeMessages(messages);
     }, [currentUser]);
+
+
+    const startChat = () => {
+        // let test =
+         pubnub.publish({
+            channel: "testing",
+            message: {
+                type: 'challenge',
+                payload: {
+                    action: 'request',
+                    uuid: "myFirstUser",
+                    target: "user_142da3c419804a82a3057cedc86acaa6"
+                }
+            }
+        }, function (status, response) {
+            console.log(status)
+            console.log(response)
+        }
+        )
+        // console.log(test)
+    };
+
+    // const currentChannel = "devELOPEr one";
+    const theme = "dark";
 
     /** Rendered markup is a mixture of PubNub Chat Components (Chat, ChannelList, MessageList,
      * MessageInput, MemberList) and some elements to display additional information and to handle
@@ -69,7 +94,7 @@ function DevChat() {
         <div className='app-simple'>
             {/* Be sure to wrap Chat component in PubNubProvider from pubnub-react package.
         In this case it's done in the index.tsx file */}
-            <Chat users={users} currentChannel={currentChannel.id} channels={allChannelIds}>
+            <Chat users={users} currentChannel={currentChannel.id} channels={allChannelIds} theme={theme}>
                 <div className={`channels ${showChannels && "shown"}`}>
                     <div className="user">
                         {currentUser?.profileUrl && <img src={currentUser?.profileUrl} alt="User avatar " />}
@@ -80,16 +105,16 @@ function DevChat() {
                             </span>
                         </h4>
                     </div>
-                    <h4>Channels</h4>
+                    {/* <h4>Channels</h4>
                     <div>
                         <ChannelList
                             channels={socialChannelList}
                             onChannelSwitched={(channel) => setCurrentChannel(channel)}
                         />
-                    </div>
+                    </div> */}
                     <h4>Direct Chats</h4>
                     <div>
-                        <ChannelList
+                        <ChannelList className='pn-channel-list pn-channel pn-channel--active pn-channel--hover'
                             channels={directChannelList}
                             onChannelSwitched={(channel) => setCurrentChannel(channel)}
                         />
@@ -122,7 +147,7 @@ function DevChat() {
                         <hr />
                     </div>
                     <MessageList
-                        fetchMessages={100}
+                        fetchMessages={10}
                     //   welcomeMessages={welcomeMessages[currentChannel.id]}
                     //   enableReactions
                     //   reactionsPicker={<Picker />}
@@ -130,7 +155,7 @@ function DevChat() {
                         <TypingIndicator showAsMessage />
                     </MessageList>
                     <hr />
-                    <MessageInput typingIndicator fileUpload="all" emojiPicker={<Picker />} />
+                    <MessageInput typingIndicator onSend={(e) => (console.log(e.text))} />
                 </div>
 
                 <div className={`members ${showMembers && "shown"}`}>
@@ -141,6 +166,9 @@ function DevChat() {
                         </span>
                     </h4>
                     <MemberList members={presentUsers} />
+                </div>
+                <div>
+                    <button onClick={() => startChat()}>New Chat</button>
                 </div>
             </Chat>
         </div>

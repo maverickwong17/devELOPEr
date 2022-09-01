@@ -23,7 +23,7 @@ const profileSchema = new Schema({
         type: String,
         required: true
     },
-    interests:{
+    interest:{
         type: Array,
     },
     github:{

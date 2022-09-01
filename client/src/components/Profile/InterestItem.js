@@ -1,8 +1,9 @@
 import React from 'react';
+import './InterestItem.css';
 
 const InterestItem = ({interest}) => {
     return (
-        <p>{interest}</p>
+        <p class='interestItem'>{interest}</p>
     )
 }
 

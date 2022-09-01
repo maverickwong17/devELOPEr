@@ -1,12 +1,12 @@
 import React, { useState, useCallback } from "react";
 import {
   Form,
-  Container,
+  // Container,
   Row,
   Col,
   Button,
-  Dropdown,
-  DropdownButton,
+  // Dropdown,
+  // DropdownButton,
 } from "react-bootstrap";
 import { useDropzone } from "react-dropzone";
 
@@ -16,9 +16,9 @@ import Auth from '../../utils/auth';
 
 import InterestButton from "../InterestButton/InterestButton";
 import interest from "../../data/interestsJson";
-import cuid from "cuid";
-import data from "../../data/interestsJson";
-import ReactSlider from "react-slider"
+// import cuid from "cuid";
+// import data from "../../data/interestsJson";
+import Slider from '@mui/material/Slider';
 
 import "./SignUp.css";
 
@@ -133,12 +133,15 @@ const SignUp = () => {
 		});
   };
 
-  
-    const minAge = 18
-    const maxAge = 100
+  const [value, setValue] = React.useState([18, 100]);
 
-    // const { priceRange = [lowestPrice, maxAge] } = state; 
-      
+  const handleValue = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  function valuetext(value) {
+    return `${value}°C`;
+  }
 
   return (
     <div className="container_signup">
@@ -308,16 +311,12 @@ const SignUp = () => {
                     They/Them
                 </option>
               </select>
-                <ReactSlider
-                  className="horizontal-slider"
-                  thumbClassName="example-thumb"
-                  trackClassName="example-track"
-                  min = "18"
-                  defaultValue={[18, 100]}
-                  ariaLabel={["Leftmost thumb", "Rightmost thumb"]}
-                  renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
-                  pearling
-                  minDistance={10}
+              <Slider
+                  getAriaLabel={() => 'Age range'}
+                  value={value}
+                  onChange={handleValue}
+                  valueLabelDisplay="auto"
+                  getAriaValueText={valuetext}
                 />
             </div>
           </Row>

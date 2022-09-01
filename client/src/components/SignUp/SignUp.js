@@ -18,6 +18,7 @@ import InterestButton from "../InterestButton/InterestButton";
 import interest from "../../data/interestsJson";
 import cuid from "cuid";
 import data from "../../data/interestsJson";
+import ReactSlider from "react-slider"
 
 import "./SignUp.css";
 
@@ -68,6 +69,7 @@ const SignUp = () => {
     interest: '',
     github: '',
     linkedin: '',
+    range: '',
     images: '',
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
@@ -95,9 +97,13 @@ const SignUp = () => {
     event.preventDefault();
     console.log('submit')
 
-    const submit = {
-      ...accountState,
-      input: {...formState, images: files}}
+    const submit ={
+                  ...accountState,
+                  input: {
+                        ...formState, 
+                        images: files
+                        }
+                  }
 
     console.log(submit);
 
@@ -108,9 +114,7 @@ const SignUp = () => {
 
       Auth.login(data.addUser.token);
     } catch (e) {
-      console.log(data)
       console.error(e);
-      console.log(JSON.stringify(e));
     }
 
     setFormState({
@@ -129,10 +133,17 @@ const SignUp = () => {
 		});
   };
 
+  
+    const minAge = 18
+    const maxAge = 100
+
+    // const { priceRange = [lowestPrice, maxAge] } = state; 
+      
+
   return (
     <div className="container_signup">
       <Row className="row_gap">
-        <Col className="profile_details">
+        <Col className="profile_details mt-0">
           <Row>
             <h4>Account Information</h4>
             <div className="grid">
@@ -265,8 +276,50 @@ const SignUp = () => {
             </div>
           </Row>
           <Row>
-            <h4>What are you looking for?...</h4>
-            <div className="grid">f</div>
+            <h4>What are you looking for?...  </h4>
+            <div className="grid">
+              <select 
+                  style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  }}
+                  className="input"
+                  id="dropdown-button-dark-example1"
+                  name ="gender"
+                  onChange={handleChange}
+                >
+                <option>
+                    Gender
+                </option>
+                <option                     
+                  name="gender"
+                  value='She/Hers'>
+                    She/Hers
+                </option>
+                <option                     
+                  name="gender"
+                  value="He/His"> 
+                    He/His
+                </option>
+                <option                     
+                  name="gender"
+                  value="They/Them">
+                    They/Them
+                </option>
+              </select>
+                <ReactSlider
+                  className="horizontal-slider"
+                  thumbClassName="example-thumb"
+                  trackClassName="example-track"
+                  min = "18"
+                  defaultValue={[18, 100]}
+                  ariaLabel={["Leftmost thumb", "Rightmost thumb"]}
+                  renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
+                  pearling
+                  minDistance={10}
+                />
+            </div>
           </Row>
         </Col>
         <Col md={4} className="grid_images">

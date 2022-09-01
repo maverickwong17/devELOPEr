@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Thought, Message } = require('../models');
+const { User, Message } = require('../models');
 const { signToken } = require('../utils/auth');
 const { GraphQLScalarType, Kind } = require('graphql');
 

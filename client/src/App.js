@@ -13,6 +13,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import Swipe from "./components/Swipe/swipe";
 import Profile from "./components/Profile/Profile";
 // import Chat from "./components/Messenger/Chat";
+import DevChat from "./components/Chat/Chat";
 import { Col, Row } from "react-bootstrap";
 // import { v4 as uuid4 } from 'uuid';
 import PubNub from "pubnub";
@@ -98,20 +99,17 @@ function App() {
                   <Routes>
                     <Route path="/swipe" element={<Swipe />} />
                     <Route path="/leetcode" element={<Leetcode />} />
-                    <Route path="/profile" element={<Profile />} />
-                    <Route
-                      path="/chat"
-                      element={
-                        <PubNubProvider client={pubnub}>
-                          <Chat {...{ currentChannel, theme }}>
-                            <MessageList>
-                              <TypingIndicator showAsMessage />
-                            </MessageList>
-                            <MessageInput typingIndicator />
-                          </Chat>
-                        </PubNubProvider>
-                      }
-                    />
+                    <Route path='/profile' element={<Profile />} />
+                    <Route path="/chat" element={
+                      <PubNubProvider client={pubnub}>
+                        <DevChat />
+                        {/* <Chat {...{ currentChannel, theme }}>
+                          <MessageList>
+                            <TypingIndicator showAsMessage />
+                          </MessageList>
+                          <MessageInput typingIndicator />
+                        </Chat> */}
+                      </PubNubProvider>} />
                     {/* <Route
                       path="/chat"
                       element={

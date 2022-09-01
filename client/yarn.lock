@@ -4253,7 +4253,12 @@
   "resolved" "https://registry.npmjs.org/ejs/-/ejs-3.1.8.tgz"
   "version" "3.1.8"
   dependencies:
-    "jake" "^10.8.5"
+    ""jake"" "^10.8.5"
+
+"electron-to-chromium@^1.4.202":
+  "integrity" "sha512-41wPRcb9OIpB0RMLnIIDbfbJ5IXwuQ2qAr0jCTSpv5s7M61MazcBGS5kovW5E28SGxum/KR3fm2imswjdlTWmw=="
+  "resolved" "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.4.236.tgz"
+  "version" "1.4.236"
 
 "electron-to-chromium@^1.4.202":
   "integrity" "sha512-41wPRcb9OIpB0RMLnIIDbfbJ5IXwuQ2qAr0jCTSpv5s7M61MazcBGS5kovW5E28SGxum/KR3fm2imswjdlTWmw=="
@@ -5512,7 +5517,12 @@
   "resolved" "https://registry.npmjs.org/identity-obj-proxy/-/identity-obj-proxy-3.0.0.tgz"
   "version" "3.0.0"
   dependencies:
-    "harmony-reflect" "^1.4.6"
+    ""harmony-reflect"" "^1.4.6"
+
+"ieee754@^1.2.1":
+  "integrity" "sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA=="
+  "resolved" "https://registry.npmjs.org/ieee754/-/ieee754-1.2.1.tgz"
+  "version" "1.2.1"
 
 "ieee754@^1.2.1":
   "integrity" "sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA=="

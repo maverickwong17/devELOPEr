@@ -10,9 +10,9 @@ import {
 } from "react-bootstrap";
 import { useDropzone } from "react-dropzone";
 
-import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../../utils/mutations';
-import Auth from '../../utils/auth';
+import { useMutation } from "@apollo/client";
+import { ADD_USER } from "../../utils/mutations";
+import Auth from "../../utils/auth";
 
 import InterestButton from "../InterestButton/InterestButton";
 import interest from "../../data/interestsJson";
@@ -55,42 +55,42 @@ const SignUp = () => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   const [accountState, setAccountState] = useState({
-    email: '',
-    password: ''
-  })
+    email: "",
+    password: "",
+  });
   const [formState, setFormState] = useState({
-    firstName: '',
-    lastName: '',
-    age: '',
-    location: '',
-    job: '',
-    gender: '',
-    interest: '',
-    github: '',
-    linkedin: '',
+    firstName: "",
+    lastName: "",
+    age: "",
+    location: "",
+    job: "",
+    gender: "",
+    interest: "",
+    github: "",
+    linkedin: "",
     range: '',
-    images: '',
+    images: "",
     seeking: ''
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
   const handleAccountChange = (event) => {
     var { name, value } = event.target;
-		setAccountState({
-		...accountState,
-		[name]: value,
-		});
-    console.log(accountState)
-  }
+    setAccountState({
+      ...accountState,
+      [name]: value,
+    });
+    console.log(accountState);
+  };
 
   const handleChange = (event) => {
     var { name, value } = event.target;
-		setFormState({
-		...formState,
-		[name]: value,
-		});
-    console.log(formState)
-	};
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+    console.log(formState);
+  };
 
   const [ageRange, setAgeRange] = React.useState([21, 65]);
 
@@ -100,9 +100,9 @@ const SignUp = () => {
   };
 
   const handleFormSubmit = async (event) => {
-    console.log(event)
+    console.log(event);
     event.preventDefault();
-    console.log('submit')
+    console.log("submit");
 
     const submit ={
                   ...accountState,
@@ -121,25 +121,26 @@ const SignUp = () => {
       });
 
       Auth.login(data.addUser.token);
+      window.location.href("/leetcode");
     } catch (e) {
+      console.log(data);
       console.error(e);
     }
 
     setFormState({
-      email: '',
-      password: '',
-      firstName: '',
-      lastName: '',
-      age: '',
-      location: '',
-      job: '',
-      gender: '',
-      interest: '',
-      github: '',
-      linkedin: '',
-      images: '',
-      range: '',
-		});
+      email: "",
+      password: "",
+      firstName: "",
+      lastName: "",
+      age: "",
+      location: "",
+      job: "",
+      gender: "",
+      interest: "",
+      github: "",
+      linkedin: "",
+      images: "",
+    });
   };
 
 
@@ -151,22 +152,23 @@ const SignUp = () => {
           <Row>
             <h4>Account Information</h4>
             <div className="grid">
-              <Form className='form'>
-                <input 
-                  placeholder="Email" 
-                  className="input" 
-                  name="email" 
+              <Form className="form">
+                <input
+                  className="input"
+                  placeholder="Email"
+                  name="email"
                   value={formState.email}
                   onChange={handleAccountChange}
-                  />
-                <input 
-                  placeholder="Password" 
-                  className="input" 
+                />
+                <input
+                  className="input"
+                  placeholder="Password"
+>>>>>>> 3d786c1965ca406e4e51a9bb0746434911acc54a
                   type="password"
-                  name="password" 
+                  name="password"
                   value={formState.password}
-				          onChange={handleAccountChange}
-                  />
+                  onChange={handleAccountChange}
+                />
               </Form>
             </div>
           </Row>
@@ -174,43 +176,42 @@ const SignUp = () => {
             <h4>Profile Details</h4>
             <div className="grid">
               <Form className="form">
-                <input 
-                  placeholder="First Name" 
-                  className="input" 
+                <input
+                  className="input"
+                  placeholder="First Name"
                   name="firstName"
                   value={formState.firstName}
                   onChange={handleChange}
                 />
-                <input 
-                  placeholder="Last Name" 
-                  className="input" 
-                  type="text" 
+                <input
+                  className="input"
+                  type="text"
+                  placeholder="Last Name"
                   name="lastName"
                   value={formState.lastName}
                   onChange={handleChange}
                 />
-                <input 
-                  placeholder="Zipcode" 
-                  className="input" 
-                  type="number" 
+                <input
+                  className="input"
+                  type="number"
+                  placeholder="Zipcode"
                   name="location"
-                  min='10000'
+                  min="10000"
                   value={formState.location}
                   onChange={handleChange}
                 />
-                <input 
-                  placeholder="Age"
-                  className="input" 
+                <input
+                  className="input"
                   type="number"
-                  min="18"     
-                  name="age"  
+                  placeholder="Age"
+                  min="18"
+                  name="age"
                   value={formState.age}
                   onChange={handleChange}
                 />
                 {/* <input className="input" type="text" placeholder="Gender" /> */}
-                <select 
-                    name ="gender"
-                    style={{
+                <select
+                  style={{
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
@@ -227,42 +228,40 @@ const SignUp = () => {
                     value='She/Her'>
                       She/Her
                   </option>
-                  <option                     
-                    name="gender"
-                    value="He/His"> 
-                      He/His
+                  <option name="gender" value="He/His">
+                    He/His
+>>>>>>> 3d786c1965ca406e4e51a9bb0746434911acc54a
                   </option>
-                  <option                     
-                    name="gender"
-                    value="They/Them">
-                      They/Them
+                  <option name="gender" value="They/Them">
+                    They/Them
                   </option>
                 </select>
-                <input 
-                  placeholder="Job Title" 
-                  className="input" 
-                  type="text" 
+                <input
+                  className="input"
+                  type="text"
+                  placeholder="Job Title"
                   name="job"
                   value={formState.job}
-				          onChange={handleChange}
-                  />
-                <input 
-                  placeholder="GitHub Username" 
-                  className="input" 
-                  type="text" 
+                  onChange={handleChange}
+                />
+                <input
+                  className="input"
+                  type="text"
+                  placeholder="GitHub Username"
+>>>>>>> 3d786c1965ca406e4e51a9bb0746434911acc54a
                   name="github"
                   value={formState.github}
-				          onChange={handleChange}
+                  onChange={handleChange}
                   required
-                  />
-                <input 
-                  placeholder="LinkedIn Profile" 
-                  className="input" 
-                  type="text" 
+                />
+                <input
+                  className="input"
+                  type="text"
+                  placeholder="LinkedIn Profile"
                   name="linkedin"
                   value={formState.linkedin}
-				          onChange={handleChange}
-                  />
+                  onChange={handleChange}
+                />
               </Form>
             </div>
           </Row>

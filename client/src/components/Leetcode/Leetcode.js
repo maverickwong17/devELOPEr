@@ -3,6 +3,7 @@ import React, { useState, useCallback } from "react";
 import { Col, Row, Badge, Button, Container, Dropdown } from "react-bootstrap";
 import { FiCode } from "react-icons/fi";
 import { FaCog, FaExclamationCircle, FaUserAlt } from "react-icons/fa";
+import { AiOutlineArrowRight } from "react-icons/ai";
 import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { cpp } from "@codemirror/lang-cpp";
@@ -88,8 +89,8 @@ const Leetcode = () => {
   return (
     <>
       <Row className="grid_l">
-        <Row>
-          <Col>
+        <div style={{ height: "10%" }}>
+          <Row>
             {" "}
             <h3 style={{ color: "white" }}>Coding Challenge</h3>
             <p style={{ color: "white" }}>
@@ -103,17 +104,18 @@ const Leetcode = () => {
               elements that should be merged, and the last n elements are set to
               0 and should be ignored. nums2 has a length of n.
             </p>
-            <hr style={{ fill: "white" }} />
-          </Col>
-          <Col>
+            {/* <hr style={{ fill: "white" }} /> */}
+          </Row>
+          <Row style={{ height: "fit-content" }}>
             {" "}
             <div
               style={{
                 display: "flex",
-
-                justifyContent: "space-between",
-                alignItems: "bottom",
-                float: "bottom",
+                // background: "red",
+                justifyContent: "right",
+                alignItems: "right",
+                float: "right",
+                // background: "blue",
               }}
             >
               <Badge
@@ -123,34 +125,7 @@ const Leetcode = () => {
               >
                 <FaExclamationCircle /> Output
               </Badge>
-              {/* <div> */}
-              {/* <Dropdown>
-              <Dropdown.Toggle
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-                className="input"
-                value={language_id}
-                onChange={(e) => {
-                  setLanguageId(e.target.value);
-                  console.log(e.target.value);
-                }}
-                id="tags"
-                // className="form-control form-inline mb-2 language"
-                // id="dropdown-button-dark-example1"
-              >
-                Choose Language
-              </Dropdown.Toggle>
 
-              <Dropdown.Menu variant="dark" style={{ width: "100%" }}>
-                <Dropdown.Item value="63">JavaScript</Dropdown.Item>
-                <Dropdown.Item value="54">C++</Dropdown.Item>
-                <Dropdown.Item value="71">Python</Dropdown.Item>
-                <Dropdown.Item value="62">Java</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown> */}
               <select
                 value={language_id}
                 onChange={(e) => {
@@ -166,8 +141,9 @@ const Leetcode = () => {
                 <option value="71">Python</option>
               </select>
             </div>
-          </Col>
-        </Row>
+          </Row>
+        </div>
+        <div className="line"></div>
         <Row>
           <Col>
             {" "}
@@ -197,24 +173,6 @@ const Leetcode = () => {
               }
               onChange={onChange}
             />
-            <div
-              style={{
-                display: "flex",
-                alignItems: "right",
-                justifyContent: "right",
-              }}
-            >
-              <Button
-                type="submit"
-                className="run_btn"
-                style={{
-                  marginTop: "10px",
-                }}
-                onClick={runCodeHandler}
-              >
-                <FaCog /> Run
-              </Button>
-            </div>
           </Col>
           <Col>
             {" "}
@@ -225,6 +183,29 @@ const Leetcode = () => {
               value={loading ? "running submission..." : output ? output : ""}
               readOnly="nocursor"
             ></CodeMirror>
+            <div className="buttons">
+              <Button
+                type="submit"
+                className="run_btn"
+                style={{
+                  marginTop: "10px",
+                }}
+                onClick={runCodeHandler}
+              >
+                <FaCog /> Run
+              </Button>
+              <Button
+                type="submit"
+                className="run_btn"
+                style={{
+                  marginTop: "10px",
+                }}
+                onClick={() => window.location.replace("/swipe")}
+              >
+                {/* TODO: check to see if run btn has been run */}
+                Submit <AiOutlineArrowRight />
+              </Button>
+            </div>
           </Col>
         </Row>
       </Row>

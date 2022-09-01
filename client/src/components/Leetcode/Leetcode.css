@@ -4,9 +4,17 @@
   margin: 0 1rem;
   padding: 1rem;
   border-radius: 8px;
+  /* position: relative; */
   /* width: 100%; */
 }
-
+.buttons {
+  display: flex;
+  align-items: right;
+  justify-content: right;
+}
+.buttons Button {
+  margin-left: 10px;
+}
 .heading {
   font-size: 20px;
 }

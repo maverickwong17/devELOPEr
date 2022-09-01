@@ -1,12 +1,12 @@
 import React, { useState, useCallback } from "react";
 import {
   Form,
-  Container,
+  // Container,
   Row,
   Col,
   Button,
-  Dropdown,
-  DropdownButton,
+  // Dropdown,
+  // DropdownButton,
 } from "react-bootstrap";
 import { useDropzone } from "react-dropzone";
 
@@ -16,8 +16,9 @@ import Auth from "../../utils/auth";
 
 import InterestButton from "../InterestButton/InterestButton";
 import interest from "../../data/interestsJson";
-import cuid from "cuid";
-import data from "../../data/interestsJson";
+// import cuid from "cuid";
+// import data from "../../data/interestsJson";
+import Slider from '@mui/material/Slider';
 
 import "./SignUp.css";
 
@@ -51,7 +52,6 @@ const SignUp = () => {
       // reader.setFiles(acceptedFiles);
     });
   }, []);
-  console.log(files);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   const [accountState, setAccountState] = useState({
@@ -68,7 +68,9 @@ const SignUp = () => {
     interest: "",
     github: "",
     linkedin: "",
+    range: '',
     images: "",
+    seeking: ''
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
@@ -90,15 +92,26 @@ const SignUp = () => {
     console.log(formState);
   };
 
+  const [ageRange, setAgeRange] = React.useState([21, 65]);
+
+  const handleAge = (event, Age) => {
+    setAgeRange(Age);
+    // console.log(ageRange)
+  };
+
   const handleFormSubmit = async (event) => {
     console.log(event);
     event.preventDefault();
     console.log("submit");
 
-    const submit = {
-      ...accountState,
-      input: { ...formState },
-    };
+    const submit ={
+                  ...accountState,
+                  input: {
+                        ...formState,
+                        range: ageRange,
+                        images: files
+                        }
+                  }
 
     console.log(submit);
 
@@ -112,7 +125,6 @@ const SignUp = () => {
     } catch (e) {
       console.log(data);
       console.error(e);
-      console.log(JSON.stringify(e));
     }
 
     setFormState({
@@ -131,10 +143,12 @@ const SignUp = () => {
     });
   };
 
+
+
   return (
     <div className="container_signup">
       <Row className="row_gap">
-        <Col className="profile_details">
+        <Col className="profile_details mt-0 ml-10px">
           <Row>
             <h4>Account Information</h4>
             <div className="grid">
@@ -149,6 +163,7 @@ const SignUp = () => {
                 <input
                   className="input"
                   placeholder="Password"
+>>>>>>> 3d786c1965ca406e4e51a9bb0746434911acc54a
                   type="password"
                   name="password"
                   value={formState.password}
@@ -200,18 +215,22 @@ const SignUp = () => {
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                  }}
-                  className="input"
-                  id="dropdown-button-dark-example1"
-                  name="gender"
-                  onChange={handleChange}
-                >
-                  <option>Gender</option>
-                  <option name="gender" value="She/Hers">
-                    She/Hers
+                    }}
+                    className="input"
+                    id="dropdown-button-dark-example1"
+                    onChange={handleChange}
+                  >
+                  <option>
+                      Gender
+                  </option>
+                  <option                     
+                    name="gender"
+                    value='She/Her'>
+                      She/Her
                   </option>
                   <option name="gender" value="He/His">
                     He/His
+>>>>>>> 3d786c1965ca406e4e51a9bb0746434911acc54a
                   </option>
                   <option name="gender" value="They/Them">
                     They/Them
@@ -229,6 +248,7 @@ const SignUp = () => {
                   className="input"
                   type="text"
                   placeholder="GitHub Username"
+>>>>>>> 3d786c1965ca406e4e51a9bb0746434911acc54a
                   name="github"
                   value={formState.github}
                   onChange={handleChange}
@@ -259,12 +279,53 @@ const SignUp = () => {
             </div>
           </Row>
           <Row>
-            <h4>What are you looking for?...</h4>
-            <div className="grid">f</div>
+            <h4>What are you looking for?...  </h4>
+            <div className="grid">
+            <Form className="form">
+              <select 
+                  style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  }}
+                  className="input"
+                  id="dropdown-button-dark-example1"
+                  name ="seeking"
+                  onChange={handleChange}
+                >
+                <option>
+                    Looking For...
+                </option>
+                <option                     
+                  name="gender"
+                  value='She/Her'>
+                    She/Her
+                </option>
+                <option                     
+                  name="gender"
+                  value="He/His"> 
+                    He/His
+                </option>
+                <option                     
+                  name="gender"
+                  value="They/Them">
+                    They/Them
+                </option>
+              </select>
+            </Form>
+              <Slider
+                min={18}
+                size= 'large'
+                sx={{
+                  color: "#a30e3b",
+                }}
+                getAriaLabel={() => 'Age range'}
+                value={ageRange}
+                onChange={handleAge}
+                valueLabelDisplay="auto"
+              />
+            </div>
           </Row>
-          <Button className="signup" onClick={handleFormSubmit}>
-            SIGN UP
-          </Button>
         </Col>
         <Col md={4} className="grid_images">
           <Row>
@@ -287,7 +348,7 @@ const SignUp = () => {
               </section>
             </div>
           </Row>{" "}
-          <Button className="signup">SIGN UP</Button>
+          <Button className="signup" onClick={handleFormSubmit}>SIGN UP</Button>
         </Col>
       </Row>
     </div>

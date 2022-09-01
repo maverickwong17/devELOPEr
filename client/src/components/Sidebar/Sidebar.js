@@ -41,7 +41,7 @@ const Sidebar = () => {
           {/* ))} */}
         </ul>
       </div>
-      <div className="vertical"></div>
+      <div class="vertical"></div>
     </>
   );
 };

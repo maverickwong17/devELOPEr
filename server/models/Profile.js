@@ -43,7 +43,7 @@ const profileSchema = new Schema({
     },
     seeking:{
         type: String,
-        required: true
+        // required: true
     }
 });
 

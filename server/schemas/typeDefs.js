@@ -35,6 +35,7 @@ const typeDefs = gql`
         github: String
         linkedin: String
         images: [String]
+        Range: [Int]
     }
 
     type Auth {

@@ -52,7 +52,6 @@ const SignUp = () => {
       // reader.setFiles(acceptedFiles);
     });
   }, []);
-  console.log(files);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   const [accountState, setAccountState] = useState({
@@ -92,6 +91,13 @@ const SignUp = () => {
     console.log(formState)
 	};
 
+  const [ageRange, setAgeRange] = React.useState([21, 65]);
+
+  const handleAge = (event, Age) => {
+    setAgeRange(Age);
+    // console.log(ageRange)
+  };
+
   const handleFormSubmit = async (event) => {
     console.log(event)
     event.preventDefault();
@@ -100,7 +106,8 @@ const SignUp = () => {
     const submit ={
                   ...accountState,
                   input: {
-                        ...formState, 
+                        ...formState,
+                        range: ageRange,
                         images: files
                         }
                   }
@@ -130,23 +137,16 @@ const SignUp = () => {
       github: '',
       linkedin: '',
       images: '',
+      range: '',
 		});
   };
 
-  const [value, setValue] = React.useState([18, 100]);
 
-  const handleValue = (event, newValue) => {
-    setValue(newValue);
-  };
-
-  function valuetext(value) {
-    return `${value}°C`;
-  }
 
   return (
     <div className="container_signup">
       <Row className="row_gap">
-        <Col className="profile_details mt-0">
+        <Col className="profile_details mt-0 ml-10px">
           <Row>
             <h4>Account Information</h4>
             <div className="grid">
@@ -312,11 +312,15 @@ const SignUp = () => {
                 </option>
               </select>
               <Slider
+                  min={18}
+                  size= 'large'
+                  sx={{
+                    color: "#a30e3b",
+                  }}
                   getAriaLabel={() => 'Age range'}
-                  value={value}
-                  onChange={handleValue}
+                  value={ageRange}
+                  onChange={handleAge}
                   valueLabelDisplay="auto"
-                  getAriaValueText={valuetext}
                 />
             </div>
           </Row>

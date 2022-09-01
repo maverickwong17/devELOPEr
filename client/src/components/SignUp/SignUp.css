@@ -181,3 +181,8 @@ input[type="date"]::before {
   margin: 10px;
   border-radius: 16px;
 }
+
+.col{
+  margin-left: 1em;
+  margin-right: 1em;
+}

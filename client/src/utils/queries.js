@@ -3,14 +3,19 @@ import { gql } from '@apollo/client';
 export const QUERY_USER = gql`
   query user($username: String!) {
     user(username: $username) {
-      _id
-      email
-      firstName
-      lastName
-      age
-      city
-      job
-      interests
+      profile {
+        firstName
+        lastName
+        age
+        location
+        job
+        gender
+        interest
+        github
+        linkedin
+        images
+        range
+      }
     }
   }
 `;
@@ -18,14 +23,19 @@ export const QUERY_USER = gql`
 export const QUERY_ME = gql`
   query me {
     me {
-      _id
-      email
-      firstName
-      lastName
-      age
-      city
-      job
-      interests
+      profile {
+        firstName
+        lastName
+        age
+        location
+        job
+        gender
+        interest
+        github
+        linkedin
+        images
+        range
+      }
     }
   }
 `;

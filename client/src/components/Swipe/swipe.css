@@ -30,7 +30,7 @@
   border-radius: 0.75rem;
 }
 .userImage:after {
-  content: "No Image for \n "attr(alt);
+  content: "No Image for  "attr(alt);
   display: block;
   position: absolute;
   z-index: 0;

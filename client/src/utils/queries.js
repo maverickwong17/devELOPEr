@@ -23,6 +23,24 @@ export const QUERY_USER = gql`
     }
   }
 `;
+export const QUERY_All_USER = gql`
+  query users {
+    users {
+      profile {
+        firstName
+        lastName
+        age
+        location
+        job
+        gender
+        interest
+        images
+        aboutme
+      }
+    }
+  }
+`;
+
 
 export const QUERY_ME = gql`
 query me {

@@ -126,6 +126,12 @@ function App() {
                           // {...{ currentChannel, theme }}
                           />
                         </PubNubProvider>
+                        <SIgnup setPubnubId={setPubnub}
+
+
+                        
+
+
                       }
                     /> */}
                   </Routes>

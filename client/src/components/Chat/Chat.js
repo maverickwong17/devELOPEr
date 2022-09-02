@@ -167,9 +167,9 @@ function DevChat() {
                     </h4>
                     <MemberList members={presentUsers} />
                 </div>
-                <div>
+                {/* <div>
                     <button onClick={() => startChat()}>New Chat</button>
-                </div>
+                </div> */}
             </Chat>
         </div>
     );

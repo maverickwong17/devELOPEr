@@ -51,7 +51,7 @@ const resolvers = {
                 { profile : body.input },
                 { new: true }
             )
-            return { token, user };
+            return { token, update };
         },
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });

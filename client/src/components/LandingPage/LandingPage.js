@@ -46,48 +46,56 @@ const LandingPage = () => {
                 <img
                   src="https://randomuser.me/api/portraits/men/1.jpg"
                   alt="Image 1"
+                  className="splideImg"
                 />
               </SplideSlide>
               <SplideSlide>
                 <img
                   src="https://randomuser.me/api/portraits/women/1.jpg"
                   alt="Image 2"
+                  className="splideImg"
                 />
               </SplideSlide>
               <SplideSlide>
                 <img
                   src="https://randomuser.me/api/portraits/men/2.jpg"
                   alt="Image 3"
+                  className="splideImg"
                 />
               </SplideSlide>
               <SplideSlide>
                 <img
                   src="https://randomuser.me/api/portraits/women/2.jpg"
                   alt="Image 4"
+                  className="splideImg"
                 />
               </SplideSlide>
               <SplideSlide>
                 <img
                   src="https://randomuser.me/api/portraits/men/3.jpg"
                   alt="Image 5"
+                  className="splideImg"
                 />
               </SplideSlide>
               <SplideSlide>
                 <img
                   src="https://randomuser.me/api/portraits/women/3.jpg"
                   alt="Image 6"
+                  className="splideImg"
                 />
               </SplideSlide>
               <SplideSlide>
                 <img
                   src="https://randomuser.me/api/portraits/men/4.jpg"
                   alt="Image 7"
+                  className="splideImg"
                 />
               </SplideSlide>
               <SplideSlide>
                 <img
                   src="https://randomuser.me/api/portraits/women/4.jpg"
                   alt="Image 8"
+                  className="splideImg"
                 />
               </SplideSlide>
               {/* <SplideSlide> ....map if wanted */}

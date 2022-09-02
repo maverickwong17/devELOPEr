@@ -5,6 +5,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
 import HomePage from "../home/homepage";
 import "@splidejs/react-splide/css";
+
 // or other themes
 // import '@splidejs/react-splide/css/skyblue';
 // import '@splidejs/react-splide/css/sea-green';
@@ -43,26 +44,50 @@ const LandingPage = () => {
             >
               <SplideSlide>
                 <img
-                  src="https://complianz.io/wp-content/uploads/2019/03/placeholder-300x202.jpg"
+                  src="https://randomuser.me/api/portraits/men/1.jpg"
                   alt="Image 1"
                 />
               </SplideSlide>
               <SplideSlide>
                 <img
-                  src="https://complianz.io/wp-content/uploads/2019/03/placeholder-300x202.jpg"
-                  alt="Image 1"
+                  src="https://randomuser.me/api/portraits/women/1.jpg"
+                  alt="Image 2"
                 />
               </SplideSlide>
               <SplideSlide>
                 <img
-                  src="https://complianz.io/wp-content/uploads/2019/03/placeholder-300x202.jpg"
-                  alt="Image 1"
+                  src="https://randomuser.me/api/portraits/men/2.jpg"
+                  alt="Image 3"
                 />
               </SplideSlide>
               <SplideSlide>
                 <img
-                  src="https://complianz.io/wp-content/uploads/2019/03/placeholder-300x202.jpg"
-                  alt="Image 1"
+                  src="https://randomuser.me/api/portraits/women/2.jpg"
+                  alt="Image 4"
+                />
+              </SplideSlide>
+              <SplideSlide>
+                <img
+                  src="https://randomuser.me/api/portraits/men/3.jpg"
+                  alt="Image 5"
+                />
+              </SplideSlide>
+              <SplideSlide>
+                <img
+                  src="https://randomuser.me/api/portraits/women/3.jpg"
+                  alt="Image 6"
+                />
+              </SplideSlide>
+              <SplideSlide>
+                <img
+                  src="https://randomuser.me/api/portraits/men/4.jpg"
+                  alt="Image 7"
+                />
+              </SplideSlide>
+              <SplideSlide>
+                <img
+                  src="https://randomuser.me/api/portraits/women/4.jpg"
+                  alt="Image 8"
                 />
               </SplideSlide>
               {/* <SplideSlide> ....map if wanted */}

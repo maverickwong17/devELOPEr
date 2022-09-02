@@ -23,6 +23,7 @@ db.once("open", async () => {
       github: "https://github.com/StarryBlue7/",
       linkedin: "https://www.linkedin.com/in/vince-lee/",
       images: [
+        "https://res.cloudinary.com/dhuyyu7wp/image/upload/v1662139167/mhjif2yz1a3f33pday2z.jpg",
         "http://res.cloudinary.com/dhuyyu7wp/image/upload/v1662002913/jksleisc78qcnekcrl8k.jpg",
         "http://res.cloudinary.com/dhuyyu7wp/image/upload/v1662002913/c9xzmqkd1qufcsb913no.jpg",
         "http://res.cloudinary.com/dhuyyu7wp/image/upload/v1662002913/qkxgy1m3ocwvw9fghmza.jpg",

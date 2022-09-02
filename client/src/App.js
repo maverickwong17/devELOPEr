@@ -14,7 +14,7 @@ import Swipe from "./components/Swipe/swipe";
 import Profile from "./components/Profile/Profile";
 import Loader from "./components/Loader/Loader";
 // import Chat from "./components/Messenger/Chat";
-import DevChat from "./components/Chat/Chat";
+import DevChatWrap from "./components/Chat/DevChatWrap";
 import { Col, Row } from "react-bootstrap";
 // import { v4 as uuid4 } from 'uuid';
 import PubNub from "pubnub";
@@ -66,11 +66,11 @@ const client = new ApolloClient({
 const currentChannel = "devELOPEr one";
 const theme = "dark";
 
-const pubnub = new PubNub({
-  publishKey: process.env.REACT_APP_MY_PUBLISH_KEY,
-  subscribeKey: process.env.REACT_APP_MY_SUBSCRIBE_KEY,
-  uuid: "myFirstUser",
-});
+// const pubnub = new PubNub({
+//   publishKey: process.env.REACT_APP_MY_PUBLISH_KEY,
+//   subscribeKey: process.env.REACT_APP_MY_SUBSCRIBE_KEY,
+//   uuid: "myFirstUser",
+// });
 const renderPages = () => {};
 function App() {
   return (
@@ -107,15 +107,16 @@ function App() {
                     <Route
                       path="/chat"
                       element={
-                        <PubNubProvider client={pubnub}>
-                          <DevChat />
-                          {/* <Chat {...{ currentChannel, theme }}>
-                          <MessageList>
-                            <TypingIndicator showAsMessage />
-                          </MessageList>
-                          <MessageInput typingIndicator />
-                        </Chat> */}
-                        </PubNubProvider>
+                        <DevChatWrap />
+                        // <PubNubProvider client={pubnub}>
+                        //   <DevChatWrap />
+                        //   {/* <Chat {...{ currentChannel, theme }}>
+                        //   <MessageList>
+                        //     <TypingIndicator showAsMessage />
+                        //   </MessageList>
+                        //   <MessageInput typingIndicator />
+                        // </Chat> */}
+                        // </PubNubProvider>
                       }
                     />
                     {/* <Route

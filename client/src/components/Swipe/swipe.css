@@ -32,7 +32,7 @@
   max-width: 40%; */
 }
 .userImage:after {
-  content: "No Image for \n "attr(alt);
+  content: "No Image for  "attr(alt);
   display: block;
   position: absolute;
   z-index: 0;

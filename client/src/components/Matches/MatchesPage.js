@@ -52,3 +52,15 @@ const MatchesPage = () => {
 };
 
 export default MatchesPage;
+
+
+/**
+ * render cards
+ * cards come from matches
+ * matches are where current user connections array and other users connections array contain each other
+ *    if logged in user connection array contains 
+ * 
+ * if I am in other connection array and they are in my array render out card
+ * 
+ * profile button will 
+ */

@@ -58,8 +58,8 @@ db.once("open", async () => {
         "🦊 having too many tabs open",
         "🖥️ using one monitor",
       ],
-      github: "https://github.com/StarryBlue7/",
-      linkedin: "https://www.linkedin.com/in/vince-lee/",
+      github: "StarryBlue7",
+      linkedin: "vince-lee",
       images: [
         "https://res.cloudinary.com/dhuyyu7wp/image/upload/v1662139167/mhjif2yz1a3f33pday2z.jpg",
         "http://res.cloudinary.com/dhuyyu7wp/image/upload/v1662002913/jksleisc78qcnekcrl8k.jpg",
@@ -95,8 +95,8 @@ db.once("open", async () => {
         "🦊 having too many tabs open",
         "🖥️ using one monitor",
       ],
-      github: "https://github.com/StarryBlue7/",
-      linkedin: "https://www.linkedin.com/in/vince-lee/",
+      github: "StarryBlue7",
+      linkedin: "vince-lee",
       images: [
         "https://res.cloudinary.com/dhuyyu7wp/image/upload/v1662139167/mhjif2yz1a3f33pday2z.jpg",
         "http://res.cloudinary.com/dhuyyu7wp/image/upload/v1662002913/jksleisc78qcnekcrl8k.jpg",

@@ -111,6 +111,7 @@ h4 {
   width: 100%;
   border: none;
   margin: 16px 0;
+  resize: none;
 }
 .form {
   margin: 1rem 0.5rem;
@@ -186,4 +187,9 @@ input[type="date"]::before {
 .col {
   margin-left: 1em;
   margin-right: 1em;
+}
+
+
+.about{
+  min-height: 30vh;
 }

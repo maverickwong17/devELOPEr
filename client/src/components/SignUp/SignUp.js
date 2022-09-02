@@ -70,6 +70,7 @@ const SignUp = () => {
     github: "",
     linkedin: "",
     seeking: "",
+    aboutme: ""
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
@@ -187,10 +188,9 @@ const SignUp = () => {
                 />
                 <input
                   className="input"
-                  type="number"
-                  placeholder="Zipcode"
+                  type="text"
+                  placeholder="City"
                   name="location"
-                  min="10000"
                   value={formState.location}
                   onChange={handleChange}
                 />
@@ -314,6 +314,21 @@ const SignUp = () => {
           </Row>
           <MediaQuery maxWidth={900}>
             <Row>
+              <h4>About Me</h4>
+              <div className="grid expand">
+              <Form className="form">
+                <textarea
+                  className="input about"
+                  type="text"
+                  placeholder="About Me"
+                  name="aboutme"
+                  value={formState.aboutme}
+                  onChange={handleChange}
+                />
+              </Form>
+              </div>
+            </Row>
+            <Row>
               <h4>Upload Images</h4>
               <div className="grid expand">
                 <div className="images">
@@ -340,6 +355,21 @@ const SignUp = () => {
         </Col>
         <MediaQuery minWidth={900}>
           <Col md={4} className="grid_images">
+            <Row>
+              <h4>About Me</h4>
+              <div className="grid expand">
+              <Form className="form">
+                <textarea
+                  className="input about"
+                  type="text"
+                  placeholder="About Me"
+                  name="aboutme"
+                  value={formState.aboutme}
+                  onChange={handleChange}
+                />
+              </Form>
+              </div>
+            </Row>
             <Row>
               <h4>Upload Images</h4>
               <div className="grid expand">

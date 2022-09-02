@@ -66,6 +66,15 @@ const resolvers = {
       
             return { token, user };
         },
+        addConnection(parent, body, context){
+            const partner = body.user._id
+            const user= User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { connections: partner } },
+                    { new: true }
+                )
+            return { token, user }
+        },
     }
 };
 

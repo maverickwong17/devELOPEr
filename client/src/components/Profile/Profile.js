@@ -52,7 +52,7 @@ const Profile = () => {
         </div>
         <div>
           <a
-            href={user.github}
+            href={`https://github.com/${user.github}`}
             target="_blank"
             rel="noreferrer noopener"
             className="container profileLinkButtons"
@@ -60,7 +60,7 @@ const Profile = () => {
             <Github />
           </a>
           <a
-            href={user.linkedin}
+            href={`https://www.linkedin.com/in/${user.linkedin}`}
             target="_blank"
             rel="noreferrer noopener"
             className="container profileLinkButtons"

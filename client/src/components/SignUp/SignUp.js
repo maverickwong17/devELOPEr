@@ -214,7 +214,7 @@ const SignUp = () => {
                     className="input"
                     id="dropdown-button-dark-example1"
                     name = "gender"
-                    change={handleChange}
+                    onChange={handleChange}
                   >
                   <option>
                       Gender
@@ -265,6 +265,7 @@ const SignUp = () => {
               {interest.map((interest) => {
                 return (
                   <InterestButton
+                    key = {interest.interest}
                     icon={interest.icon}
                     interest={interest.interest}
                   />

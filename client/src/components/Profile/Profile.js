@@ -13,9 +13,9 @@ import "./Profile.css";
 import Loader from "../Loader/Loader";
 
 const Profile = () => {
-  const { email: userParam } = useParams();
+  const { _id: userParam } = useParams();
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-    variables: { email: userParam },
+    variables: { _id: userParam },
   });
 
   const user = data?.me.profile || data?.user.profile || {};

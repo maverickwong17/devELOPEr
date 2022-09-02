@@ -16,9 +16,10 @@ import Auth from "../../utils/auth";
 
 import InterestButton from "../InterestButton/InterestButton";
 import interest from "../../data/interestsJson";
+import MediaQuery from "react-responsive";
 // import cuid from "cuid";
 // import data from "../../data/interestsJson";
-import Slider from '@mui/material/Slider';
+import Slider from "@mui/material/Slider";
 
 import "./SignUp.css";
 
@@ -68,7 +69,7 @@ const SignUp = () => {
     interest: "",
     github: "",
     linkedin: "",
-    seeking: ""
+    seeking: "",
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
@@ -102,14 +103,14 @@ const SignUp = () => {
     event.preventDefault();
     console.log("submit");
 
-    const submit ={
-                  ...accountState,
-                  input: {
-                        ...formState,
-                        range: ageRange,
-                        images: files
-                        }
-                  }
+    const submit = {
+      ...accountState,
+      input: {
+        ...formState,
+        range: ageRange,
+        images: files,
+      },
+    };
 
     console.log(submit);
 
@@ -138,8 +139,6 @@ const SignUp = () => {
       range: "",
     });
   };
-
-
 
   return (
     <div className="container_signup">
@@ -210,19 +209,15 @@ const SignUp = () => {
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    }}
-                    className="input"
-                    id="dropdown-button-dark-example1"
-                    name = "gender"
-                    change={handleChange}
-                  >
-                  <option>
-                      Gender
-                  </option>
-                  <option                     
-                    name="gender"
-                    value='She/Her'>
-                      She/Her
+                  }}
+                  className="input"
+                  id="dropdown-button-dark-example1"
+                  name="gender"
+                  change={handleChange}
+                >
+                  <option>Gender</option>
+                  <option name="gender" value="She/Her">
+                    She/Her
                   </option>
                   <option name="gender" value="He/His">
                     He/His
@@ -273,77 +268,98 @@ const SignUp = () => {
             </div>
           </Row>
           <Row>
-            <h4>What are you looking for?...  </h4>
+            <h4>What are you looking for?... </h4>
             <div className="grid">
-            <Form className="form">
-              <select 
+              <Form className="form">
+                <select
                   style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
                   }}
                   className="input"
                   id="dropdown-button-dark-example2"
-                  name ="seeking"
+                  name="seeking"
                   onChange={handleChange}
                 >
-                <option>
-                    Looking For...
-                </option>
-                <option                     
-                  name="seeking"
-                  value='She/Her'>
+                  <option>Looking For...</option>
+                  <option name="seeking" value="She/Her">
                     She/Her
-                </option>
-                <option                     
-                  name="seeking"
-                  value="He/His"> 
+                  </option>
+                  <option name="seeking" value="He/His">
                     He/His
-                </option>
-                <option                     
-                  name="seeking"
-                  value="They/Them">
+                  </option>
+                  <option name="seeking" value="They/Them">
                     They/Them
-                </option>
-              </select>
-            </Form>
+                  </option>
+                </select>
+              </Form>
               <Slider
                 min={18}
-                size= 'large'
+                size="large"
                 sx={{
                   color: "#a30e3b",
                 }}
-                getAriaLabel={() => 'Age range'}
+                getAriaLabel={() => "Age range"}
                 value={ageRange}
                 onChange={handleAge}
                 valueLabelDisplay="auto"
               />
             </div>
           </Row>
-        </Col>
-        <Col md={4} className="grid_images">
-          <Row>
-            <h4>Upload Images</h4>
-            <div className="grid expand">
-              <div className="images">
-                {files.map((file) => (
-                  <img className="image" src={file} key={file} />
-                ))}
-              </div>
-              <section className="section">
-                <div {...getRootProps({ className: "dropzone" })}>
-                  <input {...getInputProps()} />
-                  {isDragActive ? (
-                    <p>Drop the files here...</p>
-                  ) : (
-                    <p>Drag n drop files here...</p>
-                  )}
+          <MediaQuery maxWidth={900}>
+            <Row>
+              <h4>Upload Images</h4>
+              <div className="grid expand">
+                <div className="images">
+                  {files.map((file) => (
+                    <img className="image" src={file} key={file} />
+                  ))}
                 </div>
-              </section>
-            </div>
-          </Row>{" "}
-          <Button className="signup" onClick={handleFormSubmit}>SIGN UP</Button>
+                <section className="section">
+                  <div {...getRootProps({ className: "dropzone" })}>
+                    <input {...getInputProps()} />
+                    {isDragActive ? (
+                      <p>Drop the files here...</p>
+                    ) : (
+                      <p>Drag n drop files here...</p>
+                    )}
+                  </div>
+                </section>
+              </div>
+            </Row>{" "}
+            <Button className="signup" onClick={handleFormSubmit}>
+              SIGN UP
+            </Button>
+          </MediaQuery>
         </Col>
+        <MediaQuery minWidth={900}>
+          <Col md={4} className="grid_images">
+            <Row>
+              <h4>Upload Images</h4>
+              <div className="grid expand">
+                <div className="images">
+                  {files.map((file) => (
+                    <img className="image" src={file} key={file} />
+                  ))}
+                </div>
+                <section className="section">
+                  <div {...getRootProps({ className: "dropzone" })}>
+                    <input {...getInputProps()} />
+                    {isDragActive ? (
+                      <p>Drop the files here...</p>
+                    ) : (
+                      <p>Drag n drop files here...</p>
+                    )}
+                  </div>
+                </section>
+              </div>
+            </Row>{" "}
+            <Button className="signup" onClick={handleFormSubmit}>
+              SIGN UP
+            </Button>
+          </Col>
+        </MediaQuery>
       </Row>
     </div>
   );

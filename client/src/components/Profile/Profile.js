@@ -81,10 +81,11 @@ const Profile = () => {
     return (
       <ResponsiveMasonry
         columnsCountBreakPoints={{
-          350: 2,
-          750: 2,
-          900: 3,
-          1200: 4,
+          350: 3,
+          750: 3,
+          900: 2,
+          1200: 3,
+          2100: 4,
           // 1400: 5,
         }}
       >
@@ -93,7 +94,7 @@ const Profile = () => {
             <img
               key={i}
               src={image}
-              style={{ width: "100%", display: "block", margin: 2 }}
+              style={{ width: "95%", margin: "8px", borderRadius: "8px" }}
               alt=""
             />
           ))}
@@ -102,7 +103,7 @@ const Profile = () => {
     );
   };
   return (
-    <div className="profileContainer">
+    <Row className="profileContainer">
       {/* <div className='profileContainer'> */}
       <Row className="profileHeader">
         <div>
@@ -135,7 +136,7 @@ const Profile = () => {
       </Row>
 
       {/* </div> */}
-    </div>
+    </Row>
   );
 };
 

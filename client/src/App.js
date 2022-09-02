@@ -38,6 +38,7 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
+import MatchesPage from "./components/Matches/MatchesPage";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -99,6 +100,7 @@ function App() {
                 {" "}
                 <BrowserRouter>
                   <Routes>
+                    <Route path="/matches" element={<MatchesPage />} />
                     <Route path="/swipe" element={<Swipe />} />
                     <Route path="/leetcode" element={<Leetcode />} />
                     <Route path="/profile" element={<Profile />} />

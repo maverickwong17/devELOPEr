@@ -1,11 +1,15 @@
+.row {
+  margin-left: 0;
+}
 .grid_l {
   background: rgba(00, 00, 00, 0.7);
   /* height: 80vh; */
-  margin: 0 1rem;
+  /* margin: 0 1rem; */
+  margin: 0 auto;
   padding: 1rem;
   border-radius: 8px;
   /* position: relative; */
-  /* width: 100%; */
+  width: 95%;
 }
 .buttons {
   display: flex;
@@ -94,4 +98,11 @@ hr {
 }
 .nav-tabs:hover {
   border: 1px solid black;
+}
+.code_grid {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: red; */
 }

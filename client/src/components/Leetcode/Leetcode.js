@@ -149,8 +149,8 @@ const Leetcode = () => {
             </div>
           </Row>
         </div>
-        <div className="line"></div>
-        <Row>
+        {/* <div className="line"></div> */}
+        <Row className="code_grid">
           <Tabs
             defaultActiveKey="profile"
             id="uncontrolled-tab-example"

@@ -28,6 +28,8 @@
   z-index: 0;
   background-color: orange;
   border-radius: 0.75rem;
+  /* height: 100%;
+  max-width: 40%; */
 }
 .userImage:after {
   content: "No Image for  "attr(alt);
@@ -63,7 +65,6 @@
   position: relative;
   width: 100%;
   height: 700px;
-  border-radius: 0.75rem;
   /* background-color: red; */
   display: flex;
   align-items: center;
@@ -100,6 +101,31 @@
 }
 .interest_section::-webkit-scrollbar {
   display: none;
+}
+.buttons {
+}
+.buttons button {
+  margin: 0;
+  /* box-sizing: border-box; */
+  border: none;
+  border-radius: 50%;
+  background: #111111;
+  border: 2px solid #ae303b;
+  /* box-shadow: 8px 8px 16px #000000, -4px -4px 12px #ae303b;
+  border-radius: 50%; */
+  width: 75px;
+  height: 75px;
+  align-items: center;
+  /* margin: 0 2rem; */
+  display: flex;
+  color: #ae303b;
+  justify-content: center;
+
+  /* border: 2px solid #ff5e51; */
+}
+.buttons button:hover {
+  /* box-shadow: inset 6px 6px 12px rgba(255, 255, 255, 0.1),
+    inset -6px -6px 12px rgba(163, 14, 59, 0.3); */
 }
 @media screen and (max-width: 800px) {
   .card {

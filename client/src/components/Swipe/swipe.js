@@ -40,17 +40,10 @@ function Swiper() {
   };
 
   return (
+    // <>
     <Row className="grid_swipe">
-      <h1>Swipe left for No Right for yes</h1>
+      {/* <h1>Swipe left for No Right for yes</h1> */}
       <div className="cards_section">
-        <link
-          href="https://fonts.googleapis.com/css?family=Damion&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css?family=Alatsi&display=swap"
-          rel="stylesheet"
-        />
         {/* <h1>React Tinder Card</h1> */}
         <div className="cardContainer">
           {users.map((user) => (
@@ -81,13 +74,14 @@ function Swiper() {
             </TinderCard>
           ))}
         </div>
-        {lastDirection ? (
-          <h2 className="infoText">You swiped {lastDirection}</h2>
-        ) : (
-          <h2 className="infoText" />
-        )}
+        {/* {lastDirection ? (
+            <h2 className="infoText">You swiped {lastDirection}</h2>
+          ) : (
+            <h2 className="infoText" />
+          )} */}
       </div>
     </Row>
+    // </>
   );
 }
 export default Swiper;

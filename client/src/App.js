@@ -12,6 +12,7 @@ import Leetcode from "./components/Leetcode/Leetcode";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Swipe from "./components/Swipe/swipe";
 import Profile from "./components/Profile/Profile";
+import Loader from "./components/Loader/Loader";
 // import Chat from "./components/Messenger/Chat";
 import DevChat from "./components/Chat/Chat";
 import { Col, Row } from "react-bootstrap";
@@ -37,7 +38,6 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -76,12 +76,14 @@ function App() {
     <ApolloProvider client={client}>
       <Background>
         <Header />
-        <MediaQuery maxWidth={1224}>
-          <Row>
-            {" "}
-            <Sidebar />
-          </Row>
-        </MediaQuery>
+        {Auth.loggedIn() && (
+          <MediaQuery maxWidth={1224}>
+            <Row>
+              {" "}
+              <Sidebar />
+            </Row>
+          </MediaQuery>
+        )}
 
         <Row className="center">
           {Auth.loggedIn() ? (
@@ -99,17 +101,21 @@ function App() {
                   <Routes>
                     <Route path="/swipe" element={<Swipe />} />
                     <Route path="/leetcode" element={<Leetcode />} />
-                    <Route path='/profile' element={<Profile />} />
-                    <Route path="/chat" element={
-                      <PubNubProvider client={pubnub}>
-                        <DevChat />
-                        {/* <Chat {...{ currentChannel, theme }}>
+                    <Route path="/profile" element={<Profile />} />
+                    <Route
+                      path="/chat"
+                      element={
+                        <PubNubProvider client={pubnub}>
+                          <DevChat />
+                          {/* <Chat {...{ currentChannel, theme }}>
                           <MessageList>
                             <TypingIndicator showAsMessage />
                           </MessageList>
                           <MessageInput typingIndicator />
                         </Chat> */}
-                      </PubNubProvider>} />
+                        </PubNubProvider>
+                      }
+                    />
                     {/* <Route
                       path="/chat"
                       element={
@@ -127,6 +133,7 @@ function App() {
           ) : (
             <BrowserRouter>
               <Routes>
+                <Route path="/profile" element={<Loader />} />
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/signin" element={<LoginPage />} />
                 <Route path="/signup" element={<SignUp />} />

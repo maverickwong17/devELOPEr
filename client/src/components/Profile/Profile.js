@@ -8,8 +8,9 @@ import InterestList from "./InterestList";
 import { ReactComponent as Github } from "../assets/svg/github.svg";
 import { ReactComponent as LinkedIn } from "../assets/svg/linkedin.svg";
 import Auth from "../../utils/auth";
-
+import MediaQuery from "react-responsive";
 import "./Profile.css";
+import Loader from "../Loader/Loader";
 
 const Profile = () => {
   const { email: userParam } = useParams();
@@ -23,7 +24,7 @@ const Profile = () => {
   }
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   if (!user) {
@@ -38,7 +39,68 @@ const Profile = () => {
   let interests = user.interest;
   let images = user.images;
   // console.log(interests)
-
+  const renderProfileInfo = () => {
+    return (
+      <>
+        <h3 className="">About Me</h3>
+        <p>
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum."
+        </p>
+        <h3 className="">Interests</h3>
+        <div>
+          <InterestList interests={interests} />
+        </div>
+        <div>
+          <a
+            href={user.github}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="container profileLinkButtons"
+          >
+            <Github />
+          </a>
+          <a
+            href={user.linkedin}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="container profileLinkButtons"
+          >
+            <LinkedIn />
+          </a>
+        </div>
+      </>
+    );
+  };
+  const renderImages = () => {
+    return (
+      <ResponsiveMasonry
+        columnsCountBreakPoints={{
+          350: 2,
+          750: 2,
+          900: 3,
+          1200: 4,
+          // 1400: 5,
+        }}
+      >
+        <Masonry className="masonry_grid">
+          {images.map((image, i) => (
+            <img
+              key={i}
+              src={image}
+              style={{ width: "100%", display: "block", margin: 2 }}
+              alt=""
+            />
+          ))}
+        </Masonry>
+      </ResponsiveMasonry>
+    );
+  };
   return (
     <div className="profileContainer">
       {/* <div className='profileContainer'> */}
@@ -58,63 +120,20 @@ const Profile = () => {
         <span className="city">{`${user.location}`}</span>
       </Row>
       <Row>
-        <Col l={{ order: 1 }} className="containerLeftColumn">
-          <h3 className="">About Me</h3>
-          <p>
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum."
-          </p>
-          <h3 className="">Interests</h3>
-          <div>
-            <InterestList interests={interests} />
-          </div>
-          <div>
-            <a
-              href={user.github}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="container profileLinkButtons"
-            >
-              <Github />
-            </a>
-            <a
-              href={user.linkedin}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="container profileLinkButtons"
-            >
-              <LinkedIn />
-            </a>
-          </div>
-        </Col>
-        <Col l={{ order: 2 }} className="containerRightColumn">
-          <ResponsiveMasonry
-            columnsCountBreakPoints={{
-              350: 1,
-              750: 2,
-              900: 3,
-              1200: 4,
-              // 1400: 5,
-            }}
-          >
-            <Masonry>
-              {images.map((image, i) => (
-                <img
-                  key={i}
-                  src={image}
-                  style={{ width: "100%", display: "block", margin: 2 }}
-                  alt=""
-                />
-              ))}
-            </Masonry>
-          </ResponsiveMasonry>
-        </Col>
+        <MediaQuery minWidth={900}>
+          <Col l={{ order: 1 }} className="containerLeftColumn">
+            {renderProfileInfo()}
+          </Col>
+          <Col l={{ order: 2 }} className="containerRightColumn">
+            {renderImages()}
+          </Col>
+        </MediaQuery>
+        <MediaQuery maxWidth={900}>
+          {renderImages()}
+          {renderProfileInfo()}
+        </MediaQuery>
       </Row>
+
       {/* </div> */}
     </div>
   );

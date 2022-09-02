@@ -9,7 +9,6 @@ const InterestButton = (props) => {
       <Button 
       className="interest_btn" 
       onClick={props.onClick}
-      disabled = {props.checkedState}
       >
         <span>{props.icon} {props.interest}</span>
       </Button>

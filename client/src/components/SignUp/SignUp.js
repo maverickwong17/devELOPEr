@@ -143,10 +143,20 @@ const SignUp = () => {
 
 
   var interestData = interest
-  const [interestArr, setInterestArr] = useState([])
+  var interestArr
   const handleInterestArr = async (event) =>{
-    console.log('click interest')
-    console.log(event.target)
+    // console.log('click interest')
+    const click = event.target.innerText
+    // console.log(click)
+    const value = click.split(' ')[1]
+    console.log(value)
+    const index = interestData.findIndex(function(interestData) {
+      if(interestData.interest){
+      // console.log('click texts')
+        return interestData.interest === value;}
+    });
+    console.log(index)
+    console.log(interestData[index].state)
   }
 
   return (

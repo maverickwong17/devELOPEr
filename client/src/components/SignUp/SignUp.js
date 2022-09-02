@@ -66,7 +66,6 @@ const SignUp = () => {
     age: "",
     job: "",
     gender: "",
-    interest: "",
     github: "",
     linkedin: "",
     seeking: "",
@@ -80,7 +79,7 @@ const SignUp = () => {
       ...accountState,
       [name]: value,
     });
-    console.log(accountState);
+    // console.log(accountState);
   };
 
   const handleChange = (event) => {
@@ -89,10 +88,10 @@ const SignUp = () => {
       ...formState,
       [name]: value,
     });
-    console.log(formState);
+    // console.log(formState);
   };
 
-  const [ageRange, setAgeRange] = React.useState([21, 65]);
+  const [ageRange, setAgeRange] = useState([21, 65]);
 
   const handleAge = (event, Age) => {
     setAgeRange(Age);
@@ -100,9 +99,15 @@ const SignUp = () => {
   };
 
   const handleFormSubmit = async (event) => {
-    console.log(event);
     event.preventDefault();
     console.log("submit");
+    console.log(interestData)
+    var interestArr = []
+    for(let i=0;i<interestData.length;i++){
+      if(interestData[i].state){
+        interestArr.push(`${interestData[i].icon} ${interestData[i].interest}`)
+      }
+    }
 
     const submit = {
       ...accountState,
@@ -110,6 +115,7 @@ const SignUp = () => {
         ...formState,
         range: ageRange,
         images: files,
+        interest: interestArr
       },
     };
 
@@ -140,6 +146,24 @@ const SignUp = () => {
       range: "",
     });
   };
+
+
+  var interestData = interest
+  const handleInterestArr = async (event) =>{
+    // console.log('click interest')
+    const click = event.target.innerText
+    // console.log(click)
+    const value = click.split(' ')[1]
+    console.log(value)
+    const index = interestData.findIndex(function(interestData) {
+      if(interestData.interest){
+      // console.log('click texts')
+        return interestData.interest === value;}
+    });
+    console.log(index)
+    interestData[index].state = !interestData[index].state
+    console.log(interestData[index].state)
+  }
 
   return (
     <div className="container_signup">
@@ -261,15 +285,20 @@ const SignUp = () => {
           <Row>
             <h4>Interests</h4>
             <div className="grid justify">
-              {interest.map((interest) => {
-                return (
+              {interestData.map((interest, index) => 
+                // return 
+                (
                   <InterestButton
-                    key = {interest.interest}
+                    checkedState={index}
+                    onClick={handleInterestArr}
+                    value = {interest.interest}
+                    key = {index}
                     icon={interest.icon}
                     interest={interest.interest}
+                    disabled={interest.state}
                   />
-                );
-              })}
+                )
+              )}
             </div>
           </Row>
           <Row>
@@ -313,7 +342,7 @@ const SignUp = () => {
             </div>
           </Row>
           <MediaQuery maxWidth={900}>
-            <Row>
+          <Row>
               <h4>About Me</h4>
               <div className="grid expand">
               <Form className="form">

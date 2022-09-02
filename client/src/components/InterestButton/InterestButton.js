@@ -2,11 +2,17 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import "./InterestButton.css";
 const InterestButton = (props) => {
+  // console.log(props.checkedState)
+  // console.log(props.disabled)
+  
   return (
     <>
-      <Button className="interest_btn">
-        <span>{props.icon}</span>
-        <span>{props.interest}</span>
+      <Button 
+      className="interest_btn" 
+      onClick={props.onClick}
+      // disabled={props.disabled ? true : false} 
+      >
+        <span>{props.icon} {props.interest}</span>
       </Button>
     </>
   );

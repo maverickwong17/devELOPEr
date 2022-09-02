@@ -1,6 +1,15 @@
 import React, { useState, useCallback } from "react";
 
-import { Col, Row, Badge, Button, Container, Dropdown } from "react-bootstrap";
+import {
+  Col,
+  Row,
+  Badge,
+  Button,
+  Container,
+  Dropdown,
+  Tabs,
+  Tab,
+} from "react-bootstrap";
 import { FiCode } from "react-icons/fi";
 import { FaCog, FaExclamationCircle, FaUserAlt } from "react-icons/fa";
 import { AiOutlineArrowRight } from "react-icons/ai";
@@ -11,7 +20,9 @@ import { java } from "@codemirror/lang-java";
 import { python } from "@codemirror/lang-python";
 import "./Leetcode.css";
 import Sidebar from "../Sidebar/Sidebar";
+import MediaQuery from "react-responsive";
 const Leetcode = () => {
+  const [key, setKey] = useState("input");
   const [output, setOutput] = useState("");
   const [language_id, setLanguageId] = useState("63");
   const [user_input, setUserInput] = useState(`console.log("hello");`);
@@ -19,6 +30,7 @@ const Leetcode = () => {
   console.log(language_id, user_input);
   const runCodeHandler = async (e) => {
     setLoading(true);
+    setKey("output");
     e.preventDefault();
     const options = {
       method: "POST",
@@ -85,7 +97,9 @@ const Leetcode = () => {
     console.log("value:", value);
     setUserInput(value);
   }, []);
-
+  const input = () => {
+    return;
+  };
   return (
     <>
       <Row className="grid_l">
@@ -113,19 +127,11 @@ const Leetcode = () => {
                 display: "flex",
                 // background: "red",
                 justifyContent: "right",
-                alignItems: "right",
+                alignItems: "center",
                 float: "right",
                 // background: "blue",
               }}
             >
-              <Badge
-                bg=""
-                className=" heading my-2 "
-                style={{ color: "#a30e3b", background: "transparent" }}
-              >
-                <FaExclamationCircle /> Output
-              </Badge>
-
               <select
                 value={language_id}
                 onChange={(e) => {
@@ -145,68 +151,75 @@ const Leetcode = () => {
         </div>
         <div className="line"></div>
         <Row>
-          <Col>
-            {" "}
-            <CodeMirror
-              required
-              name="solution"
-              id="source"
-              value={
-                language_id === "63"
-                  ? "console.log(`hello`);"
-                  : language_id === "54"
-                  ? `#include <iostream>\nint main(){\nstd::cout << "hello, world" << std::endl;\nreturn 0;\n}
+          <Tabs
+            defaultActiveKey="profile"
+            id="uncontrolled-tab-example"
+            className="mb-3"
+            activeKey={key}
+            onSelect={(k) => setKey(k)}
+          >
+            <Tab eventKey="input" title="Input" className="border-bottom-0">
+              <CodeMirror
+                required
+                name="solution"
+                id="source"
+                value={
+                  language_id === "63"
+                    ? "console.log(`hello`);"
+                    : language_id === "54"
+                    ? `#include <iostream>\nint main(){\nstd::cout << "hello, world" << std::endl;\nreturn 0;\n}
                 `
-                  : language_id === "71"
-                  ? `print("hello")`
-                  : `public class Main {\npublic static void main(String[] args) {\nSystem.out.println("hello, world");\n}\n}
+                    : language_id === "71"
+                    ? `print("hello")`
+                    : `public class Main {\npublic static void main(String[] args) {\nSystem.out.println("hello, world");\n}\n}
               `
-              }
-              height="450px"
-              theme="dark"
-              extensions={
-                language_id === "63"
-                  ? javascript({ jsx: true })
-                  : language_id === "54"
-                  ? cpp()
-                  : java()
-              }
-              onChange={onChange}
-            />
-          </Col>
-          <Col>
-            {" "}
-            <CodeMirror
-              height="450px"
-              theme="dark"
-              id="output"
-              value={loading ? "running submission..." : output ? output : ""}
-              readOnly="nocursor"
-            ></CodeMirror>
-            <div className="buttons">
-              <Button
-                type="submit"
-                className="run_btn"
-                style={{
-                  marginTop: "10px",
-                }}
-                onClick={runCodeHandler}
-              >
-                <FaCog /> Run
-              </Button>
-              <Button
-                type="submit"
-                className="run_btn"
-                style={{
-                  marginTop: "10px",
-                }}
-                onClick={() => window.location.replace("/swipe")}
-              >
-                {/* TODO: check to see if run btn has been run */}
-                Submit <AiOutlineArrowRight />
-              </Button>
-            </div>
-          </Col>
+                }
+                height="450px"
+                theme="dark"
+                extensions={
+                  language_id === "63"
+                    ? javascript({ jsx: true })
+                    : language_id === "54"
+                    ? cpp()
+                    : java()
+                }
+                onChange={onChange}
+              />
+            </Tab>
+            <Tab eventKey="output" title="Output">
+              <CodeMirror
+                height="450px"
+                theme="dark"
+                id="output"
+                value={loading ? "running submission..." : output ? output : ""}
+                readOnly="nocursor"
+              ></CodeMirror>
+              {/* <Sonnet /> */}
+            </Tab>
+          </Tabs>
+          <div className="buttons">
+            <Button
+              type="submit"
+              className="run_btn"
+              style={{
+                marginTop: "10px",
+              }}
+              onClick={runCodeHandler}
+            >
+              <FaCog /> Run
+            </Button>
+            <Button
+              type="submit"
+              className="run_btn"
+              style={{
+                marginTop: "10px",
+              }}
+              onClick={() => window.location.replace("/swipe")}
+            >
+              {/* TODO: check to see if run btn has been run */}
+              Submit <AiOutlineArrowRight />
+            </Button>
+          </div>
         </Row>
       </Row>
     </>

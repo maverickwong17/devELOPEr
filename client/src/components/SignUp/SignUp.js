@@ -79,7 +79,7 @@ const SignUp = () => {
       ...accountState,
       [name]: value,
     });
-    console.log(accountState);
+    // console.log(accountState);
   };
 
   const handleChange = (event) => {
@@ -88,7 +88,7 @@ const SignUp = () => {
       ...formState,
       [name]: value,
     });
-    console.log(formState);
+    // console.log(formState);
   };
 
   const [ageRange, setAgeRange] = useState([21, 65]);
@@ -99,9 +99,15 @@ const SignUp = () => {
   };
 
   const handleFormSubmit = async (event) => {
-    console.log(event);
     event.preventDefault();
     console.log("submit");
+    console.log(interestData)
+    var interestArr = []
+    for(let i=0;i<interestData.length;i++){
+      if(interestData[i].state){
+        interestArr.push(`${interestData[i].icon} ${interestData[i].interest}`)
+      }
+    }
 
     const submit = {
       ...accountState,
@@ -143,7 +149,6 @@ const SignUp = () => {
 
 
   var interestData = interest
-  var interestArr
   const handleInterestArr = async (event) =>{
     // console.log('click interest')
     const click = event.target.innerText
@@ -156,6 +161,7 @@ const SignUp = () => {
         return interestData.interest === value;}
     });
     console.log(index)
+    interestData[index].state = !interestData[index].state
     console.log(interestData[index].state)
   }
 
@@ -279,7 +285,7 @@ const SignUp = () => {
           <Row>
             <h4>Interests</h4>
             <div className="grid justify">
-              {interest.map((interest, index) => 
+              {interestData.map((interest, index) => 
                 // return 
                 (
                   <InterestButton
@@ -289,6 +295,7 @@ const SignUp = () => {
                     key = {index}
                     icon={interest.icon}
                     interest={interest.interest}
+                    disabled={interest.state}
                   />
                 )
               )}

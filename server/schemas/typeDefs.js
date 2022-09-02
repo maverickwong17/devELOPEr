@@ -14,6 +14,8 @@ const typeDefs = gql`
         github: String
         linkedin: String
         images: [String]
+        range: [Int]
+        seeking: String
     }
 
     type User {
@@ -35,7 +37,8 @@ const typeDefs = gql`
         github: String
         linkedin: String
         images: [String]
-        Range: [Int]
+        range: [Int]
+        seeking: String
     }
 
     type Auth {

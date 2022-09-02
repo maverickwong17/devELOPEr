@@ -61,16 +61,14 @@ const SignUp = () => {
   const [formState, setFormState] = useState({
     firstName: "",
     lastName: "",
-    age: "",
     location: "",
+    age: "",
     job: "",
     gender: "",
     interest: "",
     github: "",
     linkedin: "",
-    range: '',
-    images: "",
-    seeking: ''
+    seeking: ""
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
@@ -128,18 +126,16 @@ const SignUp = () => {
     }
 
     setFormState({
-      email: "",
-      password: "",
       firstName: "",
       lastName: "",
       age: "",
       location: "",
       job: "",
-      gender: "",
       interest: "",
       github: "",
       linkedin: "",
       images: "",
+      range: "",
     });
   };
 
@@ -217,7 +213,8 @@ const SignUp = () => {
                     }}
                     className="input"
                     id="dropdown-button-dark-example1"
-                    onChange={handleChange}
+                    name = "gender"
+                    change={handleChange}
                   >
                   <option>
                       Gender
@@ -286,7 +283,7 @@ const SignUp = () => {
                   alignItems: "center",
                   }}
                   className="input"
-                  id="dropdown-button-dark-example1"
+                  id="dropdown-button-dark-example2"
                   name ="seeking"
                   onChange={handleChange}
                 >
@@ -294,17 +291,17 @@ const SignUp = () => {
                     Looking For...
                 </option>
                 <option                     
-                  name="gender"
+                  name="seeking"
                   value='She/Her'>
                     She/Her
                 </option>
                 <option                     
-                  name="gender"
+                  name="seeking"
                   value="He/His"> 
                     He/His
                 </option>
                 <option                     
-                  name="gender"
+                  name="seeking"
                   value="They/Them">
                     They/Them
                 </option>

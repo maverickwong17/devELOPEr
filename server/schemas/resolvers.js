@@ -66,6 +66,19 @@ const resolvers = {
       
             return { token, user };
         },
+        addConnection: async (parent, body, context) => {
+            console.log('Hi')
+            // console.log(body)
+            // console.log(context.user)
+            const partner = await User.findOne( body )
+            console.log('partner', partner)
+            const user= await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { connections: partner._id } },
+                    { new: true }
+                )
+            return { user }
+        },
     }
 };
 

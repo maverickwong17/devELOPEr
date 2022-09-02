@@ -30,6 +30,7 @@ export const ADD_USER = gql`
           images
           range
           seeking
+          aboutme
         }
       }
     }

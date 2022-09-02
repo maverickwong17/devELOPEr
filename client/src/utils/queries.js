@@ -16,6 +16,9 @@ export const QUERY_USER = gql`
         github
         linkedin
         images
+        range
+        seeking
+        aboutme
       }
     }
   }
@@ -37,6 +40,7 @@ query me {
       images
       range
       seeking
+      aboutme
     }
   }
 }

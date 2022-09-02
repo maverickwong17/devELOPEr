@@ -35,6 +35,8 @@ query me {
       github
       linkedin
       images
+      range
+      seeking
     }
   }
 }

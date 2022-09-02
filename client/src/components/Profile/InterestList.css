@@ -1,0 +1,4 @@
+.interestList {
+  display: flex;
+  flex-wrap: wrap;
+}

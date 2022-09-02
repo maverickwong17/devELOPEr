@@ -16,6 +16,7 @@ const typeDefs = gql`
         images: [String]
         range: [Int]
         seeking: String
+        aboutme: String
     }
 
     type User {
@@ -39,6 +40,7 @@ const typeDefs = gql`
         images: [String]
         range: [Int]
         seeking: String
+        aboutme: String
     }
 
     type Auth {

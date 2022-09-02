@@ -28,7 +28,7 @@ const LandingPage = () => {
               aria-label="My Favorite Images"
               options={{
                 type: "loop",
-                gap: "10px",
+                gap: "5em",
                 drag: "free",
                 arrows: false,
                 pagination: false,
@@ -39,6 +39,20 @@ const LandingPage = () => {
                   rewind: false,
                   speed: 0.5,
                 },
+                breakpoints:{
+                  2000:{
+                    perPage: 5,
+                  },
+                  500:{
+                    perPage: 1,
+                  },
+                  850:{
+                    perPage: 2,
+                  },
+                  1300:{
+                    perPage: 3,
+                  }
+                }
               }}
               extensions={{ AutoScroll }}
             >
@@ -46,48 +60,56 @@ const LandingPage = () => {
                 <img
                   src="https://randomuser.me/api/portraits/men/1.jpg"
                   alt="Image 1"
+                  className="splideImg"
                 />
               </SplideSlide>
               <SplideSlide>
                 <img
                   src="https://randomuser.me/api/portraits/women/1.jpg"
                   alt="Image 2"
+                  className="splideImg"
                 />
               </SplideSlide>
               <SplideSlide>
                 <img
                   src="https://randomuser.me/api/portraits/men/2.jpg"
                   alt="Image 3"
+                  className="splideImg"
                 />
               </SplideSlide>
               <SplideSlide>
                 <img
                   src="https://randomuser.me/api/portraits/women/2.jpg"
                   alt="Image 4"
+                  className="splideImg"
                 />
               </SplideSlide>
               <SplideSlide>
                 <img
                   src="https://randomuser.me/api/portraits/men/3.jpg"
                   alt="Image 5"
+                  className="splideImg"
                 />
               </SplideSlide>
               <SplideSlide>
                 <img
                   src="https://randomuser.me/api/portraits/women/3.jpg"
                   alt="Image 6"
+                  className="splideImg"
                 />
               </SplideSlide>
               <SplideSlide>
                 <img
                   src="https://randomuser.me/api/portraits/men/4.jpg"
                   alt="Image 7"
+                  className="splideImg"
                 />
               </SplideSlide>
               <SplideSlide>
                 <img
                   src="https://randomuser.me/api/portraits/women/4.jpg"
                   alt="Image 8"
+                  className="splideImg"
                 />
               </SplideSlide>
               {/* <SplideSlide> ....map if wanted */}

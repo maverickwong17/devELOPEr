@@ -7,6 +7,7 @@ const Header = (props) => {
   const logoutHandler = (e) => {
     e.preventDefault();
     Auth.logout();
+    window.location.replace("/");
   };
   return (
     <div className={classes.header}>

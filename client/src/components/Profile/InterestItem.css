@@ -1,0 +1,9 @@
+.interestItem {
+    display:flex;
+    border: rgba(255, 255, 255, 0.387);
+    padding: 5px;
+    background-color: #e67a8d;
+    border-radius: 15px;
+    justify-content: beginning;
+    width: 40%;
+}

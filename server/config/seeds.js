@@ -10,7 +10,7 @@ db.once('open', async () => {
             firstName: "Vince",
             lastName: "Lee",
             age: 22,
-            city: "Berkeley, CA",
+            location: "Berkeley, CA",
             job: 'Full Stack Developer',
             gender: 'he/his',
             interest: [

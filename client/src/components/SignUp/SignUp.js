@@ -209,15 +209,19 @@ const SignUp = () => {
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                  }}
-                  className="input"
-                  id="dropdown-button-dark-example1"
-                  name="gender"
-                  change={handleChange}
-                >
-                  <option>Gender</option>
-                  <option name="gender" value="She/Her">
-                    She/Her
+                    }}
+                    className="input"
+                    id="dropdown-button-dark-example1"
+                    name = "gender"
+                    onChange={handleChange}
+                  >
+                  <option>
+                      Gender
+                  </option>
+                  <option                     
+                    name="gender"
+                    value='She/Her'>
+                      She/Her
                   </option>
                   <option name="gender" value="He/His">
                     He/His
@@ -260,6 +264,7 @@ const SignUp = () => {
               {interest.map((interest) => {
                 return (
                   <InterestButton
+                    key = {interest.interest}
                     icon={interest.icon}
                     interest={interest.interest}
                   />

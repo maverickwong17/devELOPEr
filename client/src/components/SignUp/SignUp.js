@@ -265,6 +265,7 @@ const SignUp = () => {
               {interest.map((interest) => {
                 return (
                   <InterestButton
+                    key={interest.interest}
                     icon={interest.icon}
                     interest={interest.interest}
                   />

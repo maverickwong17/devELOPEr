@@ -24,7 +24,7 @@ const resolvers = {
     Date: dateScalar,
     Query: {
         users: async () => {
-            return User.find();
+            return User.find().populate('connections');
         },
         user: async (parent, { email }) => {
             return User.findOne({ email });
@@ -34,7 +34,9 @@ const resolvers = {
         },
         me: async (parent, args, context) => {
             if (context.user) {
-              return await User.findOne({ _id: context.user._id }).populate('connections');
+              return await User.findOne({ _id: context.user._id })
+                                .populate('connections')
+                                .populate({'path': 'connections', "populate": { "path": "profile"}});
             }
             throw new AuthenticationError('You need to be logged in!');
         },
@@ -46,12 +48,9 @@ const resolvers = {
             const password = body.password
             const user = await User.create({email,password});
             const token = signToken(user);
-            const update = await User.findOneAndUpdate(
-                { email: email },
-                { profile : body.input },
-                { new: true }
-            )
-            return { token, update };
+            user.profile = body.input
+            await user.save()
+            return { token, user };
         },
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
@@ -68,17 +67,19 @@ const resolvers = {
         },
         addConnection: async (parent, body, context) => {
             // console.log('Hi')
-            // console.log(body)
+            console.log(body)
             // console.log(context.user)
             if(context.user){
                 const partner = await User.findOne( body )
-                // console.log('partner', partner)
+                console.log('partner', partner)
                 const user= await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $addToSet: { connections: partner } },
                     { new: true }
                     )
-                return { user, partner }
+                console.log(user.connections)
+                console.log(user.connections[0])
+                return (user)
             }
         },
     }

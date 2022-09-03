@@ -8,7 +8,7 @@ import InterestButton from "../InterestButton/InterestButton";
 import data from "../../data/interestsJson";
 
 import { Row } from "react-bootstrap";
-import { QUERY_All_USER, QUERY_ME } from "../../utils/queries";
+import { QUERY_ALL_USER, QUERY_ME } from "../../utils/queries";
 import { useMutation, useQuery } from "@apollo/client";
 
 const db = [
@@ -39,7 +39,7 @@ function Swiper() {
   const [lastDirection, setLastDirection] = useState();
 
   const currentIndexRef = useRef(currentIndex);
-  const { loading, userData } = useQuery(QUERY_All_USER);
+  const { loading, userData } = useQuery(QUERY_ALL_USER);
   const users = userData || [];
   console.log(users);
   const childRefs = useMemo(

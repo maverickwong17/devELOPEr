@@ -3,7 +3,55 @@ import { Row } from "react-bootstrap";
 import { FaUserCircle } from "react-icons/fa";
 import { AiFillMessage } from "react-icons/ai";
 import "./Matches.css";
+import { useQuery, useLazyQuery } from "@apollo/client";
+import { QUERY_ALL_USER, QUERY_ME } from "../../utils/queries";
+import Loader from "../Loader/Loader";
+import { Link } from 'react-router-dom';
+
 const MatchesPage = () => {
+
+  const { loading:loadme, data:profile } = useQuery( QUERY_ME );
+  
+  const { loading:loadall, data:userData } = useQuery(QUERY_ALL_USER);
+  const myprofile = profile?.me || {};
+  const allUsers = userData
+
+  // const queryMultiple = () => {
+  //   const allUsers = useQuery(QUERY_ALL_USER);
+  //   const myprofile = useQuery(QUERY_ME);
+  //   return [allUsers, myprofile];
+  // }
+  
+  // const [
+  //     { loading: loading1, data: userData },
+  //     { loading: loading2, data: me}
+  // ] = queryMultiple()
+
+  if (loadme || loadall ) {
+    return <Loader />;
+  }
+
+  if (!myprofile) {
+    return (
+      <h4>
+        You need to be logged in to see this. Use the navigation links above to
+        sign up or log in!
+      </h4>
+    );
+  }
+  console.log(myprofile);
+  console.log(allUsers);
+
+  // const allUsers = userData?.me;
+  // const profile = connectionData?.me
+
+  // console.log('profile', profile)
+  // console.log(connectionData)
+  // console.log('allUsers', allUsers)
+  // console.log(userData)
+  // console.log(meError)
+  // console.log(error)
+
   const db = [
     {
       name: "Richard Hendricks",
@@ -27,6 +75,7 @@ const MatchesPage = () => {
     },
   ];
 
+
   return (
     <Row className="grid_matches">
       <div className="matches">
@@ -41,7 +90,12 @@ const MatchesPage = () => {
             ></div> */}
             <h1>John Doe</h1>
             <p>
+            {/* <Link
+              className="btn btn-primary btn-block btn-squared"
+              // to={`/profile/${thought._id}`}
+            >
               <FaUserCircle size={40} />
+            </Link> */}
               <AiFillMessage size={40} />
             </p>
           </div>

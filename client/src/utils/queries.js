@@ -23,9 +23,12 @@ export const QUERY_USER = gql`
     }
   }
 `;
-export const QUERY_All_USER = gql`
-  query users {
+
+export const QUERY_ALL_USER = gql`
+  query users{
     users {
+      _id
+      email
       profile {
         firstName
         lastName
@@ -34,8 +37,30 @@ export const QUERY_All_USER = gql`
         job
         gender
         interest
+        github
+        linkedin
         images
+        range
+        seeking
         aboutme
+      }
+      connections {
+        _id
+        profile {
+          firstName
+          lastName
+          images
+          aboutme
+          seeking
+          range
+          linkedin
+          github
+          interest
+          job
+          gender
+          location
+          age
+        }
       }
     }
   }
@@ -43,26 +68,44 @@ export const QUERY_All_USER = gql`
 
 
 export const QUERY_ME = gql`
-query me {
-  me {
-    _id
-    profile {
-      firstName
-      lastName
-      age
-      location
-      job
-      gender
-      interest
-      github
-      linkedin
-      images
-      range
-      seeking
-      aboutme
+  query me {
+    me {
+      _id
+      profile {
+        firstName
+        lastName
+        age
+        location
+        job
+        gender
+        interest
+        github
+        linkedin
+        images
+        range
+        seeking
+        aboutme
+      }
+      connections {
+        _id
+        profile {
+          firstName
+          lastName
+          age
+          location
+          job
+          interest
+          gender
+          github
+          linkedin
+          images
+          range
+          seeking
+          aboutme
+        }
+      }
     }
   }
-}
 `;
 
 export const QUERY_MESSAGES = gql`

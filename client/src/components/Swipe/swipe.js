@@ -8,22 +8,25 @@ import InterestButton from "../InterestButton/InterestButton";
 import data from "../../data/interestsJson";
 import { Row } from 'react-bootstrap';
 import { QUERY_All_USER, QUERY_ME } from "../../utils/queries";
-import { swipeCard } from "../swipeCard/swipeCard";
+import  SwipeCard  from "../swipeCard/swipeCard";
 import { useQuery } from '@apollo/client';
-import { Loader } from "../Loader/Loader";
+import Loader from '../Loader/Loader';
+
+
   function Swiper () {
     const {loading, data} = useQuery(QUERY_All_USER)
   
+    if (loading) {
+      return <Loader />;
+  }
     return (
       <Row className='grid_swipe'>
         <h1>React Tinder Card</h1>
       <div className='cards_section'>
       
         <div className='cardContainer'>
-          {loading ? (
-            <Loader/>
-          ):( 
-          <swipeCard users={data}/>)}
+         
+          <SwipeCard users={data}/>
          
         </div>
       </div>

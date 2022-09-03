@@ -4,9 +4,10 @@ import { AiFillHeart } from 'react-icons/ai';
 import { MdCancel } from 'react-icons/md'; 
 import { FaUndo } from 'react-icons/fa';
 import InterestButton from "../InterestButton/InterestButton";
+import data from "../../data/interestsJson";
 
 
-const swipeCard = (users) => {
+const SwipeCard = (users) => {
   console.log(users)
   const [currentIndex, setCurrentIndex] = useState(users.length - 1)
   const [lastDirection, setLastDirection] = useState()
@@ -97,4 +98,4 @@ const swipeCard = (users) => {
   )
 }
 
-export default swipeCard
+export default SwipeCard

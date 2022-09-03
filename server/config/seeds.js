@@ -40,7 +40,7 @@ db.once("open", async () => {
       ],
       aboutme: "My name is Vince. Check my interests to see what I love most in the world.",
       seeking: "She/Her",
-      range: [21,65]
+      range: [21,25]
     },
   },
   {
@@ -65,7 +65,9 @@ db.once("open", async () => {
         "https://res.cloudinary.com/dhuyyu7wp/image/upload/v1662225023/cv5rhjyybv62hlfzicab.jpg",
         "https://res.cloudinary.com/dhuyyu7wp/image/upload/v1662225027/ipusaase1gcc4k3rh5vt.jpg"
       ],
-      aboutme: "Hi! I'm Kevin. I'm a full stack developer, TA, and Reese's-lover."
+      aboutme: "Hi! I'm Kevin. I'm a full stack developer, TA, and Reese's-lover.",
+      seeking: "She/Her",
+      range: [21,30]
     },
   },
   {
@@ -74,10 +76,10 @@ db.once("open", async () => {
     profile: {
       firstName: "Reese's",
       lastName: "Lee",
-      age: 22,
+      age: 30,
       location: "St. Louis, MO",
       job: "COO",
-      gender: "He/His",
+      gender: "She/Her",
       interest: [
         "🍬 black licorice",
         "☕ Earl Gray tea",
@@ -102,7 +104,9 @@ db.once("open", async () => {
         "http://res.cloudinary.com/dhuyyu7wp/image/upload/v1662002914/zhy26gu2q5ptrtwdeqbb.jpg",
         "http://res.cloudinary.com/dhuyyu7wp/image/upload/v1662002915/zxfayjb1fq8t9kevfthp.jpg",
       ],
-      aboutme: "My name is Vince. Check my interests to see what I love most in the world."
+      aboutme: "My name is Vince. Check my interests to see what I love most in the world.",
+      seeking: "He/His",
+      range: [25,33]
     },
   });
   console.log("Vince, Kevin, and Dog have been seeded");

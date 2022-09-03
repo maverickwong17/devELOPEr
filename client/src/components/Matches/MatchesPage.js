@@ -13,8 +13,8 @@ const MatchesPage = () => {
 
   const { loading: loadall, data: userData } = useQuery(QUERY_ALL_USER);
   const myprofile = profile?.me || {};
-  const allUsers = userData;
-
+  const allUsers = userData || [];
+  const userArr = allUsers.users
   if (loadme || loadall) {
     return <Loader />;
   }
@@ -27,28 +27,41 @@ const MatchesPage = () => {
       </h4>
     );
   }
-  // console.log(myprofile);
-  console.log("All Users", allUsers);
 
-  var connectionsArr = myprofile.connections.map(({ _id }) => _id);
-  // var connections = connectionsArr.
-  console.log("user connections:", connectionsArr);
-  // console.log(connections)
+  const myId = myprofile._id
+  console.log("my profile", myprofile);
+  console.log("profile id", myId);
+  console.log("All Users", userArr);
 
-  const findMatches = (array) => {
-    let matchArr = [];
-    for (let i = 0; i < array.length; i++) {
-      console.log(array[i]._id);
-      console.log(connectionsArr.includes(array[i]._id));
-      if (connectionsArr.includes(array[i]._id)) {
-        matchArr.push(array[i].profile);
+  var connections = myprofile.connections
+  var connectionsArr = connections.map(({ _id }) => _id);
+  console.log("my connections:", connections);
+  console.log("my connections id:", connectionsArr);
+  var map = function(array){
+    var output = []
+    for(let i=0; i<array.length; i++){
+      console.log(array[i])
+      // console.log(array[i]._id)
+      var myArr = connectionsArr.includes(array[i]._id)
+      console.log(array[i].profile.firstName,"in my connections", myArr)
+      console.log(array[i].profile)
+      var userConnectArr = array[i].connections
+      console.log(array[i].profile.firstName, `connections array`, userConnectArr)
+      for(let j=0; j < userConnectArr; j++){
+        console.log(array[i].profile.firstName,'for loop')
+        var conIDs = userConnectArr[j]
+        console.log(conIDs)
+      }
+      if(myArr){
+        output.push(array[i])
       }
     }
-    return matchArr;
-  };
+    return output
+  }
+  console.log(map(userArr))
 
   //  findMatches(allUsers)
-  console.log(findMatches(allUsers));
+  // console.log(findMatches(allUsers));
   // console.log(iterate)
 
   const db = [
@@ -77,9 +90,10 @@ const MatchesPage = () => {
   return (
     <Row className="grid_matches">
       <div className="matches">
-        {db.map((match) => (
+        {db.map((match, index) => (
           <div
-            class="card_match"
+            key={index}
+            className="card_match"
             style={{ "--bg-image": `url("${match.url}")` }}
           >
             {/* <div

@@ -39,7 +39,7 @@ function Swiper() {
   const [lastDirection, setLastDirection] = useState();
 
   const currentIndexRef = useRef(currentIndex);
-  const { loading, userData } = useQuery(QUERY_All_USER);
+  const { loading, userData } = useQuery(QUERY_ALL_USER);
   const users = userData || [];
   console.log(users);
   const childRefs = useMemo(

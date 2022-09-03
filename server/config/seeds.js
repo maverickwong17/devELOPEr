@@ -69,10 +69,10 @@ db.once("open", async () => {
     },
   },
   {
-    email: "dogs@email.com",
+    email: "reeses@email.com",
     password: "password123",
     profile: {
-      firstName: "Dog",
+      firstName: "Reese's",
       lastName: "Lee",
       age: 22,
       location: "St. Louis, MO",

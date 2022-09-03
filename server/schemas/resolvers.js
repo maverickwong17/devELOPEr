@@ -72,14 +72,14 @@ const resolvers = {
             // console.log(context.user)
             if(context.user){
                 const partner = await User.findOne( body )
-                console.log('partner', partner)
+                // console.log('partner', partner)
                 const user= await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $addToSet: { connections: partner._id } },
+                    { $addToSet: { connections: partner } },
                     { new: true }
                     )
+                return { user, partner }
             }
-            return { user }
         },
     }
 };

@@ -29,20 +29,28 @@ const MatchesPage = () => {
     );
   }
   // console.log(myprofile);
-  console.log(allUsers);
+  console.log("All Users",allUsers);
 
   var connectionsArr = myprofile.connections.map(({ _id,}) => _id)
   // var connections = connectionsArr.
   console.log("user connections:",connectionsArr)
   // console.log(connections)
-  var matchArr = []
-  function profiles(array){
+
+  const findMatches = (array) => {
+    let matchArr= []
     for(let i=0; i< array.length ; i++){
+      console.log(array[i]._id)
+      console.log(connectionsArr.includes(array[i]._id))
+      if(connectionsArr.includes(array[i]._id)){
         matchArr.push(array[i].profile)
+      }
     }
     return matchArr
   }
-  console.log(profiles(allUsers))
+
+  //  findMatches(allUsers)
+  console.log(findMatches(allUsers))
+  // console.log(iterate)
 
 
   const db = [

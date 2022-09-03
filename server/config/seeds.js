@@ -38,7 +38,9 @@ db.once("open", async () => {
         "http://res.cloudinary.com/dhuyyu7wp/image/upload/v1662002914/zhy26gu2q5ptrtwdeqbb.jpg",
         "http://res.cloudinary.com/dhuyyu7wp/image/upload/v1662002915/zxfayjb1fq8t9kevfthp.jpg",
       ],
-      aboutme: "My name is Vince. Check my interests to see what I love most in the world."
+      aboutme: "My name is Vince. Check my interests to see what I love most in the world.",
+      seeking: "She/Her",
+      range: [21,65]
     },
   },
   {

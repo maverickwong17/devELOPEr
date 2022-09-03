@@ -21,6 +21,24 @@ export const QUERY_USER = gql`
         aboutme
       }
     }
+    connections {
+      _id
+      profile {
+        firstName
+        lastName
+        images
+        aboutme
+        seeking
+        range
+        linkedin
+        github
+        interest
+        job
+        gender
+        location
+        age
+      }
+    }
   }
 `;
 

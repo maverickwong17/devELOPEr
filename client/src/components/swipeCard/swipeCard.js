@@ -7,8 +7,11 @@ import InterestButton from "../InterestButton/InterestButton";
 import data from "../../data/interestsJson";
 
 
-const SwipeCard = (users) => {
-  console.log(users)
+const SwipeCard = (profiles) => {
+  
+  const users = profiles.users
+  // console.log(users)
+  // console.log(profiles)
   const [currentIndex, setCurrentIndex] = useState(users.length - 1)
   const [lastDirection, setLastDirection] = useState()
  
@@ -58,7 +61,7 @@ const SwipeCard = (users) => {
     updateCurrentIndex(newIndex)
     await childRefs[newIndex].current.restoreCard()
   }
-
+console.log(users[0])
   return (
     <>
     {users.map((user, index) => (
@@ -70,8 +73,8 @@ const SwipeCard = (users) => {
           onCardLeftScreen={() => outOfFrame(user.name, index)}
         >
             <div className="card">
-            <img src={user.url} alt={user.name} className="userImage"></img>
-            <h3>{user.name}, {user.age}</h3>
+            <img src={user.profile.images[0]} alt={user.profile.firstName} className="userImage"></img>
+            <h3>{user.profile.firstName}, {user.profile.age}</h3>
             <hr />
             <div className="interest_section">
               {" "}

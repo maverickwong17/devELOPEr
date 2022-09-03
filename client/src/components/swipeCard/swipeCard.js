@@ -9,10 +9,10 @@ import data from "../../data/interestsJson";
 
 const SwipeCard = (profiles) => {
   
-  const users = profiles.users
+  const users = profiles.profiles
   // console.log(users)
-  // console.log(profiles)
-  const [currentIndex, setCurrentIndex] = useState(users.length - 1)
+  console.log(profiles)
+  const [currentIndex, setCurrentIndex] = useState(profiles.length - 1)
   const [lastDirection, setLastDirection] = useState()
  
   const currentIndexRef = useRef(currentIndex)
@@ -21,7 +21,7 @@ const SwipeCard = (profiles) => {
 
   const childRefs = useMemo(
     () =>
-      Array(users.length)
+      Array(profiles.length)
         .fill(0)
         .map((i) => React.createRef()),
     []
@@ -32,7 +32,7 @@ const SwipeCard = (profiles) => {
     currentIndexRef.current = val
   }
 
-  const canGoBack = currentIndex < users.length - 1
+  const canGoBack = currentIndex < profiles.length - 1
 
   const canSwipe = currentIndex >= 0
 
@@ -61,7 +61,6 @@ const SwipeCard = (profiles) => {
     updateCurrentIndex(newIndex)
     await childRefs[newIndex].current.restoreCard()
   }
-console.log(users[0])
   return (
     <>
     {users.map((user, index) => (

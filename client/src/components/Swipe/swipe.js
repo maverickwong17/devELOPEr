@@ -26,7 +26,7 @@ import Loader from '../Loader/Loader';
       
         <div className='cardContainer'>
          
-          <SwipeCard users={data.users}/>
+          <SwipeCard profiles={data.users}/>
          
         </div>
       </div>

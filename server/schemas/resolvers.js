@@ -34,11 +34,11 @@ const resolvers = {
         },
         me: async (parent, args, context) => {
             if (context.user) {
-              return User.findOne({ _id: context.user._id });
+              return await User.findOne({ _id: context.user._id }).populate('connections');
             }
             throw new AuthenticationError('You need to be logged in!');
         },
-    },
+    },  
 
     Mutation: {
         addUser: async (parent, body) => {
@@ -51,7 +51,7 @@ const resolvers = {
                 { profile : body.input },
                 { new: true }
             )
-            return { token, user };
+            return { token, update };
         },
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
@@ -67,16 +67,18 @@ const resolvers = {
             return { token, user };
         },
         addConnection: async (parent, body, context) => {
-            console.log('Hi')
+            // console.log('Hi')
             // console.log(body)
             // console.log(context.user)
-            const partner = await User.findOne( body )
-            console.log('partner', partner)
-            const user= await User.findOneAndUpdate(
+            if(context.user){
+                const partner = await User.findOne( body )
+                console.log('partner', partner)
+                const user= await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $addToSet: { connections: partner._id } },
                     { new: true }
-                )
+                    )
+            }
             return { user }
         },
     }

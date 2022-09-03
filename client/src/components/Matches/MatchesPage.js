@@ -16,17 +16,6 @@ const MatchesPage = () => {
   const myprofile = profile?.me || {};
   const allUsers = userData
 
-  // const queryMultiple = () => {
-  //   const allUsers = useQuery(QUERY_ALL_USER);
-  //   const myprofile = useQuery(QUERY_ME);
-  //   return [allUsers, myprofile];
-  // }
-  
-  // const [
-  //     { loading: loading1, data: userData },
-  //     { loading: loading2, data: me}
-  // ] = queryMultiple()
-
   if (loadme || loadall ) {
     return <Loader />;
   }
@@ -39,18 +28,22 @@ const MatchesPage = () => {
       </h4>
     );
   }
-  console.log(myprofile);
+  // console.log(myprofile);
   console.log(allUsers);
 
-  // const allUsers = userData?.me;
-  // const profile = connectionData?.me
+  var connectionsArr = myprofile.connections.map(({ _id,}) => _id)
+  // var connections = connectionsArr.
+  console.log("user connections:",connectionsArr)
+  // console.log(connections)
+  var matchArr = []
+  function profiles(array){
+    for(let i=0; i< array.length ; i++){
+        matchArr.push(array[i].profile)
+    }
+    return matchArr
+  }
+  console.log(profiles(allUsers))
 
-  // console.log('profile', profile)
-  // console.log(connectionData)
-  // console.log('allUsers', allUsers)
-  // console.log(userData)
-  // console.log(meError)
-  // console.log(error)
 
   const db = [
     {

@@ -3,7 +3,7 @@ const { User } = require("../models");
 
 db.once("open", async () => {
   await User.deleteMany();
-  await User.insertMany({
+  await User.create({
     email: "squirrels@email.com",
     password: "password123",
     profile: {

@@ -8,80 +8,11 @@ import InterestButton from "../InterestButton/InterestButton";
 import data from "../../data/interestsJson";
 import { Row } from 'react-bootstrap';
 import { QUERY_All_USER, QUERY_ME } from "../../utils/queries";
-import { useMutation, useQuery } from '@apollo/client';
-const db = [
-    {
-      name: 'Richard Hendricks',
-      url: 'https://media.istockphoto.com/vectors/person-gray-photo-placeholder-man-vector-id1133765772?k=20&m=1133765772&s=612x612&w=0&h=2X073i6UQf9Z6NRxena3em12vhr7I7nromkZk4mfEmk='
-    },
-    {
-      name: 'Erlich Bachman',
-      url: 'https://media.istockphoto.com/vectors/person-gray-photo-placeholder-man-vector-id1133765772?k=20&m=1133765772&s=612x612&w=0&h=2X073i6UQf9Z6NRxena3em12vhr7I7nromkZk4mfEmk='
-    },
-    {
-      name: 'Monica Hall',
-      url: ''
-    },
-    {
-      name: 'Jared Dunn',
-      url: ''
-    },
-    {
-      name: 'Dinesh Chugtai',
-      url: 'https://media.istockphoto.com/vectors/person-gray-photo-placeholder-man-vector-id1133765772?k=20&m=1133765772&s=612x612&w=0&h=2X073i6UQf9Z6NRxena3em12vhr7I7nromkZk4mfEmk='
-    }
-  ];
-
+import { swipeCard } from "../swipeCard/swipeCard";
+import { useQuery } from '@apollo/client';
+import { Loader } from "../Loader/Loader";
   function Swiper () {
-    const [currentIndex, setCurrentIndex] = useState(db.length - 1)
-    const [lastDirection, setLastDirection] = useState()
-    
-    const currentIndexRef = useRef(currentIndex)
-    const {loading, userData} = useQuery(QUERY_All_USER);
-    const users = userData || []; 
-    console.log(users)
-    const childRefs = useMemo(
-      () =>
-        Array(db.length)
-          .fill(0)
-          .map((i) => React.createRef()),
-      []
-    )
-  
-    const updateCurrentIndex = (val) => {
-      setCurrentIndex(val)
-      currentIndexRef.current = val
-    }
-  
-    const canGoBack = currentIndex < db.length - 1
-  
-    const canSwipe = currentIndex >= 0
-  
-
-    const swiped = (direction, nameToDelete, index) => {
-      setLastDirection(direction)
-      updateCurrentIndex(index - 1)
-    }
-  
-    const outOfFrame = (name, idx) => {
-  
-      currentIndexRef.current >= idx && childRefs[idx].current.restoreCard()
-
-    }
-  
-    const swipe = async (dir) => {
-      if (canSwipe && currentIndex < db.length) {
-        await childRefs[currentIndex].current.swipe(dir) // Swipe the card!
-      }
-    }
-  
-    // increase current index and show card
-    const goBack = async () => {
-      if (!canGoBack) return
-      const newIndex = currentIndex + 1
-      updateCurrentIndex(newIndex)
-      await childRefs[newIndex].current.restoreCard()
-    }
+    const {loading, data} = useQuery(QUERY_All_USER)
   
     return (
       <Row className='grid_swipe'>
@@ -89,49 +20,12 @@ const db = [
       <div className='cards_section'>
       
         <div className='cardContainer'>
-          {db.map((user, index) => (
-            <TinderCard
-              ref={childRefs[index]}
-              className='swipe'
-              key={user.name}
-              onSwipe={(dir) => swiped(dir, user.name, index)}
-              onCardLeftScreen={() => outOfFrame(user.name, index)}
-            >
-                <div className="card">
-                <img src={user.url} alt={user.name} className="userImage"></img>
-                <h3>{user.name}, {user.age}</h3>
-                <hr />
-                <div className="interest_section">
-                  {" "}
-                  {data.slice(0, 4).map((interest) => {
-                    return (
-                      <InterestButton
-                        disabled="true"
-                        icon={interest.icon}
-                        interest={interest.interest}
-                      />
-                    );
-                  })}
-                </div>
-                <hr />
-              </div>
-            </TinderCard>
-          ))}
+          {loading ? (
+            <Loader/>
+          ):( 
+          <swipeCard users={data}/>)}
+         
         </div>
-        <div className='buttons'>
-          <button onClick={() => swipe('left')}><MdCancel/></button>
-          <button onClick={() => goBack()}><FaUndo/></button>
-          <button onClick={() => swipe('right')}><AiFillHeart/></button>
-        </div>
-        {lastDirection ? (
-          <h2 key={lastDirection} className='infoText'>
-            You swiped {lastDirection}
-          </h2>
-        ) : (
-          <h2 className='infoText'>
-            Swipe a card or press a button to get Restore Card button visible!
-          </h2>
-        )}
       </div>
       </Row>
     )

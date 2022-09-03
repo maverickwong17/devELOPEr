@@ -43,6 +43,7 @@ const DevChatWrap = () => {
     // console.log(user);
     pnUUID = user._id;
     console.log(pnUUID);
+    pnName = user.profile.firstName;
     // setpnUUID(user._id);
     console.log(user.profile.firstName);
     // console.log(pnUUID);
@@ -71,7 +72,8 @@ const DevChatWrap = () => {
         {
             publishKey: process.env.REACT_APP_MY_PUBLISH_KEY,
             subscribeKey: process.env.REACT_APP_MY_SUBSCRIBE_KEY,
-            uuid: pnUUID,
+            // uuid: pnUUID,
+            uuid: pnName
             // uuid: useMyQuery(),
             // userId: useMyQuery(),
         })

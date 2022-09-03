@@ -18,7 +18,6 @@ const LoginPage = (props) => {
       if (
         value.match(/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/i) === null
       ) {
-        console.log("email is invalid");
         setErrors("Email is invalid");
       } else {
         setErrors("");

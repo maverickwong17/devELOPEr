@@ -7,9 +7,9 @@ import { FaUndo } from "react-icons/fa";
 import InterestButton from "../InterestButton/InterestButton";
 import data from "../../data/interestsJson";
 
-import { Row } from 'react-bootstrap';
+import { Row } from "react-bootstrap";
 import { QUERY_ALL_USER, QUERY_ME } from "../../utils/queries";
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation, useQuery } from "@apollo/client";
 
 const db = [
   {
@@ -34,31 +34,30 @@ const db = [
   },
 ];
 
+function Swiper() {
+  const [currentIndex, setCurrentIndex] = useState(db.length - 1);
+  const [lastDirection, setLastDirection] = useState();
 
-  function Swiper () {
-    const [currentIndex, setCurrentIndex] = useState(db.length - 1)
-    const [lastDirection, setLastDirection] = useState()
-    
-    const currentIndexRef = useRef(currentIndex)
-    const {loading, userData} = useQuery(QUERY_ALL_USER);
-    const users = userData || []; 
-    console.log(users)
-    const childRefs = useMemo(
-      () =>
-        Array(db.length)
-          .fill(0)
-          .map((i) => React.createRef()),
-      []
-    )
-  
-    const updateCurrentIndex = (val) => {
-      setCurrentIndex(val)
-      currentIndexRef.current = val
-    }
-  
-    const canGoBack = currentIndex < db.length - 1
-  
-    const canSwipe = currentIndex >= 0
+  const currentIndexRef = useRef(currentIndex);
+  const { loading, userData } = useQuery(QUERY_All_USER);
+  const users = userData || [];
+  console.log(users);
+  const childRefs = useMemo(
+    () =>
+      Array(db.length)
+        .fill(0)
+        .map((i) => React.createRef()),
+    []
+  );
+
+  const updateCurrentIndex = (val) => {
+    setCurrentIndex(val);
+    currentIndexRef.current = val;
+  };
+
+  const canGoBack = currentIndex < db.length - 1;
+
+  const canSwipe = currentIndex >= 0;
 
   const swiped = (direction, nameToDelete, index) => {
     setLastDirection(direction);

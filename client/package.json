@@ -27,7 +27,7 @@
     "graphql": "^16.6.0",
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.4",
-    "pubnub": "^7.2.0",
+    "pubnub": "^4.36.0",
     "pubnub-react": "^2.1.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",

@@ -26,8 +26,8 @@ const resolvers = {
     users: async () => {
       return User.find().populate("connections");
     },
-    user: async (parent, { email }) => {
-      return User.findOne({ email });
+    user: async (parent, { _id }) => {
+      return User.findOne({ _id });
     },
     messages: async () => {
       return Message.find();

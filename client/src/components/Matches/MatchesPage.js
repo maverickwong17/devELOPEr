@@ -29,45 +29,43 @@ const MatchesPage = () => {
   }
 
   const myId = myprofile._id
-  console.log("my profile", myprofile);
-  console.log("profile id", myId);
-  console.log("All Users", userArr);
+  // console.log("my profile", myprofile);
+  // console.log("profile id", myId);
+  // console.log("All Users", userArr);
 
   var connections = myprofile.connections
   var connectionsArr = connections.map(({ _id }) => _id);
-  console.log("my connections:", connections);
-  console.log("my connections id:", connectionsArr);
+  // console.log("my connections:", connections);
+  // console.log("my connections id:", connectionsArr);
   var map = function(array){
     var output = []
     for(let i=0; i<array.length; i++){
-      console.log(array[i])
+      // console.log(array[i])
       // console.log(array[i]._id)
       var myArr = connectionsArr.includes(array[i]._id)
-      console.log(array[i].profile.firstName,"in my connections", myArr)
+      // console.log(array[i].profile.firstName,"in my connections", myArr)
       var userConnectArr = array[i].connections
-      console.log(array[i].profile.firstName, `connections array`, userConnectArr)
+      // console.log(array[i].profile.firstName, `connections array`, userConnectArr)
       var inUserCon = false
         for(let j=0; j < userConnectArr.length; j++){
           var conID = userConnectArr[j]._id
-          console.log(conID)
+          // console.log(conID)
           if(myId === conID){
             inUserCon = true
           }
-          console.log(`I am in ${array[i].profile.firstName} connections`, inUserCon)
-          console.log(myArr, inUserCon)
-          if(myArr && inUserCon){
-            console.log("match made")
-            output.push(array[i])
-          }
+          // console.log(`I am in ${array[i].profile.firstName} connections`, inUserCon)
+          // console.log(myArr, inUserCon)
+        }
+        if(myArr && inUserCon){
+          // console.log("match made")
+          output.push(array[i])
         }
     }
+    console.log(output)
     return output
   }
-  console.log(map(userArr))
+  var matches = map(userArr)
 
-  //  findMatches(allUsers)
-  // console.log(findMatches(allUsers));
-  // console.log(iterate)
 
   const db = [
     {
@@ -95,24 +93,24 @@ const MatchesPage = () => {
   return (
     <Row className="grid_matches">
       <div className="matches">
-        {db.map((match, index) => (
+        {matches.map((match, index) => (
           <div
             key={index}
             className="card_match"
-            style={{ "--bg-image": `url("${match.url}")` }}
+            style={{ "--bg-image": `url("${match.profile.images[0]}")` }}
           >
             {/* <div
-              class="img_match"
+              className="img_match"
               style={{ "--bg-image": `url("${match.url}")` }}
             ></div> */}
-            <h1>John Doe</h1>
+            <h1>{match.profile.firstName} {match.profile.lastName}</h1>
             <p>
-              {/* <Link
+              <Link
               className="btn btn-primary btn-block btn-squared"
-              // to={`/profile/${thought._id}`}
+              to={`/profile/${match._id}`}
             >
               <FaUserCircle size={40} />
-            </Link> */}
+            </Link>
               <AiFillMessage size={40} />
             </p>
           </div>

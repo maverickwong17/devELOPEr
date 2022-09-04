@@ -19,7 +19,7 @@ const Profile = () => {
   });
 
   const user = data?.me.profile || data?.user.profile || {};
-  if (Auth.loggedIn() && Auth.getProfile().data.email === userParam) {
+  if (Auth.loggedIn() && Auth.getProfile().data._id === userParam) {
     return <Navigate to="/profile" />;
   }
 

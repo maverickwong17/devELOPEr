@@ -44,17 +44,22 @@ const MatchesPage = () => {
       // console.log(array[i]._id)
       var myArr = connectionsArr.includes(array[i]._id)
       console.log(array[i].profile.firstName,"in my connections", myArr)
-      console.log(array[i].profile)
       var userConnectArr = array[i].connections
       console.log(array[i].profile.firstName, `connections array`, userConnectArr)
-      for(let j=0; j < userConnectArr; j++){
-        console.log(array[i].profile.firstName,'for loop')
-        var conIDs = userConnectArr[j]
-        console.log(conIDs)
-      }
-      if(myArr){
-        output.push(array[i])
-      }
+      var inUserCon = false
+        for(let j=0; j < userConnectArr.length; j++){
+          var conID = userConnectArr[j]._id
+          console.log(conID)
+          if(myId === conID){
+            inUserCon = true
+          }
+          console.log(`I am in ${array[i].profile.firstName} connections`, inUserCon)
+          console.log(myArr, inUserCon)
+          if(myArr && inUserCon){
+            console.log("match made")
+            output.push(array[i])
+          }
+        }
     }
     return output
   }

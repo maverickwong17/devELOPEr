@@ -3,7 +3,7 @@ import './InterestItem.css';
 
 const InterestItem = ({interest}) => {
     return (
-        <p class='interestItem'>{interest}</p>
+        <p className='interestItem'>{interest}</p>
     )
 }
 

@@ -30,7 +30,7 @@
   margin-right: 10px;
   justify-content: center;
 }
-.header a {
+.header .a {
   /* display: block; */
   padding: 8px;
   /* font-family: "Open Sans", sans-serif; */
@@ -41,8 +41,8 @@
   text-decoration: none;
   color: white;
 }
-.header a:hover {
-  opacity: 0.6;
+.header .a:hover {
+  /* opacity: 0.6; */
 }
 /* .sign_in {
   border: 1px solid #a30e3b;
@@ -74,9 +74,9 @@
     -1px -1px 8px rgba(255, 255, 255, 0.2);
 }
 .sign_in:hover {
-  border-radius: 15px;
+  /* border-radius: 15px;
   background: #212121;
-  box-shadow: inset 5px -5px 10px #231d1d, inset -5px 5px 10px #2b2323;
+  box-shadow: inset 5px -5px 10px #231d1d, inset -5px 5px 10px #2b2323; */
 }
 
 @media screen and (max-width: 810px) {

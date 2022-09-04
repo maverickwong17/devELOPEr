@@ -83,6 +83,7 @@ function App() {
                     <Route path="/swipe" element={<Swipe />} />
                     <Route path="/leetcode" element={<Leetcode />} />
                     <Route path="/profile" element={<Profile />} />
+                    <Route path="/profiles/:_id" element={<Profile />} />
                     <Route
                       path="/chat"
                       element={

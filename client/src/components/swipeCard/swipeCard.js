@@ -5,13 +5,13 @@ import { MdCancel } from 'react-icons/md';
 import { FaUndo } from 'react-icons/fa';
 import InterestButton from "../InterestButton/InterestButton";
 import data from "../../data/interestsJson";
-import "../Swipe/swipe.css";
+// import "../Swipe/swipe.css";
 
 const SwipeCard = (profiles) => {
   
   const users = profiles.profiles
   // console.log(users)
-  console.log(profiles)
+  console.log(users)
   const [currentIndex, setCurrentIndex] = useState(users.length - 1)
   const [lastDirection, setLastDirection] = useState()
  
@@ -49,14 +49,19 @@ const SwipeCard = (profiles) => {
   }
 
   const swipe = async (dir) => {
+    console.log(dir)
     if (canSwipe && currentIndex < users.length) {
       await childRefs[currentIndex].current.swipe(dir) // Swipe the card!
-      console.log('the swipe button was clicked')
+      console.log(dir)
+      if(dir === 'left'){
+        console.log(dir)
+      }
     }
   }
 
   // increase current index and show card
   const goBack = async () => {
+    console.log('back button')
     if (!canGoBack) return
     const newIndex = currentIndex + 1
     updateCurrentIndex(newIndex)
@@ -69,8 +74,8 @@ const SwipeCard = (profiles) => {
           ref={childRefs[index]}
           className='swipe'
           key={user.profile.firstName}
-          onSwipe={(dir) => swiped(dir, user.name, index)}
-          onCardLeftScreen={() => outOfFrame(user.name, index)}
+          onSwipe={(dir) => swiped(dir, user.profile.firstName, index)}
+          onCardLeftScreen={() => outOfFrame(user.profile.firstName, index)}
           preventSwipe ={["up", "down"]}
         >
             <div className="card">
@@ -79,12 +84,13 @@ const SwipeCard = (profiles) => {
             <hr />
             <div className="interest_section">
               {" "}
-              {data.slice(0, 4).map((interest) => {
+              {data.slice(0, 4).map((interest, index) => {
                 return (
                   <InterestButton
                     disabled="true"
                     icon={interest.icon}
                     interest={interest.interest}
+                    key = {index}
                   />
                 );
               })}
@@ -98,6 +104,7 @@ const SwipeCard = (profiles) => {
           <button onClick={() => goBack()}><FaUndo/></button>
           <button onClick={() => swipe('right')}><AiFillHeart/></button>
         </div>
+    
         {lastDirection ? (
         <h2 key={lastDirection} className='infoText'>
           You swiped {lastDirection}

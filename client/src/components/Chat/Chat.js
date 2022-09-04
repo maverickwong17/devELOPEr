@@ -53,7 +53,7 @@ function DevChat() {
                     </div>
                 </div>
 
-                <div className="chat">
+                <div className="chat pn-msg-list-scroller pn-msg-list--dark pn-msg-own">
                     <div
                         className={`people ${showMembers ? "active" : ""}`}
                         onClick={() => setShowMembers(!showMembers)}>
@@ -67,11 +67,12 @@ function DevChat() {
                     </div>
                     <MessageList
                         fetchMessages={10}
+                        // className='pn-msg-own'
                     >
                         <TypingIndicator showAsMessage />
                     </MessageList>
-                    <hr />
-                    <MessageInput typingIndicator onSend={(e) => (console.log(e.text))} />
+                    {/* <hr /> */}
+                    <MessageInput className='pn-msg-input--dark' typingIndicator onSend={(e) => (console.log(e.text))} />
                 </div>
 
                 <div className={`members ${showMembers && "shown"}`}>

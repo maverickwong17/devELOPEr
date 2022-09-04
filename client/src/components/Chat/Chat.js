@@ -56,16 +56,11 @@ function DevChat() {
                 <div className="chat">
                     <div
                         className={`people ${showMembers ? "active" : ""}`}
-                        onClick={() => setShowMembers(!showMembers)}
-                    >
+                        onClick={() => setShowMembers(!showMembers)}>
                         <span>{presenceData[currentChannel.id]?.occupancy || 0}</span>
-                        <i className="material-icons-outlined">people</i>
+                        <i className="material-icons-outlined">online</i>
                     </div>
-
                     <div className="info">
-                        <span className="hamburger" onClick={() => setShowChannels(true)}>
-                            ☰
-                        </span>
                         <h4>{currentChannel.name}</h4>
                         <small>{currentChannel.description}</small>
                         <hr />

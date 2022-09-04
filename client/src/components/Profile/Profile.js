@@ -15,13 +15,14 @@ import Loader from "../Loader/Loader";
 const Profile = () => {
   const { _id: userParam } = useParams();
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-    variables: { _id: userParam },
+    variables: { id: userParam },
   });
-
-  const user = data?.me.profile || data?.user.profile || {};
-  if (Auth.loggedIn() && Auth.getProfile().data._id === userParam) {
-    return <Navigate to="/profile" />;
-  }
+  console.log( userParam )
+  console.log({loading, data})
+  const user = data?.me?.profile || data?.user?.profile || {};
+  // if (Auth.loggedIn() && Auth.getProfile().data._id === userParam) {
+  //   return <Navigate to="/profile" />;
+  // }
 
   if (loading) {
     return <Loader />;

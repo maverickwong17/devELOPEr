@@ -3,7 +3,7 @@ import { Row } from "react-bootstrap";
 import { FaUserCircle } from "react-icons/fa";
 import { AiFillMessage } from "react-icons/ai";
 import "./Matches.css";
-import { useQuery, useLazyQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { QUERY_ALL_USER, QUERY_ME } from "../../utils/queries";
 import Loader from "../Loader/Loader";
 import { Link } from "react-router-dom";
@@ -107,7 +107,7 @@ const MatchesPage = () => {
             <p>
               <Link
               className="btn btn-primary btn-block btn-squared"
-              to={`/profile/${match._id}`}
+              to={`/profiles/${match._id}`}
             >
               <FaUserCircle size={40} />
             </Link>

@@ -12,7 +12,7 @@ import {
 import "./Chat.css";
 
 import rawUsers from "../../data/chat-data/users.json";
-import rawMessages from "../../data/chat-data/messages.json";
+// import rawMessages from "../../data/chat-data/messages.json";
 import directChannels from "../../data/chat-data/direct.json";
 
 const users = rawUsers;
@@ -30,14 +30,14 @@ function DevChat() {
     const presentUsers = users.filter((u) => presentUUIDs?.includes(u.id));
     const currentUser = users.find((u) => u.id === pubnub.getUUID());
 
-    useEffect(() => {
-        const messages = {};
-        [...rawMessages].forEach((message) => {
-            if (!messages.hasOwnProperty(message.channel)) messages[message.channel] = [];
-            if (message.uuid === "current_user" && currentUser?.id) message.uuid = currentUser?.id;
-            messages[message.channel].push(message);
-        });
-    }, [currentUser]);
+    // useEffect(() => {
+    //     const messages = {};
+    //     [...rawMessages].forEach((message) => {
+    //         if (!messages.hasOwnProperty(message.channel)) messages[message.channel] = [];
+    //         if (message.uuid === "current_user" && currentUser?.id) message.uuid = currentUser?.id;
+    //         messages[message.channel].push(message);
+    //     });
+    // }, [currentUser]);
 
     const theme = "dark";
 
@@ -82,9 +82,6 @@ function DevChat() {
                     </div>
                     <MessageList
                         fetchMessages={10}
-                    //   welcomeMessages={welcomeMessages[currentChannel.id]}
-                    //   enableReactions
-                    //   reactionsPicker={<Picker />}
                     >
                         <TypingIndicator showAsMessage />
                     </MessageList>

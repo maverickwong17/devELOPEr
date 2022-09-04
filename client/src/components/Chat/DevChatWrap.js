@@ -11,27 +11,17 @@ import Auth from '../../utils/auth';
 import { getFormControlUnstyledUtilityClass } from '@mui/base';
 
 const DevChatWrap = () => {
-    // useMyQuery();
-    let pnUUID;
+
+    // let pnUUID;
     let pnName;
-    // const [pnUUID, setpnUUID] = useState();
 
-    // const useMyQuery = () => {
-    const { _id: userParam } = useParams();
-    const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-        variables: { _id: userParam },
-    });
-    // console.log(data)
+    const { loading: loadme, data: profile } = useQuery(QUERY_ME);
 
-    const user = data?.me || data?.user || {};
-    if (Auth.loggedIn() && Auth.getProfile().data.email === userParam) {
-        return <Navigate to="/profile" />;
-    }
-
-    if (loading) {
+    const user = profile?.me || {};
+    
+    if (loadme) {
         return <Loader />;
     }
-
     if (!user) {
         return (
             <h4>
@@ -40,33 +30,10 @@ const DevChatWrap = () => {
             </h4>
         );
     }
-    // console.log(user);
-    pnUUID = user._id;
-    console.log(pnUUID);
-    pnName = user.profile.firstName;
-    // setpnUUID(user._id);
-    console.log(user.profile.firstName);
+    // pnUUID = user._id;
     // console.log(pnUUID);
-    // return pnUUID;
-    // }
-    // useMyQuery();
-
-    // useEffect(() => {
-    //     function useMyQuery() {
-    //         const { _id: userParam } = useParams();
-    //         const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-    //             variables: { _id: userParam },
-    //         });
-
-    //         const user = data?.me.profile || data?.user.profile || {};
-    //         console.log(user);
-    //         setpnUUID(user._id);
-    //         console.log(pnUUID);
-    //         // return pnUUID;
-    //     } 
-    //     useMyQuery()
-    // }, []);
-
+    pnName = user.profile.firstName;
+    // console.log(user.profile.firstName);
 
     const pubnub = new PubNub(
         {

@@ -1,6 +1,6 @@
 import React, {useState, useMemo, useRef} from 'react';
 import TinderCard from 'react-tinder-card';
-// import "./swipeCard/swipe.css";
+// import "./swipe.css";
 import { AiFillHeart } from 'react-icons/ai';
 import { MdCancel } from 'react-icons/md'; 
 import { FaUndo } from 'react-icons/fa';

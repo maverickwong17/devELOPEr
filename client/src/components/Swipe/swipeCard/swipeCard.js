@@ -47,11 +47,16 @@ const SwipeCard = (profiles) => {
   }
 
   const swipe = async (dir) => {
-    console.log(dir)
+  
     if (canSwipe && currentIndex < users.length) {
       await childRefs[currentIndex].current.swipe(dir) // Swipe the card!
       console.log(dir)
       if(dir === 'left'){
+        console.log(dir)
+        return
+      }
+      if(dir === 'right'){
+        // add to logged in users connection array
         console.log(dir)
       }
     }

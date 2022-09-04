@@ -21,7 +21,7 @@ module.exports = {
       req.user = data;
     } catch (e) {
       // console.log(JSON.stringify(e));
-      console.log("Infdfdvalid token");
+      console.log("Invalid token");
     }
 
     return req;

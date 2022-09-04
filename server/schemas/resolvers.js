@@ -26,13 +26,14 @@ const resolvers = {
     users: async () => {
       return User.find().populate("connections");
     },
-    user: async (parent, { email }) => {
-      return User.findOne({ email });
+    user: async (parent, { _id }) => {
+      return User.findById( _id );
     },
     messages: async () => {
       return Message.find();
     },
     me: async (parent, args, context) => {
+        console.log('me')
       if (context.user) {
         return await User.findOne({ _id: context.user._id })
           .populate("connections")

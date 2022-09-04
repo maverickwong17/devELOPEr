@@ -3,7 +3,7 @@ import { Row } from "react-bootstrap";
 import { FaUserCircle } from "react-icons/fa";
 import { AiFillMessage } from "react-icons/ai";
 import "./Matches.css";
-import { useQuery, useLazyQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { QUERY_ALL_USER, QUERY_ME } from "../../utils/queries";
 import Loader from "../Loader/Loader";
 import { Link } from "react-router-dom";
@@ -13,8 +13,8 @@ const MatchesPage = () => {
 
   const { loading: loadall, data: userData } = useQuery(QUERY_ALL_USER);
   const myprofile = profile?.me || {};
-  const allUsers = userData;
-
+  const allUsers = userData || [];
+  const userArr = allUsers.users
   if (loadme || loadall) {
     return <Loader />;
   }
@@ -27,29 +27,45 @@ const MatchesPage = () => {
       </h4>
     );
   }
-  // console.log(myprofile);
-  console.log("All Users", allUsers);
 
-  var connectionsArr = myprofile.connections.map(({ _id }) => _id);
-  // var connections = connectionsArr.
-  console.log("user connections:", connectionsArr);
-  // console.log(connections)
+  const myId = myprofile._id
+  // console.log("my profile", myprofile);
+  // console.log("profile id", myId);
+  // console.log("All Users", userArr);
 
-  const findMatches = (array) => {
-    let matchArr = [];
-    for (let i = 0; i < array.length; i++) {
-      console.log(array[i]._id);
-      console.log(connectionsArr.includes(array[i]._id));
-      if (connectionsArr.includes(array[i]._id)) {
-        matchArr.push(array[i].profile);
-      }
+  var connections = myprofile.connections
+  var connectionsArr = connections.map(({ _id }) => _id);
+  // console.log("my connections:", connections);
+  // console.log("my connections id:", connectionsArr);
+  var map = function(array){
+    var output = []
+    for(let i=0; i<array.length; i++){
+      // console.log(array[i])
+      // console.log(array[i]._id)
+      var myArr = connectionsArr.includes(array[i]._id)
+      // console.log(array[i].profile.firstName,"in my connections", myArr)
+      var userConnectArr = array[i].connections
+      // console.log(array[i].profile.firstName, `connections array`, userConnectArr)
+      var inUserCon = false
+        for(let j=0; j < userConnectArr.length; j++){
+          var conID = userConnectArr[j]._id
+          // console.log(conID)
+          if(myId === conID){
+            inUserCon = true
+          }
+          // console.log(`I am in ${array[i].profile.firstName} connections`, inUserCon)
+          // console.log(myArr, inUserCon)
+        }
+        if(myArr && inUserCon){
+          // console.log("match made")
+          output.push(array[i])
+        }
     }
-    return matchArr;
-  };
+    console.log(output)
+    return output
+  }
+  var matches = map(userArr)
 
-  //  findMatches(allUsers)
-  console.log(findMatches(allUsers));
-  // console.log(iterate)
 
   const db = [
     {
@@ -77,23 +93,24 @@ const MatchesPage = () => {
   return (
     <Row className="grid_matches">
       <div className="matches">
-        {db.map((match) => (
+        {matches.map((match, index) => (
           <div
-            class="card_match"
-            style={{ "--bg-image": `url("${match.url}")` }}
+            key={index}
+            className="card_match"
+            style={{ "--bg-image": `url("${match.profile.images[0]}")` }}
           >
             {/* <div
-              class="img_match"
+              className="img_match"
               style={{ "--bg-image": `url("${match.url}")` }}
             ></div> */}
-            <h1>John Doe</h1>
+            <h1>{match.profile.firstName} {match.profile.lastName}</h1>
             <p>
-              {/* <Link
+              <Link
               className="btn btn-primary btn-block btn-squared"
-              // to={`/profile/${thought._id}`}
+              to={`/profiles/${match._id}`}
             >
               <FaUserCircle size={40} />
-            </Link> */}
+            </Link>
               <AiFillMessage size={40} />
             </p>
           </div>

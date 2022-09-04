@@ -75,8 +75,8 @@ db.once("open", async () => {
     password: "password123",
     profile: {
       firstName: "Reese's",
-      lastName: "Lee",
-      age: 30,
+      lastName: "Cup",
+      age: 94,
       location: "St. Louis, MO",
       job: "COO",
       gender: "She/Her",
@@ -87,8 +87,8 @@ db.once("open", async () => {
         "🦊 having too many tabs open",
         "🖥️ using one monitor",
       ],
-      github: "StarryBlue7",
-      linkedin: "vince-lee",
+      github: "hershey-chocolate",
+      linkedin: "the-hershey-company",
       images: [
         "https://res.cloudinary.com/dhuyyu7wp/image/upload/v1662225027/ipusaase1gcc4k3rh5vt.jpg",
         "http://res.cloudinary.com/dhuyyu7wp/image/upload/v1662002913/jksleisc78qcnekcrl8k.jpg",
@@ -106,7 +106,7 @@ db.once("open", async () => {
       ],
       aboutme: "My name is Vince. Check my interests to see what I love most in the world.",
       seeking: "He/His",
-      range: [25,33]
+      range: [70,100]
     },
   });
   console.log("Vince, Kevin, and Reese's have been seeded");

@@ -101,6 +101,7 @@ function App() {
                 <BrowserRouter>
                   <Routes>
                     <Route path="/matches" element={<MatchesPage />} />
+                    <Route path="/*" element={<Swipe />} />
                     <Route path="/swipe" element={<Swipe />} />
                     <Route path="/leetcode" element={<Leetcode />} />
                     <Route path="/profile" element={<Profile />} />

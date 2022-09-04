@@ -4,28 +4,31 @@ import DevChat from './Chat';
 import PubNub from "pubnub";
 import { PubNubProvider } from "pubnub-react";
 import { QUERY_ME } from "../../utils/queries";
-import { RiContrastDropLine } from 'react-icons/ri';
+// import { RiContrastDropLine } from 'react-icons/ri';
 import Loader from '../Loader/Loader';
-import { getFormControlUnstyledUtilityClass } from '@mui/base';
+// import { getFormControlUnstyledUtilityClass } from '@mui/base';
 
 const DevChatWrap = () => {
     let pnName;
 
-    const { loading: loadme, data: profile } = useQuery(QUERY_ME);
+    const { loading, data } = useQuery(QUERY_ME);
 
-    const user = profile?.me || {};
-    
-    if (loadme) {
+    const user = data?.me || data?.user || {};
+
+    if (loading) {
         return <Loader />;
     }
+
     if (!user) {
         return (
             <h4>
-                You need to be logged in to slide into DMs.
+                You must be logged in to slide into DMs.
             </h4>
         );
     }
+
     pnName = user.profile.firstName;
+    // console.log(user.profile.firstName);
 
     const pubnub = new PubNub(
         {

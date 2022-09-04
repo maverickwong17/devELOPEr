@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { ReactComponent as Logo } from "../../devEloper-02.svg";
 import Auth from "../../utils/auth";
+import { Link } from "react-router-dom";
 import "./Header.css";
 
 const Header = (props) => {
@@ -11,10 +12,9 @@ const Header = (props) => {
   };
   return (
     <div className="header">
-      <span className="logo">
-        <Logo />
-      </span>
-
+          <a href='/swipe' className="logo">
+            <Logo />
+          </a>
       {Auth.loggedIn() ? (
         <a href="/signin" className="sign_in" onClick={logoutHandler}>
           sign out

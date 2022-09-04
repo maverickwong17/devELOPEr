@@ -12,7 +12,6 @@ import {
 import "./Chat.css";
 
 import rawUsers from "../../data/chat-data/users.json";
-import rawMessages from "../../data/chat-data/messages.json";
 import directChannels from "../../data/chat-data/direct.json";
 
 const users = rawUsers;
@@ -29,15 +28,6 @@ function DevChat() {
     const presentUUIDs = presenceData[currentChannel.id]?.occupants?.map((o) => o.uuid);
     const presentUsers = users.filter((u) => presentUUIDs?.includes(u.id));
     const currentUser = users.find((u) => u.id === pubnub.getUUID());
-
-    useEffect(() => {
-        const messages = {};
-        [...rawMessages].forEach((message) => {
-            if (!messages.hasOwnProperty(message.channel)) messages[message.channel] = [];
-            if (message.uuid === "current_user" && currentUser?.id) message.uuid = currentUser?.id;
-            messages[message.channel].push(message);
-        });
-    }, [currentUser]);
 
     const theme = "dark";
 
@@ -63,33 +53,26 @@ function DevChat() {
                     </div>
                 </div>
 
-                <div className="chat">
+                <div className="chat pn-msg-list-scroller pn-msg-list--dark pn-msg-own">
                     <div
                         className={`people ${showMembers ? "active" : ""}`}
-                        onClick={() => setShowMembers(!showMembers)}
-                    >
+                        onClick={() => setShowMembers(!showMembers)}>
                         <span>{presenceData[currentChannel.id]?.occupancy || 0}</span>
-                        <i className="material-icons-outlined">people</i>
+                        <i className="material-icons-outlined">online</i>
                     </div>
-
                     <div className="info">
-                        <span className="hamburger" onClick={() => setShowChannels(true)}>
-                            ☰
-                        </span>
                         <h4>{currentChannel.name}</h4>
                         <small>{currentChannel.description}</small>
                         <hr />
                     </div>
                     <MessageList
                         fetchMessages={10}
-                    //   welcomeMessages={welcomeMessages[currentChannel.id]}
-                    //   enableReactions
-                    //   reactionsPicker={<Picker />}
+                        // className='pn-msg-own'
                     >
                         <TypingIndicator showAsMessage />
                     </MessageList>
-                    <hr />
-                    <MessageInput typingIndicator onSend={(e) => (console.log(e.text))} />
+                    {/* <hr /> */}
+                    <MessageInput className='pn-msg-input--dark' typingIndicator onSend={(e) => (console.log(e.text))} />
                 </div>
 
                 <div className={`members ${showMembers && "shown"}`}>

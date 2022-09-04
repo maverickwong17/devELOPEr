@@ -5,14 +5,14 @@ import { MdCancel } from 'react-icons/md';
 import { FaUndo } from 'react-icons/fa';
 import InterestButton from "../InterestButton/InterestButton";
 import data from "../../data/interestsJson";
-
+import "../Swipe/swipe.css";
 
 const SwipeCard = (profiles) => {
   
   const users = profiles.profiles
   // console.log(users)
   console.log(profiles)
-  const [currentIndex, setCurrentIndex] = useState(profiles.length - 1)
+  const [currentIndex, setCurrentIndex] = useState(users.length - 1)
   const [lastDirection, setLastDirection] = useState()
  
   const currentIndexRef = useRef(currentIndex)
@@ -21,7 +21,7 @@ const SwipeCard = (profiles) => {
 
   const childRefs = useMemo(
     () =>
-      Array(profiles.length)
+      Array(users.length)
         .fill(0)
         .map((i) => React.createRef()),
     []
@@ -32,7 +32,7 @@ const SwipeCard = (profiles) => {
     currentIndexRef.current = val
   }
 
-  const canGoBack = currentIndex < profiles.length - 1
+  const canGoBack = currentIndex < users.length - 1
 
   const canSwipe = currentIndex >= 0
 
@@ -67,9 +67,10 @@ const SwipeCard = (profiles) => {
         <TinderCard
           ref={childRefs[index]}
           className='swipe'
-          key={user.name}
+          key={user.profile.firstName}
           onSwipe={(dir) => swiped(dir, user.name, index)}
           onCardLeftScreen={() => outOfFrame(user.name, index)}
+          preventSwipe ={["up", "down"]}
         >
             <div className="card">
             <img src={user.profile.images[0]} alt={user.profile.firstName} className="userImage"></img>
@@ -96,6 +97,15 @@ const SwipeCard = (profiles) => {
           <button onClick={() => goBack()}><FaUndo/></button>
           <button onClick={() => swipe('right')}><AiFillHeart/></button>
         </div>
+        {lastDirection ? (
+        <h2 key={lastDirection} className='infoText'>
+          You swiped {lastDirection}
+        </h2>
+      ) : (
+        <h2 className='infoText'>
+          Swipe a card or press a button to get Restore Card button visible!
+        </h2>
+      )}
     </>
   )
 }

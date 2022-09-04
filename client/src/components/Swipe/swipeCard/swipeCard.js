@@ -3,22 +3,20 @@ import TinderCard from 'react-tinder-card';
 import { AiFillHeart } from 'react-icons/ai';
 import { MdCancel } from 'react-icons/md'; 
 import { FaUndo } from 'react-icons/fa';
-import InterestButton from "../InterestButton/InterestButton";
-import data from "../../data/interestsJson";
-// import "../Swipe/swipe.css";
+import InterestButton from "../../InterestButton/InterestButton";
+import data from "../../../data/interestsJson";
+import "../swipe.css";
 
 const SwipeCard = (profiles) => {
   
   const users = profiles.profiles
-  // console.log(users)
+
   console.log(users)
   const [currentIndex, setCurrentIndex] = useState(users.length - 1)
   const [lastDirection, setLastDirection] = useState()
  
   const currentIndexRef = useRef(currentIndex)
  
-
-
   const childRefs = useMemo(
     () =>
       Array(users.length)

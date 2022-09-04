@@ -109,6 +109,6 @@ db.once("open", async () => {
       range: [25,33]
     },
   });
-  console.log("Vince, Kevin, and Dog have been seeded");
+  console.log("Vince, Kevin, and Reese's have been seeded");
   process.exit();
 });

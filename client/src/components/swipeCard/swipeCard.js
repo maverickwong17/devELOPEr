@@ -51,6 +51,7 @@ const SwipeCard = (profiles) => {
   const swipe = async (dir) => {
     if (canSwipe && currentIndex < users.length) {
       await childRefs[currentIndex].current.swipe(dir) // Swipe the card!
+      console.log('the swipe button was clicked')
     }
   }
 

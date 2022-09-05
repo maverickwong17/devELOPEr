@@ -1,51 +1,77 @@
+:root {
+  --chat--light__hover--2: #e4e9f000;
+  --chat--light__background--1: #e4e9f000;
+  --chat--light__background--1: #e4e9f000;
+  --chat--light__background--2: #e4e9f000;
+  --chat--light__background--3: #e4e9f000;
+  --chat--light__background--4: #e4e9f000;
+  /* --chat--light__background--5-rgb: #{hexToRGB(#ef3a43)}; */
+  /* --chat--light__background--6: #{rgba(#1c1c1c, 0.8)}; */
+  --chat--light__color--1: #e4e9f000;
+  --chat--light__color--2: #e4e9f000;
+  /* --chat--light__color--2-rgb: #{hexToRGB(#999999)}; */
+  --chat--light__color--3: #e4e9f000;
+  --chat--light__border--1: #e4e9f000;
+  --chat--light__border--2: #e4e9f000;
+  --chat--light__hover--1: #e4e9f000;
+  --chat--light__hover--2: #e4e9f000;
+  --chat--light__hover--3: #e4e9f000;
+  --chat--light__hover--4: #e4e9f000;
 
-body {
+  --chat--dark__background--1: #e4e9f000;
+  --chat--dark__background--2: #e4e9f000;
+  /* --chat--dark__background--2-rgb: #{hexToRGB(#2a2a39)}; */
+  /* // --chat--dark__background--3: ; */
+  --chat--dark__background--4: #e4e9f000;
+  /* --chat--dark__background--5: #{hexToRGB(#ef3a43)}; */
+  /* --chat--dark__background--6: #{rgba(#f0f3f7, 0.8)}; */
+  /* --chat--dark__color--1: #{rgba(#e4e4eb, 0.8)}; */
+  --chat--dark__color--2: #e4e9f000;
+  --chat--dark__color--3: #e4e9f000;
+  --chat--dark__border--1: #e4e9f000;
+  /* // --chat--dark__border--2: ; */
+  --chat--dark__hover--1: #e4e9f000;
+  --chat--dark__hover--2: #e4e9f000;
+  /* // --chat--dark__hover--3: ; */
+  --chat--dark__hover--4: #55e4e9f000770;
+  --chat--dark__hover--4-rgb: #{hexToRGB(#e4e9f000)};
+}
+
+
+
+/* body {
   color: #585858;
-}
-/* .app-simple.light {
-  --app-background: #fff;
-  --app-color: #585858;
-  --app-avatar-background: #f0f3f7;
-  --app-info-color: #999;
-  --app-info-border: #d7e0e9;
-  --app-chat-background: #f0f3f7;
-  --app-people-color: #585858;
-  --app-people-active-color: #5babfc;
-}
-.app-simple.dark {
-  --app-background: #292b2f;
-  --app-color: #fff;
-  --app-avatar-background: #414348;
-  --app-info-color: #999;
-  --app-info-border: #414348;
-  --app-chat-background: #2f3136;
-  --app-people-color: #dcddde;
-  --app-people-active-color: #de2440;
 } */
+
 .app-simple {
-  /* background: red; */
-  color: var(--app-color);
+  /* color: var(--app-color); */
   display: flex;
   height: 100vh;
   overflow: hidden;
+  /* color: black */
 }
+
 .pn-member-list {
   --member__padding: 9px 0;
 }
+
 .toggle {
   margin-top: 50px;
   position: relative;
 }
+
 .toggle span {
   font-size: 12px;
   font-weight: bold;
   margin-left: 24px;
 }
+
 .toggle button {
   left: 50%;
   position: absolute;
   transform: translateX(-50%);
 }
+
 .channels {
   background: var(--app-background);
   display: flex;
@@ -53,17 +79,26 @@ body {
   flex-shrink: 0;
   width: 300px;
 }
+
 .channels h4 {
   margin: 34px 24px 12px;
 }
+
+h4 {
+  color: #e67a8ebe
+}
+
 .user {
   display: flex;
   padding: 46px 24px 20px;
 }
+
 .user h4 {
   flex-grow: 1;
   margin: 8px 0;
+  color: #ffffff
 }
+
 .user img {
   background: var(--app-avatar-background);
   display: block;
@@ -72,55 +107,121 @@ body {
   height: 36px;
   border-radius: 36px;
 }
+
+
+
 .info {
   padding: 24px 24px 0;
-  /* background: green; */
+  /* background: #e67a8ea8; */
+
 }
+
 .info h4 {
   margin: 0 0 2px;
+  color: #e67a8ebe
 }
+
 .info small {
   color: var(--app-info-color);
 }
+
 .chat {
-  /* background: var(--app-chat-background); */
-  /* background-color: aqua; */
   border-radius: 25px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   margin: 30px 30px 30px 0;
   position: relative;
+  height: 70%;
+  color: black;
+  /* border: 1px white */
 }
+
 .chat hr {
-  background-color: var(--app-info-border);
+  /* background-color: var(--app-info-border); */
   border: 0;
   height: 1px;
   margin: 18px 0 0;
 }
 
-.pn-channel-list {
+.pn-channel-list--dark {
+  border-radius: 15px 15px 15px 15px;
   height: 100%;
   overflow-y: auto;
   width: 100%;
+  background-color: #e67a8e00;
+}
+
+.pn-msg-input__textarea {
+  background-color: #e67a8d6e;
+  /* color: white; */
 }
 
 .pn-channel {
-  /* align-items: var(--channel__alignItems); */
-  /* background: var(--channel__background); */
   cursor: pointer;
   display: flex;
-  /* justify-content: var(--channel__justifyContent); */
+  background-color: #79797900;
   padding: var(--channel__padding);
   position: relative;
 }
 
-.pn-channel--active{
+.pn-channel--active {
   background: #e67a8d6e;
 }
 
-.pn-channel--hover{
-  background: #e67a8ec2;
+.pn-channel:hover {
+  background: #ffe20400;
+}
+
+.pn-msg-input--dark {
+  background: #e67a8e00;
+  color: white
+}
+
+/* .pn-msg-own {
+  --msg__avatar__margin: 2px 0 0 18px;
+  --msg__content__alignItems: flex-end;
+  --msg__flexDirection: row-reverse;
+  --msg__title__flexDirection: row-reverse;
+} */
+
+.pn-msg-list-scroller {
+  color: black
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.pn-msg-input_wrapper {
+  color: white
+}
+
+::placeholder {
+  color: #ffffff;
+  opacity: 1
+  /* font-size: 20px; */
+}
+
+.pn-msg-list--dark {
+  background-color: #dbe67a00;
+  color: black;
+  border: 5px white;
+}
+
+.pn-msg-list--dark:hover {
+  background-color: #dbe67a00;
+  color: black;
+  /* border: 5px white; */
+}
+
+.pn-msg:hover {
+  color: black;
+  background-color: #dbe67a00;
+}
+
+.pn-msg-input__send--active {
+  color: #e67a8ed0
 }
 
 .app-simple .members {
@@ -132,27 +233,33 @@ body {
   transition: 0.3s ease-in-out;
   width: 0;
 }
+
 .members.shown {
   transform: none;
   width: 310px;
 }
+
 .members h4 {
   margin-top: 54px;
 }
+
 .members .close {
   margin-right: 24px;
 }
+
 .close {
   cursor: pointer;
   display: none;
   float: right;
 }
+
 .hamburger {
   display: none;
   float: left;
   font-size: 24px;
   margin-right: 15px;
 }
+
 .people {
   align-items: center;
   color: var(--app-people-color);
@@ -163,18 +270,25 @@ body {
   right: 34px;
   top: 34px;
   z-index: 1;
+  color: #ffffffd5;
 }
+
 .people.active {
   color: var(--app-people-active-color);
 }
+
 .people span {
   margin: 2px 8px 0 0;
 }
+
 @media (max-width: 950px) {
-  .app-simple .channels, .app-simple .members.shown {
+
+  .app-simple .channels,
+  .app-simple .members.shown {
     width: 200px;
- }
+  }
 }
+
 @media (max-width: 700px) {
   .app-simple .channels {
     height: 100%;
@@ -182,33 +296,41 @@ body {
     z-index: 10;
     transition: 0.3s ease-in-out;
     width: 100%;
- }
+  }
+
   .app-simple .channels:not(.shown) {
     transform: translateX(-100%);
- }
+  }
+
   .app-simple .user {
     padding-top: 24px;
- }
+  }
+
   .app-simple .close {
     display: inline-block;
- }
+  }
+
   .app-simple .chat {
     margin: 5px;
- }
+  }
+
   .app-simple .hamburger {
     display: inline;
- }
+  }
+
   .app-simple .members.shown {
     height: 100%;
     padding: 24px;
     position: absolute;
     z-index: 10;
     width: 100%;
- }
+  }
+
   .app-simple .members.shown h4 {
     margin-top: 0;
- }
+  }
+
   .app-simple .members.shown h4 span {
     margin-right: 48px;
- }
+  }
 }

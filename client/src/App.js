@@ -13,23 +13,9 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import Swipe from "./components/Swipe/swipe";
 import Profile from "./components/Profile/Profile";
 import Loader from "./components/Loader/Loader";
-// import Chat from "./components/Messenger/Chat";
-import DevChat from "./components/Chat/Chat";
+import DevChatWrap from "./components/Chat/DevChatWrap";
 import { Col, Row } from "react-bootstrap";
-// import { v4 as uuid4 } from 'uuid';
-import PubNub from "pubnub";
-import { PubNubProvider } from "pubnub-react";
 import MediaQuery from "react-responsive";
-import {
-  Chat,
-  MessageList,
-  MessageInput,
-  TypingIndicator,
-  ChannelList,
-  MemberList,
-} from "@pubnub/react-chat-components";
-// import { Picker } from "emoji-mart";
-// import data from '@emoji-mart/data'
 
 import {
   ApolloClient,
@@ -44,8 +30,6 @@ const httpLink = createHttpLink({
   uri: "/graphql",
 });
 
-// Construct request middleware that will attach the JWT token to every request as an `authorization` header
-// https://www.apollographql.com/docs/react/api/link/apollo-link-context/
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem("id_token");
   return {
@@ -66,11 +50,6 @@ const client = new ApolloClient({
 const currentChannel = "devELOPEr one";
 const theme = "dark";
 
-const pubnub = new PubNub({
-  publishKey: process.env.REACT_APP_MY_PUBLISH_KEY,
-  subscribeKey: process.env.REACT_APP_MY_SUBSCRIBE_KEY,
-  uuid: "myFirstUser",
-});
 const renderPages = () => {};
 function App() {
   return (
@@ -101,21 +80,24 @@ function App() {
                 <BrowserRouter>
                   <Routes>
                     <Route path="/matches" element={<MatchesPage />} />
+                    <Route path="/*" element={<Swipe />} />
                     <Route path="/swipe" element={<Swipe />} />
                     <Route path="/leetcode" element={<Leetcode />} />
                     <Route path="/profile" element={<Profile />} />
+                    <Route path="/profiles/:_id" element={<Profile />} />
                     <Route
                       path="/chat"
                       element={
-                        <PubNubProvider client={pubnub}>
-                          <DevChat />
-                          {/* <Chat {...{ currentChannel, theme }}>
-                          <MessageList>
-                            <TypingIndicator showAsMessage />
-                          </MessageList>
-                          <MessageInput typingIndicator />
-                        </Chat> */}
-                        </PubNubProvider>
+                        <DevChatWrap />
+                        // <PubNubProvider client={pubnub}>
+                        //   <DevChatWrap />
+                        //   {/* <Chat {...{ currentChannel, theme }}>
+                        //   <MessageList>
+                        //     <TypingIndicator showAsMessage />
+                        //   </MessageList>
+                        //   <MessageInput typingIndicator />
+                        // </Chat> */}
+                        // </PubNubProvider>
                       }
                     />
                     {/* <Route
@@ -126,6 +108,12 @@ function App() {
                           // {...{ currentChannel, theme }}
                           />
                         </PubNubProvider>
+                        <SIgnup setPubnubId={setPubnub}
+
+
+                        
+
+
                       }
                     /> */}
                   </Routes>

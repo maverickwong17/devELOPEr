@@ -7,7 +7,6 @@ import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import InterestList from "./InterestList";
 import { ReactComponent as Github } from "../assets/svg/github.svg";
 import { ReactComponent as LinkedIn } from "../assets/svg/linkedin.svg";
-import Auth from "../../utils/auth";
 import MediaQuery from "react-responsive";
 import "./Profile.css";
 import Loader from "../Loader/Loader";
@@ -15,13 +14,11 @@ import Loader from "../Loader/Loader";
 const Profile = () => {
   const { _id: userParam } = useParams();
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-    variables: { _id: userParam },
+    variables: { id: userParam },
   });
-
-  const user = data?.me.profile || data?.user.profile || {};
-  if (Auth.loggedIn() && Auth.getProfile().data.email === userParam) {
-    return <Navigate to="/profile" />;
-  }
+  // console.log( userParam )
+  console.log({loading, data})
+  const user = data?.me?.profile || data?.user?.profile || {};
 
   if (loading) {
     return <Loader />;
@@ -30,12 +27,11 @@ const Profile = () => {
   if (!user) {
     return (
       <h4>
-        You need to be logged in to see this. Use the navigation links above to
-        sign up or log in!
+        Please login.
       </h4>
     );
   }
-  console.log(user);
+  // console.log(user);
   let interests = user.interest;
   let images = user.images;
   // console.log(interests)
@@ -52,7 +48,7 @@ const Profile = () => {
         </div>
         <div>
           <a
-            href={user.github}
+            href={`https://github.com/${user.github}`}
             target="_blank"
             rel="noreferrer noopener"
             className="container profileLinkButtons"
@@ -60,7 +56,7 @@ const Profile = () => {
             <Github />
           </a>
           <a
-            href={user.linkedin}
+            href={`https://www.linkedin.com/in/${user.linkedin}`}
             target="_blank"
             rel="noreferrer noopener"
             className="container profileLinkButtons"
@@ -98,19 +94,16 @@ const Profile = () => {
   };
   return (
     <Row className="profileContainer">
-      {/* <div className='profileContainer'> */}
       <Row className="profileHeader">
         <div>
           <h2 className="h2">
             {`${user.firstName}`} <span>{`${user.age}`}</span>
           </h2>
-          {/* <p className='age'>{`${user.age}`}</p> */}
         </div>
       </Row>
       <Row className="profileHeader2">
         <span className="job">
           {`${user.job}`}
-          {/* <span class='city'>{`${user.location}`}</span> */}
         </span>
         <span className="city">{`${user.location}`}</span>
       </Row>
@@ -129,7 +122,6 @@ const Profile = () => {
         </MediaQuery>
       </Row>
 
-      {/* </div> */}
     </Row>
   );
 };

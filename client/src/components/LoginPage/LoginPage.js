@@ -9,9 +9,20 @@ import Auth from "../../utils/auth";
 const LoginPage = (props) => {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error }] = useMutation(LOGIN_USER);
+  const [errors, setErrors] = useState(null);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+
+    if (name === "email") {
+      if (
+        value.match(/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/i) === null
+      ) {
+        setErrors("Email is invalid");
+      } else {
+        setErrors("");
+      }
+    }
 
     setFormState({
       ...formState,
@@ -26,11 +37,11 @@ const LoginPage = (props) => {
       const { data } = await login({
         variables: { ...formState },
       });
-
       console.log(data.login.token);
       Auth.login(data.login.token);
       window.location.replace("/leetcode");
     } catch (e) {
+      setErrors("Incorrect Credentials");
       console.error(e);
     }
 
@@ -53,6 +64,7 @@ const LoginPage = (props) => {
         value={formState.email}
         onChange={handleChange}
       />
+
       <input
         className="login_input"
         placeholder="Password"
@@ -61,6 +73,7 @@ const LoginPage = (props) => {
         value={formState.password}
         onChange={handleChange}
       />
+      {errors && <span style={{ color: "red" }}>{errors}</span>}
       <span className="remember_me">
         {" "}
         <input className="checkbox" type="checkbox" /> Remember me

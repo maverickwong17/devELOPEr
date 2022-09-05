@@ -13,29 +13,29 @@ const Sidebar = () => {
         <ul>
           {/* {navLinks.map(({ url, name }) => ( */}
           <li>
-            <a href="/swipe">
+            <a href="/swipe" className="header_a">
               <AiFillHome />
             </a>
           </li>
           <li>
-            <a href="/profile">
+            <a href="/profile" className="header_a">
               <FaUserCircle />
             </a>
           </li>
           <li>
-            <a href="/matches">
+            <a href="/matches" className="header_a">
               <RiHeartsFill />
             </a>
           </li>
 
           <li>
-            <a href="/chat">
+            <a href="/chat" className="header_a">
               <BsFillChatDotsFill />
             </a>
           </li>
 
           <li>
-            <a href="/leetcode">
+            <a href="/leetcode" className="header_a">
               <BsFillTerminalFill />
             </a>
           </li>

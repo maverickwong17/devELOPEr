@@ -14,7 +14,7 @@
   /* border-right: 1px solid black; */
   /* transform: translateX(-50%); */
 }
-a {
+.header_a {
   color: #e67a8d;
   font-size: 30px;
   /* background-color: #fff; */
@@ -22,7 +22,7 @@ a {
   display: block;
   padding: 20px;
 }
-a:hover {
+.header_a:hover {
   color: #a30e3b;
   opacity: 0.7;
 }
@@ -70,4 +70,11 @@ a:hover {
     display: flex;
     justify-content: center;
   }
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+a:hover {
+  color: white;
 }

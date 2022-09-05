@@ -25,6 +25,7 @@ import "./SignUp.css";
 
 const SignUp = () => {
   const [files, setFiles] = useState([]);
+  console.log(files);
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.map((file) => {
       const formData = new FormData();
@@ -40,17 +41,6 @@ const SignUp = () => {
       })
         .then((response) => response.json())
         .then((data) => setFiles((prevState) => [...prevState, data.url]));
-      // const reader = new FileReader();
-
-      // reader.onload = function (e) {
-      //   setFiles((prevState) => [
-      //     ...prevState,
-      //     { id: cuid(), src: e.target.result },
-      //   ]);
-      // };
-      // reader.readAsDataURL(file);
-      // return file;
-      // reader.setFiles(acceptedFiles);
     });
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
@@ -66,11 +56,10 @@ const SignUp = () => {
     age: "",
     job: "",
     gender: "",
-    interest: "",
     github: "",
     linkedin: "",
     seeking: "",
-    aboutme: ""
+    aboutme: "",
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
@@ -80,7 +69,7 @@ const SignUp = () => {
       ...accountState,
       [name]: value,
     });
-    console.log(accountState);
+    // console.log(accountState);
   };
 
   const handleChange = (event) => {
@@ -89,10 +78,10 @@ const SignUp = () => {
       ...formState,
       [name]: value,
     });
-    console.log(formState);
+    // console.log(formState);
   };
 
-  const [ageRange, setAgeRange] = React.useState([21, 65]);
+  const [ageRange, setAgeRange] = useState([21, 65]);
 
   const handleAge = (event, Age) => {
     setAgeRange(Age);
@@ -100,9 +89,15 @@ const SignUp = () => {
   };
 
   const handleFormSubmit = async (event) => {
-    console.log(event);
     event.preventDefault();
     console.log("submit");
+    console.log(interestData);
+    var interestArr = [];
+    for (let i = 0; i < interestData.length; i++) {
+      if (interestData[i].state) {
+        interestArr.push(`${interestData[i].icon} ${interestData[i].interest}`);
+      }
+    }
 
     const submit = {
       ...accountState,
@@ -110,6 +105,7 @@ const SignUp = () => {
         ...formState,
         range: ageRange,
         images: files,
+        interest: interestArr,
       },
     };
 
@@ -139,6 +135,24 @@ const SignUp = () => {
       images: "",
       range: "",
     });
+  };
+
+  var interestData = interest;
+  const handleInterestArr = async (event) => {
+    // console.log('click interest')
+    const click = event.target.innerText;
+    // console.log(click)
+    const value = click.split(" ")[1];
+    console.log(value);
+    const index = interestData.findIndex(function (interestData) {
+      if (interestData.interest) {
+        // console.log('click texts')
+        return interestData.interest === value;
+      }
+    });
+    console.log(index);
+    interestData[index].state = !interestData[index].state;
+    console.log(interestData[index].state);
   };
 
   return (
@@ -209,19 +223,15 @@ const SignUp = () => {
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
-                    }}
-                    className="input"
-                    id="dropdown-button-dark-example1"
-                    name = "gender"
-                    onChange={handleChange}
-                  >
-                  <option>
-                      Gender
-                  </option>
-                  <option                     
-                    name="gender"
-                    value='She/Her'>
-                      She/Her
+                  }}
+                  className="input"
+                  id="dropdown-button-dark-example1"
+                  name="gender"
+                  onChange={handleChange}
+                >
+                  <option>Gender</option>
+                  <option name="gender" value="She/Her">
+                    She/Her
                   </option>
                   <option name="gender" value="He/His">
                     He/His
@@ -261,15 +271,18 @@ const SignUp = () => {
           <Row>
             <h4>Interests</h4>
             <div className="grid justify">
-              {interest.map((interest) => {
-                return (
-                  <InterestButton
-                    key = {interest.interest}
-                    icon={interest.icon}
-                    interest={interest.interest}
-                  />
-                );
-              })}
+              {interestData.map((interest, index) => (
+                // return
+                <InterestButton
+                  checkedState={index}
+                  onClick={handleInterestArr}
+                  value={interest.interest}
+                  key={index}
+                  icon={interest.icon}
+                  interest={interest.interest}
+                  disabled={interest.state}
+                />
+              ))}
             </div>
           </Row>
           <Row>
@@ -316,16 +329,16 @@ const SignUp = () => {
             <Row>
               <h4>About Me</h4>
               <div className="grid expand">
-              <Form className="form">
-                <textarea
-                  className="input about"
-                  type="text"
-                  placeholder="About Me"
-                  name="aboutme"
-                  value={formState.aboutme}
-                  onChange={handleChange}
-                />
-              </Form>
+                <Form className="form">
+                  <textarea
+                    className="input about"
+                    type="text"
+                    placeholder="About Me"
+                    name="aboutme"
+                    value={formState.aboutme}
+                    onChange={handleChange}
+                  />
+                </Form>
               </div>
             </Row>
             <Row>
@@ -358,16 +371,16 @@ const SignUp = () => {
             <Row>
               <h4>About Me</h4>
               <div className="grid expand">
-              <Form className="form">
-                <textarea
-                  className="input about"
-                  type="text"
-                  placeholder="About Me"
-                  name="aboutme"
-                  value={formState.aboutme}
-                  onChange={handleChange}
-                />
-              </Form>
+                <Form className="form">
+                  <textarea
+                    className="input about"
+                    type="text"
+                    placeholder="About Me"
+                    name="aboutme"
+                    value={formState.aboutme}
+                    onChange={handleChange}
+                  />
+                </Form>
               </div>
             </Row>
             <Row>

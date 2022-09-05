@@ -32,7 +32,7 @@
   max-width: 40%; */
 }
 .userImage:after {
-  content: "No Image for  "attr(alt);
+  content: "No Image for  " attr(alt);
   display: block;
   position: absolute;
   z-index: 0;
@@ -44,7 +44,7 @@
 .card {
   position: relative;
   background-color: #fff;
-  width: 80vw;
+  width: 500px;
   box-shadow: 0 0 60px 0 rgb(0 0 0 / 30%);
   border-radius: 0.75rem;
   background-size: cover;
@@ -102,9 +102,11 @@
 .interest_section::-webkit-scrollbar {
   display: none;
 }
+
 /* .buttons {
 } */
-.buttons button {
+.buttons .button {
+  display: flex;
   margin: 0;
   /* box-sizing: border-box; */
   border: none;
@@ -116,16 +118,16 @@
   width: 75px;
   height: 75px;
   align-items: center;
-  /* margin: 0 2rem; */
+  margin: 0 1rem;
   display: flex;
   color: #ae303b;
   justify-content: center;
 
   /* border: 2px solid #ff5e51; */
 }
-.buttons button:hover {
-  /* box-shadow: inset 6px 6px 12px rgba(255, 255, 255, 0.1),
-    inset -6px -6px 12px rgba(163, 14, 59, 0.3); */
+.buttons .button:hover {
+  box-shadow: inset 6px 6px 12px rgba(255, 255, 255, 0.1),
+    inset -6px -6px 12px rgba(163, 14, 59, 0.3);
 }
 @media screen and (max-width: 800px) {
   .card {

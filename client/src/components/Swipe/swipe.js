@@ -50,16 +50,11 @@ function Swiper() {
           or use the buttons to potentially match with a fellow developer!
         </span>
       </div>
+
       <Row className="grid_swipe">
-        <h1>React Tinder Card</h1>
         <div className="cards_section">
           <SwipeCard profiles={data.users} />
         </div>
-        <Row className="grid_swipe">
-          <div className="cards_section">
-            <SwipeCard profiles={data.users} />
-          </div>
-        </Row>
       </Row>
     </>
   );

@@ -3,6 +3,28 @@
   --chat--light__background--1: #e4e9f000
 }
 
+.app-simple.light {
+  --app-background: #ffffff00;
+  --app-color: #ffffff00;
+  --app-avatar-background: #ffffff00;
+  --app-info-color: #ffffff00;
+  --app-info-border: #ffffff00;
+  --app-chat-background: #ffffff00;
+  --app-people-color: #ffffff00;
+  --app-people-active-color: #ffffff00;
+}
+
+.app-simple.dark {
+  --app-background: #ffffff00;
+  --app-color: #ffffff00;
+  --app-avatar-background: #ffffff00;
+  --app-info-color: #ffffff00;
+  --app-info-border: #ffffff00;
+  --app-chat-background: #ffffff00;
+  --app-people-color: #ffffff00;
+  --app-people-active-color: #ffffff00;
+}
+
 body {
   /* color: #585858; */
 }

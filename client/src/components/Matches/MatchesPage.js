@@ -79,7 +79,7 @@ const MatchesPage = () => {
               className="img_match"
               style={{ "--bg-image": `url("${match.url}")` }}
             ></div> */}
-            <h1 style={{background: "black", opacity:".7", width: '100%', display: 'flex', justifyContent: 'space-around', alignItems:"baseline"}}>
+            <h1 style={{background: "black", opacity:".7", width: '100%', display: 'flex', justifyContent: 'space-around', alignItems:"baseline",}}>
              <span style={{fontSize:"24px"}}>
               {match.profile.firstName} {match.profile.lastName} 
               </span> 

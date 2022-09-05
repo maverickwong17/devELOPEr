@@ -4,9 +4,7 @@ import DevChat from './Chat';
 import PubNub from "pubnub";
 import { PubNubProvider } from "pubnub-react";
 import { QUERY_ME } from "../../utils/queries";
-// import { RiContrastDropLine } from 'react-icons/ri';
 import Loader from '../Loader/Loader';
-// import { getFormControlUnstyledUtilityClass } from '@mui/base';
 
 const DevChatWrap = () => {
     let pnName;
@@ -28,7 +26,6 @@ const DevChatWrap = () => {
     }
 
     pnName = user.profile.firstName;
-    // console.log(user.profile.firstName);
 
     const pubnub = new PubNub(
         {

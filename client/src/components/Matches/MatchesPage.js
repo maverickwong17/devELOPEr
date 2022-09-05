@@ -73,7 +73,7 @@ const MatchesPage = () => {
           <div
             key={index}
             className="card_match"
-            style={{ "--bg-image": `url("${match.profile.images[0]}")`,  }}
+            style={{ "--bg-image": `url("${match.profile.images[0]}")`, objectPosition: "50% 50%"  }}
           >
             {/* <div
               className="img_match"

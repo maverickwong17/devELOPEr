@@ -105,13 +105,13 @@ const SwipeCard = (profiles) => {
       {/* <Row> */}
       <div className="buttons">
         <button className="button" onClick={() => swipe("left")}>
-          <MdCancel size={60} />
+          <MdCancel size={50} />
         </button>
         <button className="button" onClick={() => goBack()}>
-          <FaUndo size={45} />
+          <FaUndo size={40} />
         </button>
         <button className="button" onClick={() => swipe("right")}>
-          <AiFillHeart size={60} />
+          <AiFillHeart size={50} />
         </button>
       </div>
       {/* </Row> */}
@@ -121,9 +121,7 @@ const SwipeCard = (profiles) => {
           You swiped {lastDirection}
         </h2>
       ) : (
-        <h2 className="infoText">
-          Swipe a card or press a button to get Restore Card button visible!
-        </h2>
+        ""
       )}
       {/* </Row> */}
     </>

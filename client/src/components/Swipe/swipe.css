@@ -10,7 +10,7 @@
   /* display: flex;
   justify-content: center; */
   /* position: relative; */
-  width: 95%;
+  /* width: 90%; */
   margin: 0 auto;
 }
 .userImage {
@@ -73,7 +73,7 @@
 }
 .card {
   height: 100%;
-  max-width: 40%;
+  max-width: 50%;
   padding: 1rem;
 }
 
@@ -112,7 +112,7 @@
   border: none;
   border-radius: 50%;
   background: #111111;
-  border: 2px solid #ae303b;
+  border: 6px solid #ae303b;
   /* box-shadow: 8px 8px 16px #000000, -4px -4px 12px #ae303b;
   border-radius: 50%; */
   width: 75px;
@@ -129,14 +129,19 @@
   box-shadow: inset 6px 6px 12px rgba(255, 255, 255, 0.1),
     inset -6px -6px 12px rgba(163, 14, 59, 0.3);
 }
+@media screen and (min-width: 800px) {
+  .card {
+    max-width: 100%;
+  }
+}
 @media screen and (max-width: 800px) {
   .card {
-    max-width: 60%;
+    max-width: 100%;
   }
 }
 @media screen and (max-width: 550px) {
   .card {
-    max-width: 70%;
+    max-width: 100%;
   }
 }
 @media screen and (max-width: 420px) {

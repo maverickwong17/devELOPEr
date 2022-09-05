@@ -6,12 +6,15 @@ import { FaUndo } from 'react-icons/fa';
 import InterestButton from "../../InterestButton/InterestButton";
 import data from "../../../data/interestsJson";
 import "../swipe.css";
-
+import { useMutation } from '@apollo/client';
+import { ADD_CONNECTION } from '../../../utils/mutations';
+import Auth from '../../../utils/auth'
+import auth from '../../../utils/auth';
 const SwipeCard = (profiles) => {
   
   const users = profiles.profiles
 
-  console.log(users)
+  const [makeConnection, { error, userData }] = useMutation(ADD_CONNECTION);
   const [currentIndex, setCurrentIndex] = useState(users.length - 1)
   const [lastDirection, setLastDirection] = useState()
  
@@ -51,14 +54,16 @@ const SwipeCard = (profiles) => {
     if (canSwipe && currentIndex < users.length) {
       await childRefs[currentIndex].current.swipe(dir) // Swipe the card!
       console.log(dir)
+      if(auth.loggedIn){
       if(dir === 'left'){
         console.log(dir)
         return
       }
       if(dir === 'right'){
-        // add to logged in users connection array
+        makeConnection()
         console.log(dir)
       }
+    }
     }
   }
 

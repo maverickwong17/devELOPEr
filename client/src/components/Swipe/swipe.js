@@ -15,7 +15,7 @@ import "./swipe.css";
 
 
   function Swiper () {
-    const {loading, data} = useQuery(QUERY_All_USER)
+    const {loading, data} = useQuery(QUERY_ALL_USER)
     const { loading: loadme, data: profile } = useQuery(QUERY_ME);
     const myprofile = profile?.me || {};
     if (loading || loadme) {

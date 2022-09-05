@@ -3,11 +3,11 @@ import  Swiper  from '../Swipe/swipe'
 import { Col, Container, Row } from "react-bootstrap";
 import { useMutation, useQuery } from '@apollo/client';
 import Loader from '../Loader/Loader';
-import { QUERY_All_USER, QUERY_ME } from "../../utils/queries";
+import { QUERY_ALL_USER, QUERY_ME } from "../../utils/queries";
 
 const Homepage = () => {
 
-  const {loading, allUserData} = useQuery(QUERY_All_USER);
+  const {loading, allUserData} = useQuery(QUERY_ALL_USER);
 
   return (
     <Container>

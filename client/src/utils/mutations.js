@@ -53,12 +53,12 @@ export const ADD_USER = gql`
 export const ADD_CONNECTION = gql`
 mutation addConnection($id: ID!) {
   addConnection(_id: $id) 
-  {token{
+  {
     _id
     profile {
       firstName
       lastName
     }
   }
-}
+
 }`;

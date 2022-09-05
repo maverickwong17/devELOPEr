@@ -49,7 +49,7 @@ const SwipeCard = ({profiles, currentUser}) => {
     if(direction === 'right'){
       try{  
         await addConnection({
-          variables: {_id : user._id}
+          variables: {id : user._id}
         })
         console.log("right")
 

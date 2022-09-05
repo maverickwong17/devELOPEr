@@ -1,125 +1,149 @@
-import React, { useState, useMemo, useRef } from 'react';
+import React, {useState, useMemo, useRef} from 'react';
 import TinderCard from 'react-tinder-card';
 import { AiFillHeart } from 'react-icons/ai';
-import { MdCancel } from 'react-icons/md';
+import { MdCancel } from 'react-icons/md'; 
 import { FaUndo } from 'react-icons/fa';
 import InterestButton from "../../InterestButton/InterestButton";
 import data from "../../../data/interestsJson";
-import {Row, Col} from 'react-bootstrap';
 import "../swipe.css";
+import { useMutation } from '@apollo/client';
+import { ADD_CONNECTION } from '../../../utils/mutations';
+import { QUERY_ME } from '../../../utils/queries';
+import auth from '../../../utils/auth';
 
-const SwipeCard = (profiles) => {
+const SwipeCard = ({profiles, currentUser}) => {
+  
+  const users = profiles
 
-    const users = profiles.profiles
+  const [addConnection, { error, userData }] = useMutation(ADD_CONNECTION);
+  const [currentIndex, setCurrentIndex] = useState(users.length - 1)
+  const [lastDirection, setLastDirection] = useState()
 
-    console.log(users)
-    const [currentIndex, setCurrentIndex] = useState(users.length - 1)
-    const [lastDirection, setLastDirection] = useState()
+  const currentIndexRef = useRef(currentIndex)
+ 
+  const childRefs = useMemo(
+    () =>
+      Array(users.length)
+        .fill(0)
+        .map((i) => React.createRef()),
+    []
+  )
 
-    const currentIndexRef = useRef(currentIndex)
+  const updateCurrentIndex = (val) => {
+    setCurrentIndex(val)
+    currentIndexRef.current = val
+  }
 
-    const childRefs = useMemo(
-        () =>
-            Array(users.length)
-                .fill(0)
-                .map((i) => React.createRef()),
-        []
-    )
+  const canGoBack = currentIndex < users.length - 1
 
-    const updateCurrentIndex = (val) => {
-        setCurrentIndex(val)
-        currentIndexRef.current = val
+  const canSwipe = currentIndex >= 0
+
+
+  const swiped = async (direction, user, index) => {
+    console.log(user._id)
+    setLastDirection(direction)
+    updateCurrentIndex(index - 1)
+    if(direction === 'left'){
+      return
     }
+    if(direction === 'right'){
+      try{  
+        await addConnection({
+          variables: {id : user._id}
+        })
+        console.log("right")
 
-    const canGoBack = currentIndex < users.length - 1
-
-    const canSwipe = currentIndex >= 0
-
-
-    const swiped = (direction, nameToDelete, index) => {
-        setLastDirection(direction)
-        updateCurrentIndex(index - 1)
+      }catch(error){
+        console.log(JSON.stringify(error))
+      }
+  
     }
+  }
 
-    const outOfFrame = (name, idx) => {
+  const outOfFrame = (name, idx) => {
+    currentIndexRef.current >= idx && childRefs[idx].current.restoreCard()
 
-        currentIndexRef.current >= idx && childRefs[idx].current.restoreCard()
+  }
 
-    }
-
-    const swipe = async (dir) => {
+  const swipe = async (dir, user) => {
+  console.log(user)
+    if (canSwipe && currentIndex < users.length) {
+      await childRefs[currentIndex].current.swipe(dir) // Swipe the card!
+      console.log(dir)
+      if(auth.loggedIn){
+      if(dir === 'left'){
         console.log(dir)
-        if (canSwipe && currentIndex < users.length) {
-            await childRefs[currentIndex].current.swipe(dir) // Swipe the card!
-            console.log(dir)
-            if (dir === 'left') {
-                console.log(dir)
-            }
-        }
+        return
+      }
+      if(dir === 'right'){
+        // makeConnection({
+        //   variables:
+        // })
+        console.log(dir)
+      }
     }
+    }
+  }
 
-    // increase current index and show card
-    const goBack = async () => {
-        console.log('back button')
-        if (!canGoBack) return
-        const newIndex = currentIndex + 1
-        updateCurrentIndex(newIndex)
-        await childRefs[newIndex].current.restoreCard()
-    }
-    return (
-        <>
-            <div className='cardContainer'>
-                {users.map((user, index) => (
-                    <TinderCard
-                        ref={childRefs[index]}
-                        className='swipe'
-                        key={user.profile.firstName}
-                        onSwipe={(dir) => swiped(dir, user.profile.firstName, index)}
-                        onCardLeftScreen={() => outOfFrame(user.profile.firstName, index)}
-                        preventSwipe={["up", "down"]}
-                    >
-                        <div className="card ">
-                            <img src={user.profile.images[0]} alt={user.profile.firstName} className="userImage"></img>
-                            <h3>{user.profile.firstName}, {user.profile.age}</h3>
-                            <hr />
-                            <div className="interest_section">
-                                {" "}
-                                {data.slice(0, 4).map((interest, index) => {
-                                    return (
-                                        <InterestButton
-                                            disabled="true"
-                                            icon={interest.icon}
-                                            interest={interest.interest}
-                                            key={index}
-                                        />
-                                    );
-                                })}
-                            </div>
-                            <hr />
-                        </div>
-                    </TinderCard>
-                ))}
+  // increase current index and show card
+  const goBack = async () => {
+    console.log('back button')
+    if (!canGoBack) return
+    const newIndex = currentIndex + 1
+    updateCurrentIndex(newIndex)
+    await childRefs[newIndex].current.restoreCard()
+  }
+  return (
+    <>
+    {users.map((user, index) => (
+      <>
+        <TinderCard
+          ref={childRefs[index]}
+          className='swipe'
+          key={user.profile.firstName}
+          onSwipe={(dir) => swiped(dir, user, index)}
+          onCardLeftScreen={() => outOfFrame(user.profile.firstName, index)}
+          preventSwipe ={["up", "down"]}
+        >
+            <div className="card">
+            <img src={user.profile.images[0]} alt={user.profile.firstName} className="userImage"></img>
+            <h3>{user.profile.firstName}, {user.profile.age}</h3>
+            <hr />
+            <div className="interest_section">
+              {" "}
+              {data.slice(0, 4).map((interest, index) => {
+                return (
+                  <InterestButton
+                    disabled="true"
+                    icon={interest.icon}
+                    interest={interest.interest}
+                    key = {index}
+                  />
+                );
+              })}
             </div>
-            {/* <Row> */}
-                <div className='buttons'>
-                    <button onClick={() => swipe('left')}><MdCancel /></button>
-                    <button onClick={() => goBack()}><FaUndo /></button>
-                    <button onClick={() => swipe('right')}><AiFillHeart /></button>
-                </div>
-            {/* </Row> */}
-            {/* <Row> */}
-                {lastDirection ? (
-                    <h2 key={lastDirection} className='infoText'>
-                        You swiped {lastDirection}
-                    </h2>
-                ) : (
-                    <h2 className='infoText'>
-                        Swipe a card or press a button to get Restore Card button visible!
-                    </h2>
-                )}
-            {/* </Row> */}
-        </>
-    )
+
+            <hr />
+          </div>
+        </TinderCard>
+    
+       </>
+      ))}
+       <div className='buttons'>
+          <button onClick={() => swipe('left')}><MdCancel/></button>
+          <button onClick={() => swipe('right')}><AiFillHeart/></button>
+        </div>
+    
+        {lastDirection ? (
+        <h2 key={lastDirection} className='infoText'>
+          You swiped {lastDirection}
+        </h2>
+      ) : (
+       ""
+
+      )}
+    </>
+  )
 }
 
 export default SwipeCard

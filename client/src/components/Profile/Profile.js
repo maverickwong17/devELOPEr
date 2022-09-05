@@ -16,7 +16,7 @@ const Profile = () => {
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { id: userParam },
   });
-  console.log( userParam )
+  // console.log( userParam )
   console.log({loading, data})
   const user = data?.me?.profile || data?.user?.profile || {};
 
@@ -31,7 +31,7 @@ const Profile = () => {
       </h4>
     );
   }
-  console.log(user);
+  // console.log(user);
   let interests = user.interest;
   let images = user.images;
   // console.log(interests)

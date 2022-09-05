@@ -9,10 +9,13 @@ import {
     Chat,
     ChannelList,
 } from "@pubnub/react-chat-components";
+import { useQuery } from "@apollo/client";
+import { QUERY_ME } from "../../utils/queries";
+import MediaQuery from "react-responsive";
+import Loader from "../Loader/Loader";
 import "./Chat.css";
 
 import rawUsers from "../../data/chat-data/users.json";
-import rawMessages from "../../data/chat-data/messages.json";
 import directChannels from "../../data/chat-data/direct.json";
 
 const users = rawUsers;
@@ -20,7 +23,11 @@ const directChannelList = directChannels;
 const allChannelIds = [...directChannelList].map((c) => c.id);
 
 function DevChat() {
-    const pubnub = usePubNub(); 
+    const { loading, data: profile } = useQuery(QUERY_ME);
+    const myprofile = profile?.me || {};
+    // console.log(myprofile.profile.images[0])
+
+    const pubnub = usePubNub();
     const [showMembers, setShowMembers] = useState(false);
     const [showChannels, setShowChannels] = useState(true);
     const [presenceData] = usePresence({ channels: allChannelIds });
@@ -30,65 +37,51 @@ function DevChat() {
     const presentUsers = users.filter((u) => presentUUIDs?.includes(u.id));
     const currentUser = users.find((u) => u.id === pubnub.getUUID());
 
-    useEffect(() => {
-        const messages = {};
-        [...rawMessages].forEach((message) => {
-            if (!messages.hasOwnProperty(message.channel)) messages[message.channel] = [];
-            if (message.uuid === "current_user" && currentUser?.id) message.uuid = currentUser?.id;
-            messages[message.channel].push(message);
-        });
-    }, [currentUser]);
-
     const theme = "dark";
 
     return (
+
         <div className='app-simple'>
             <Chat users={users} currentChannel={currentChannel.id} channels={allChannelIds} theme={theme}>
-                <div className={`channels ${showChannels && "shown"}`}>
-                    <div className="user">
-                        {currentUser?.profileUrl && <img src={currentUser?.profileUrl} alt="User avatar " />}
-                        <h4>
-                            {currentUser?.name}{" "}
-                            <span className="close" onClick={() => setShowChannels(false)}>
-                                ✕
-                            </span>
-                        </h4>
+                <MediaQuery minWidth={700}>
+                    <div className={`channels ${showChannels && "shown"}`}>
+                        <div className="user">
+                            {currentUser?.profileUrl && <img src={myprofile.profile.images[0]} alt="User avatar " />}
+                            <h4>
+                                {currentUser?.name}{" "}
+                                <span className="close" onClick={() => setShowChannels(false)}>
+                                    ✕
+                                </span>
+                            </h4>
+                        </div>
+                        <h4>Your DMs</h4>
+                        <div>
+                            <ChannelList className='pn-channel-list pn-channel pn-channel--active pn-channel--hover'
+                                channels={directChannelList}
+                                onChannelSwitched={(channel) => setCurrentChannel(channel)}
+                            />
+                        </div>
                     </div>
-                    <h4>Your DMs</h4>
-                    <div>
-                        <ChannelList className='pn-channel-list pn-channel pn-channel--active pn-channel--hover'
-                            channels={directChannelList}
-                            onChannelSwitched={(channel) => setCurrentChannel(channel)}
-                        />
-                    </div>
-                </div>
+                </MediaQuery>
 
-                <div className="chat">
+                <div className="chat pn-msg-list-scroller pn-msg-list--dark pn-msg-own ::-webkit-scrollbar ::placeholder pn-msg-input__textarea pn-msg-input-send pn-msg-input__send--active">
                     <div
                         className={`people ${showMembers ? "active" : ""}`}
-                        onClick={() => setShowMembers(!showMembers)}
                     >
                         <span>{presenceData[currentChannel.id]?.occupancy || 0}</span>
-                        <i className="material-icons-outlined">people</i>
+                        <i className="material-icons-outlined">online</i>
                     </div>
-
                     <div className="info">
-                        <span className="hamburger" onClick={() => setShowChannels(true)}>
-                            ☰
-                        </span>
                         <h4>{currentChannel.name}</h4>
                         <small>{currentChannel.description}</small>
                         <hr />
                     </div>
                     <MessageList
                         fetchMessages={10}
-                    //   welcomeMessages={welcomeMessages[currentChannel.id]}
-                    //   enableReactions
-                    //   reactionsPicker={<Picker />}
                     >
                         <TypingIndicator showAsMessage />
                     </MessageList>
-                    <hr />
+                    {/* <hr /> */}
                     <MessageInput typingIndicator onSend={(e) => (console.log(e.text))} />
                 </div>
 

@@ -12,7 +12,7 @@ import {
 } from "react-bootstrap";
 import { FiCode } from "react-icons/fi";
 import { FaCog, FaExclamationCircle, FaUserAlt } from "react-icons/fa";
-import { AiOutlineArrowRight } from "react-icons/ai";
+import { AiOutlineArrowRight, AiOutlineInfoCircle } from "react-icons/ai";
 import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { cpp } from "@codemirror/lang-cpp";
@@ -97,11 +97,29 @@ const Leetcode = () => {
     console.log("value:", value);
     setUserInput(value);
   }, []);
-  const input = () => {
-    return;
-  };
+
   return (
     <>
+      <div
+        style={{
+          width: "100%",
+          textAlign: "center",
+          color: "#999999",
+          margin: "1rem 0 ",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <span>
+          {" "}
+          <AiOutlineInfoCircle size={30} />{" "}
+        </span>
+        <span>Toggle the Dropdown to change the programming language.</span>
+        <span>
+          Hit 'Run' when you are ready to run your code and 'Submit' to move on
+          to matching!
+        </span>
+      </div>
       <Row className="grid_l">
         <div style={{ height: "10%" }}>
           <Row>

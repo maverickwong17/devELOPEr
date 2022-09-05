@@ -15,10 +15,20 @@ import Loader from '../Loader/Loader';
 
   function Swiper () {
     const {loading, data} = useQuery(QUERY_All_USER)
-  
-    if (loading) {
+    const { loading: loadme, data: profile } = useQuery(QUERY_ME);
+    const myprofile = profile?.me || {};
+    if (loading || loadme) {
       return <Loader />;
   }
+    if(!myprofile){
+      return (
+        <h4>
+          You need to be logged in to see this. Use the navigation links above to
+          sign up or log in!
+        </h4>
+      );
+    }
+    
     return (
       <Row className='grid_swipe'>
         <h1>React Tinder Card</h1>
@@ -26,7 +36,7 @@ import Loader from '../Loader/Loader';
       
         <div className='cardContainer'>
          
-          <SwipeCard profiles={data.users}/>
+          <SwipeCard profiles={data.users} currentUser={myprofile}/>
          
         </div>
       </div>

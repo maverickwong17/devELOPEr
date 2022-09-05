@@ -8,15 +8,17 @@ import data from "../../../data/interestsJson";
 import "../swipe.css";
 import { useMutation } from '@apollo/client';
 import { ADD_CONNECTION } from '../../../utils/mutations';
+import { QUERY_ME } from '../../../utils/queries';
 import auth from '../../../utils/auth';
-const SwipeCard = (profiles) => {
-  
-  const users = profiles.profiles
 
-  const [makeConnection, { error, userData }] = useMutation(ADD_CONNECTION);
+const SwipeCard = ({profiles, currentUser}) => {
+  
+  const users = profiles
+
+  const [addConnection, { error, userData }] = useMutation(ADD_CONNECTION);
   const [currentIndex, setCurrentIndex] = useState(users.length - 1)
   const [lastDirection, setLastDirection] = useState()
- 
+
   const currentIndexRef = useRef(currentIndex)
  
   const childRefs = useMemo(
@@ -37,17 +39,24 @@ const SwipeCard = (profiles) => {
   const canSwipe = currentIndex >= 0
 
 
-  const swiped = (direction, user, index) => {
-    console.log(direction)
+  const swiped = async (direction, user, index) => {
+    console.log(user._id)
     setLastDirection(direction)
     updateCurrentIndex(index - 1)
     if(direction === 'left'){
       return
     }
     if(direction === 'right'){
-      makeConnection({
-        variables: user._id
-      })
+      try{  
+        await addConnection({
+          variables: {_id : user._id}
+        })
+        console.log("right")
+
+      }catch(error){
+        console.log(JSON.stringify(error))
+      }
+  
     }
   }
 

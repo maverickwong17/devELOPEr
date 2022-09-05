@@ -37,15 +37,28 @@ export const ADD_USER = gql`
   }
 `;
 
+// export const ADD_CONNECTION = gql`
+//   mutation addConnection($_id: ID!){
+//     addConnection(_id: $_id){
+      
+//       user{
+//         profile{
+//           firstName
+//           lastName
+//         }
+//       }
+//     }
+//   }
+// `;
 export const ADD_CONNECTION = gql`
-  mutation addConnection($_id: ID!){
-    addConnection(_id: $_id){
-      user{
-        profile{
-          firstName
-          lastName
-        }
-      }
+mutation addConnection($id: ID!) {
+  addConnection(_id: $id) 
+  {token{
+    _id
+    profile {
+      firstName
+      lastName
     }
   }
-`;
+}
+}`;

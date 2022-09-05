@@ -147,7 +147,7 @@ const SignUp = () => {
     const index = interestData.findIndex(function (interestData) {
       if (interestData.interest) {
         // console.log('click texts')
-        return interestData.interest === value;
+        return interestData.interest === click;
       }
     });
     console.log(index);
@@ -278,7 +278,6 @@ const SignUp = () => {
                   onClick={handleInterestArr}
                   value={interest.interest}
                   key={index}
-                  icon={interest.icon}
                   interest={interest.interest}
                   disabled={interest.state}
                 />

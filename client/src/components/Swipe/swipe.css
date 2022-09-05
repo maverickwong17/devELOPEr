@@ -14,8 +14,10 @@
   margin: 0 auto;
 }
 .userImage {
-  object-fit: fill;
+  object-fit: cover;
   border-radius: 0.75rem;
+  /* width: 100%; */
+  height: 466px;
 }
 /* if no image is present going ot render a blank block instead of the icon for file not found */
 .userImage:before {

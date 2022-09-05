@@ -12,7 +12,7 @@ const InterestButton = (props) => {
         onClick={props.onClick}
         // disabled={props.disabled ? true : false}
       >
-        <span>{props.icon} {props.interest}</span>
+        <span>{props.interest}</span>
       </Button>
     </>
   );

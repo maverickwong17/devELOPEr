@@ -37,19 +37,6 @@ export const ADD_USER = gql`
   }
 `;
 
-// export const ADD_CONNECTION = gql`
-//   mutation addConnection($_id: ID!){
-//     addConnection(_id: $_id){
-      
-//       user{
-//         profile{
-//           firstName
-//           lastName
-//         }
-//       }
-//     }
-//   }
-// `;
 export const ADD_CONNECTION = gql`
 mutation addConnection($id: ID!) {
   addConnection(_id: $id) 
@@ -58,6 +45,17 @@ mutation addConnection($id: ID!) {
     profile {
       firstName
       lastName
+      age
+      location
+      job
+      gender
+      interest
+      github
+      linkedin
+      images
+      range
+      seeking
+      aboutme
     }
   }
 

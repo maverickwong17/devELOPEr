@@ -11,6 +11,7 @@
   list-style-type: none;
   /* visibility: hidden; */
   transition: all 0.25s ease;
+  /* background-color: #fff; */
   /* border-right: 1px solid black; */
   /* transform: translateX(-50%); */
 }
@@ -20,7 +21,14 @@
   /* background-color: #fff; */
   text-decoration: none;
   display: block;
-  padding: 20px;
+  margin: 1rem;
+  /* padding: 20px; */
+}
+.header_a:first-child {
+  /* padding-left: 0; */
+}
+.header_a:last-child {
+  padding-right: 0;
 }
 .header_a:hover {
   color: #a30e3b;

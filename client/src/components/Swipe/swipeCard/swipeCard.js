@@ -111,17 +111,29 @@ const SwipeCard = ({ profiles, currentUser }) => {
                   alt={user.profile.firstName}
                   className="userImage"
                 ></img>
-                <h3>
-                  {user.profile.firstName}, {user.profile.age}
-                </h3>
+
+                <span
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "baseline",
+                  }}
+                >
+                  <h3>
+                    {user.profile.firstName} {user.profile.lastName},{" "}
+                    {user.profile.age}
+                  </h3>
+                  <h5>{user.profile.location}</h5>
+                </span>
                 <hr />
                 <div className="interest_section">
                   {" "}
-                  {data.slice(0, 4).map((interest, index) => {
+                  <h4 style={{ color: "black" }}>Interests:</h4>
+                  {user.profile.interest.map((interest, index) => {
                     return (
                       <InterestButton
                         disabled="true"
-                        icon={interest.icon}
+                        icon = {interest.icon}
                         interest={interest.interest}
                         key={index}
                       />
@@ -130,6 +142,7 @@ const SwipeCard = ({ profiles, currentUser }) => {
                 </div>
 
                 <hr />
+                <span style={{ fontSize: "20px" }}>{user.profile.aboutme}</span>
               </div>
             </TinderCard>
           </>

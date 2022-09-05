@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 
 import {
   Col,
@@ -9,6 +9,7 @@ import {
   Dropdown,
   Tabs,
   Tab,
+  Alert,
 } from "react-bootstrap";
 import { FiCode } from "react-icons/fi";
 import { FaCog, FaExclamationCircle, FaUserAlt } from "react-icons/fa";
@@ -19,10 +20,12 @@ import { cpp } from "@codemirror/lang-cpp";
 import { java } from "@codemirror/lang-java";
 import { python } from "@codemirror/lang-python";
 import "./Leetcode.css";
+import algorithms from "../../data/algorithmsJson";
 import Sidebar from "../Sidebar/Sidebar";
 import MediaQuery from "react-responsive";
 const Leetcode = () => {
   const [key, setKey] = useState("input");
+  const [algoOfTheDay, setAlgoOfTheDay] = useState({});
   const [output, setOutput] = useState("");
   const [language_id, setLanguageId] = useState("63");
   const [user_input, setUserInput] = useState(`console.log("hello");`);
@@ -97,7 +100,14 @@ const Leetcode = () => {
     console.log("value:", value);
     setUserInput(value);
   }, []);
-
+  const getRandomQuestion = () => {
+    const algorithmOfTheDay =
+      algorithms[Math.floor(Math.random() * algorithms.length)];
+    setAlgoOfTheDay(algorithmOfTheDay);
+  };
+  useEffect(() => {
+    getRandomQuestion();
+  }, []);
   return (
     <>
       <div
@@ -124,18 +134,31 @@ const Leetcode = () => {
         <div style={{ height: "10%" }}>
           <Row>
             {" "}
-            <h3 style={{ color: "white" }}>Coding Challenge</h3>
-            <p style={{ color: "white" }}>
-              You are given two integer arrays nums1 and nums2, sorted in
-              non-decreasing order, and two integers m and n, representing the
-              number of elements in nums1 and nums2 respectively.\nMerge nums1
-              and nums2 into a single array sorted in non-decreasing order.\nThe
-              final sorted array should not be returned by the function, but
-              instead be stored inside the array nums1. To accommodate this,
-              nums1 has a length of m + n, where the first m elements denote the
-              elements that should be merged, and the last n elements are set to
-              0 and should be ignored. nums2 has a length of n.
-            </p>
+            <span
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <h3 style={{ color: "white" }}>
+                Coding Challenge {/* <span style={{ width: "fit-content" }}> */}
+                {/* </span> */}
+              </h3>
+              <Alert
+                style={{ width: "fit-content" }}
+                variant={
+                  algoOfTheDay.level === "easy"
+                    ? "success"
+                    : algoOfTheDay.level === "medium"
+                    ? "warning"
+                    : "danger"
+                }
+              >
+                {algoOfTheDay.level}
+              </Alert>
+            </span>
+            <p style={{ color: "white" }}>{algoOfTheDay.question}</p>
             {/* <hr style={{ fill: "white" }} /> */}
           </Row>
           <Row style={{ height: "fit-content" }}>

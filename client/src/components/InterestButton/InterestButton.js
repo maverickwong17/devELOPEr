@@ -4,15 +4,15 @@ import "./InterestButton.css";
 const InterestButton = (props) => {
   // console.log(props.checkedState)
   // console.log(props.disabled)
-  
+
   return (
     <>
-      <Button 
-      className="interest_btn" 
-      onClick={props.onClick}
-      // disabled={props.disabled ? true : false} 
+      <Button
+        className="interest_btn"
+        onClick={props.onClick}
+        // disabled={props.disabled ? true : false}
       >
-        <span>{props.icon} {props.interest}</span>
+        <span>{props.interest}</span>
       </Button>
     </>
   );

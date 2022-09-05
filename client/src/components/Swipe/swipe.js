@@ -33,7 +33,6 @@ function Swiper() {
     <>
       <div
         style={{
-          width: "100%",
           textAlign: "center",
           color: "#999999",
           margin: "1rem 0 ",

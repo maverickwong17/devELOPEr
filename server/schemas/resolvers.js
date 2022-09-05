@@ -27,13 +27,13 @@ const resolvers = {
       return User.find().populate("connections");
     },
     user: async (parent, { _id }) => {
-      return User.findById( _id );
+      return User.findById(_id);
     },
     messages: async () => {
       return Message.find();
     },
     me: async (parent, args, context) => {
-        console.log('me')
+      console.log("me");
       if (context.user) {
         return await User.findOne({ _id: context.user._id })
           .populate("connections")
@@ -69,21 +69,21 @@ const resolvers = {
     },
     addConnection: async (parent, body, context) => {
       // console.log('Hi')
-      console.log("body", body);
+      //   console.log("body", body);
       // console.log(context.user)
       if (context.user) {
         const partner = await User.findOne(body);
-        console.log("partner", partner);
+        //   console.log("partner", partner);
+        // console.log(partner._id.toString());
+        if (context.user._id !== partner._id.toString()) {
+          const user = await User.findOneAndUpdate(
+            { _id: context.user._id },
+            { $addToSet: { connections: partner } },
+            { new: true }
+          );
 
-        const user = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $push: { connections: partner } },
-          { new: true }
-        );
-        console.log("users", user);
-        // console.log(usr.connections);
-        // console.log(user.connections);
-        return user;
+          return user;
+        }
       }
     },
   },

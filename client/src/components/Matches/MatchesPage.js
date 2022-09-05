@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
 
 const MatchesPage = () => {
   const { loading: loadme, data: profile } = useQuery(QUERY_ME);
-
   const { loading: loadall, data: userData } = useQuery(QUERY_ALL_USER);
   const myprofile = profile?.me || {};
   const allUsers = userData || [];
@@ -69,6 +68,8 @@ const MatchesPage = () => {
   return (
     <Row className="grid_matches">
       <div className="matches">
+        {matches.length ?
+        <>
         {matches.map((match, index) => (
           <div
             key={index}
@@ -100,7 +101,8 @@ const MatchesPage = () => {
             </Link>
             </p>
           </div>
-        ))}
+        ))}</>
+        : <p style={{textAlign:"center", fontSize: "30px", color: "white", width: "100%"}}> There are no matches </p>}
       </div>
     </Row>
   );

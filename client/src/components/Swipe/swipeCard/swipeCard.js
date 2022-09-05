@@ -133,8 +133,7 @@ const SwipeCard = ({ profiles, currentUser }) => {
                     return (
                       <InterestButton
                         disabled="true"
-                        icon = {interest.icon}
-                        interest={interest.interest}
+                        interest={interest}
                         key={index}
                       />
                     );

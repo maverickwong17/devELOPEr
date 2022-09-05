@@ -8,7 +8,6 @@ import data from "../../../data/interestsJson";
 import "../swipe.css";
 import { useMutation } from '@apollo/client';
 import { ADD_CONNECTION } from '../../../utils/mutations';
-import Auth from '../../../utils/auth'
 import auth from '../../../utils/auth';
 const SwipeCard = (profiles) => {
   
@@ -60,7 +59,9 @@ const SwipeCard = (profiles) => {
         return
       }
       if(dir === 'right'){
-        makeConnection()
+        // makeConnection({
+        //   variables:
+        // })
         console.log(dir)
       }
     }

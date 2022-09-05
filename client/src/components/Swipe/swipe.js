@@ -13,14 +13,26 @@ import { useQuery } from "@apollo/client";
 import Loader from "../Loader/Loader";
 import "./swipe.css";
 
-function Swiper() {
-  const { loading, data } = useQuery(QUERY_ALL_USER);
 
-  if (loading) {
-    return <Loader />;
+
+  function Swiper () {
+    const {loading, data} = useQuery(QUERY_ALL_USER)
+    const { loading: loadme, data: profile } = useQuery(QUERY_ME);
+    const myprofile = profile?.me || {};
+    if (loading || loadme) {
+      return <Loader />;
   }
-  return (
-    <>
+    if(!myprofile){
+      return (
+        <h4>
+          You need to be logged in to see this. Use the navigation links above to
+          sign up or log in!
+        </h4>
+      );
+    }
+    
+    return (
+     <>
       {" "}
       <div
         style={{
@@ -40,6 +52,13 @@ function Swiper() {
         <span>
           or use the buttons to potentially match with a fellow developer!
         </span>
+      <Row className='grid_swipe'>
+        <h1>React Tinder Card</h1>
+      <div className='cards_section'>
+
+          <SwipeCard profiles={data.users} />
+
+
       </div>
       <Row className="grid_swipe">
         <div className="cards_section">

@@ -1,9 +1,50 @@
-body {
-  /* color: #585858; */
+:root {
+  --chat--light__hover--2: #e4e9f000;
+  --chat--light__background--1: #e4e9f000;
+  --chat--light__background--1: #e4e9f000;
+  --chat--light__background--2: #e4e9f000;
+  --chat--light__background--3: #e4e9f000;
+  --chat--light__background--4: #e4e9f000;
+  /* --chat--light__background--5-rgb: #{hexToRGB(#ef3a43)}; */
+  /* --chat--light__background--6: #{rgba(#1c1c1c, 0.8)}; */
+  --chat--light__color--1: #e4e9f000;
+  --chat--light__color--2: #e4e9f000;
+  /* --chat--light__color--2-rgb: #{hexToRGB(#999999)}; */
+  --chat--light__color--3: #e4e9f000;
+  --chat--light__border--1: #e4e9f000;
+  --chat--light__border--2: #e4e9f000;
+  --chat--light__hover--1: #e4e9f000;
+  --chat--light__hover--2: #e4e9f000;
+  --chat--light__hover--3: #e4e9f000;
+  --chat--light__hover--4: #e4e9f000;
+
+  --chat--dark__background--1: #e4e9f000;
+  --chat--dark__background--2: #e4e9f000;
+  /* --chat--dark__background--2-rgb: #{hexToRGB(#2a2a39)}; */
+  /* // --chat--dark__background--3: ; */
+  --chat--dark__background--4: #e4e9f000;
+  /* --chat--dark__background--5: #{hexToRGB(#ef3a43)}; */
+  /* --chat--dark__background--6: #{rgba(#f0f3f7, 0.8)}; */
+  /* --chat--dark__color--1: #{rgba(#e4e4eb, 0.8)}; */
+  --chat--dark__color--2: #e4e9f000;
+  --chat--dark__color--3: #e4e9f000;
+  --chat--dark__border--1: #e4e9f000;
+  /* // --chat--dark__border--2: ; */
+  --chat--dark__hover--1: #e4e9f000;
+  --chat--dark__hover--2: #e4e9f000;
+  /* // --chat--dark__hover--3: ; */
+  --chat--dark__hover--4: #55e4e9f000770;
+  --chat--dark__hover--4-rgb: #{hexToRGB(#e4e9f000)};
 }
 
+
+
+/* body {
+  color: #585858;
+} */
+
 .app-simple {
-  color: var(--app-color);
+  /* color: var(--app-color); */
   display: flex;
   height: 100vh;
   overflow: hidden;
@@ -67,6 +108,8 @@ h4 {
   border-radius: 36px;
 }
 
+
+
 .info {
   padding: 24px 24px 0;
   /* background: #e67a8ea8; */
@@ -91,11 +134,11 @@ h4 {
   position: relative;
   height: 70%;
   color: black;
-  border: 1px white
+  /* border: 1px white */
 }
 
 .chat hr {
-  background-color: var(--app-info-border);
+  /* background-color: var(--app-info-border); */
   border: 0;
   height: 1px;
   margin: 18px 0 0;
@@ -111,7 +154,7 @@ h4 {
 
 .pn-msg-input__textarea {
   background-color: #e67a8d6e;
-  color: white;
+  /* color: white; */
 }
 
 .pn-channel {
@@ -169,7 +212,7 @@ h4 {
 .pn-msg-list--dark:hover {
   background-color: #dbe67a00;
   color: black;
-  border: 5px white;
+  /* border: 5px white; */
 }
 
 .pn-msg:hover {

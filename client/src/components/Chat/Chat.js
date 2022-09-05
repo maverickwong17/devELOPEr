@@ -37,12 +37,12 @@ function DevChat() {
     const presentUsers = users.filter((u) => presentUUIDs?.includes(u.id));
     const currentUser = users.find((u) => u.id === pubnub.getUUID());
 
-    const theme = "dark";
+    // const theme = "dark";
 
     return (
 
         <div className='app-simple'>
-            <Chat users={users} currentChannel={currentChannel.id} channels={allChannelIds} theme={theme}>
+            <Chat users={users} currentChannel={currentChannel.id} channels={allChannelIds} >
                 <MediaQuery minWidth={700}>
                     <div className={`channels ${showChannels && "shown"}`}>
                         <div className="user">

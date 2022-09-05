@@ -36,6 +36,7 @@ const LandingPage = () => {
             pagination: false,
             perPage: 2,
             padding: "20%",
+            // margin: "30%",
             autoScroll: {
               pauseOnHover: false,
               pauseOnFocus: false,
@@ -53,10 +54,13 @@ const LandingPage = () => {
                 perPage: 3,
               },
               900: {
-                perPage: 2,
+                perPage: 1,
               },
               1200: {
                 perPage: 2,
+              },
+              400: {
+                perPage: 0.1,
               },
             },
           }}

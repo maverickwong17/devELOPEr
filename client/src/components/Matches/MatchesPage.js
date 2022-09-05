@@ -73,21 +73,31 @@ const MatchesPage = () => {
           <div
             key={index}
             className="card_match"
-            style={{ "--bg-image": `url("${match.profile.images[0]}")` }}
+            style={{ "--bg-image": `url("${match.profile.images[0]}")`, objectPosition: "50% 50%"  }}
           >
             {/* <div
               className="img_match"
               style={{ "--bg-image": `url("${match.url}")` }}
             ></div> */}
-            <h1>{match.profile.firstName} {match.profile.lastName}</h1>
+            <h1 style={{background: "black", opacity:".7", width: '100%', display: 'flex', justifyContent: 'space-around', alignItems:"baseline"}}>
+             <span style={{fontSize:"24px"}}>
+              {match.profile.firstName} {match.profile.lastName} 
+              </span> 
+            <span style={{textAlign: "right", fontSize: "20px"}}>Age: {match.profile.age}</span>
+            </h1>
             <p>
               <Link
-              className="btn btn-primary btn-block btn-squared"
+              // className="btn btn-primary btn-block btn-squared"
               to={`/profiles/${match._id}`}
             >
               <FaUserCircle size={40} />
             </Link>
+              <Link
+              // className="btn btn-primary btn-block btn-squared"
+              to={`/chat`}
+            >
               <AiFillMessage size={40} />
+            </Link>
             </p>
           </div>
         ))}

@@ -10,10 +10,13 @@ import { useMutation } from "@apollo/client";
 import { ADD_CONNECTION } from "../../../utils/mutations";
 import { QUERY_ME } from "../../../utils/queries";
 import auth from "../../../utils/auth";
+import { useQuery } from "@apollo/client";
 
 const SwipeCard = ({ profiles, currentUser }) => {
-  const users = profiles;
 
+  const { loading: load, data: me } = useQuery(QUERY_ME);
+  var myId = me.me._id
+  const users = profiles.filter(profiles => profiles._id !== myId);
   const [addConnection, { error, userData }] = useMutation(ADD_CONNECTION);
   const [currentIndex, setCurrentIndex] = useState(users.length - 1);
   const [lastDirection, setLastDirection] = useState();

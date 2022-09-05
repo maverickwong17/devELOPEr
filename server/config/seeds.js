@@ -84,8 +84,8 @@ db.once("open", async () => {
         "🍬 chocolate",
         "☕ peanut butter",
       ],
-      github: "StarryBlue7",
-      linkedin: "vince-lee",
+      github: "hershey-chocolate",
+      linkedin: "the-hershey-company",
       images: [
         "https://res.cloudinary.com/dhuyyu7wp/image/upload/v1662225027/ipusaase1gcc4k3rh5vt.jpg",
         "http://res.cloudinary.com/dhuyyu7wp/image/upload/v1662002913/jksleisc78qcnekcrl8k.jpg",
@@ -103,7 +103,7 @@ db.once("open", async () => {
       ],
       aboutme: "My name is Vince. Check my interests to see what I love most in the world.",
       seeking: "He/His",
-      range: [25,33]
+      range: [70,100]
     },
   });
   console.log("Vince, Kevin, and Reese's have been seeded");

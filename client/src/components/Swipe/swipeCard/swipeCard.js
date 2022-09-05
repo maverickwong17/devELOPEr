@@ -122,6 +122,7 @@ const SwipeCard = ({profiles, currentUser}) => {
                 );
               })}
             </div>
+
             <hr />
           </div>
         </TinderCard>
@@ -138,9 +139,8 @@ const SwipeCard = ({profiles, currentUser}) => {
           You swiped {lastDirection}
         </h2>
       ) : (
-        <h2 className='infoText'>
-          Swipe a card or press a button to get Restore Card button visible!
-        </h2>
+       ""
+
       )}
     </>
   )

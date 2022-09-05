@@ -37,19 +37,27 @@ const SwipeCard = (profiles) => {
   const canSwipe = currentIndex >= 0
 
 
-  const swiped = (direction, nameToDelete, index) => {
+  const swiped = (direction, user, index) => {
+    console.log(direction)
     setLastDirection(direction)
     updateCurrentIndex(index - 1)
+    if(direction === 'left'){
+      return
+    }
+    if(direction === 'right'){
+      makeConnection({
+        variables: user._id
+      })
+    }
   }
 
   const outOfFrame = (name, idx) => {
-
     currentIndexRef.current >= idx && childRefs[idx].current.restoreCard()
 
   }
 
-  const swipe = async (dir) => {
-  
+  const swipe = async (dir, user) => {
+  console.log(user)
     if (canSwipe && currentIndex < users.length) {
       await childRefs[currentIndex].current.swipe(dir) // Swipe the card!
       console.log(dir)
@@ -79,11 +87,12 @@ const SwipeCard = (profiles) => {
   return (
     <>
     {users.map((user, index) => (
+      <>
         <TinderCard
           ref={childRefs[index]}
           className='swipe'
           key={user.profile.firstName}
-          onSwipe={(dir) => swiped(dir, user.profile.firstName, index)}
+          onSwipe={(dir) => swiped(dir, user, index)}
           onCardLeftScreen={() => outOfFrame(user.profile.firstName, index)}
           preventSwipe ={["up", "down"]}
         >
@@ -107,10 +116,11 @@ const SwipeCard = (profiles) => {
             <hr />
           </div>
         </TinderCard>
+    
+       </>
       ))}
        <div className='buttons'>
           <button onClick={() => swipe('left')}><MdCancel/></button>
-          <button onClick={() => goBack()}><FaUndo/></button>
           <button onClick={() => swipe('right')}><AiFillHeart/></button>
         </div>
     

@@ -33,7 +33,7 @@ const resolvers = {
       return Message.find();
     },
     me: async (parent, args, context) => {
-      console.log("me");
+      // console.log("me");
       if (context.user) {
         return await User.findOne({ _id: context.user._id })
           .populate("connections")

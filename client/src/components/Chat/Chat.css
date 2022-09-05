@@ -1,53 +1,43 @@
 :root {
   --chat--light__hover--2: #e4e9f000;
   --chat--light__background--1: #e4e9f000;
-  --app-background: #ffffff00;
-  --app-color: #ffffff00;
-  --app-avatar-background: #ffffff00;
-  --app-info-color: #ffffff00;
-  --app-info-border: #ffffff00;
-  --app-chat-background: #ffffff00;
-  --app-people-color: #ffffff00;
-  --app-people-active-color: #ffffff00;
-  --chat--light__background--1: #ffffff00;
-  --chat--light__background--2: #ffffff00;
-  --chat--light__background--3: #ffffff00;
-  --chat--light__background--4: #ffffff00;
+  --chat--light__background--1: #e4e9f000;
+  --chat--light__background--2: #e4e9f000;
+  --chat--light__background--3: #e4e9f000;
+  --chat--light__background--4: #e4e9f000;
   /* --chat--light__background--5-rgb: #{hexToRGB(#ef3a43)}; */
   /* --chat--light__background--6: #{rgba(#1c1c1c, 0.8)}; */
-  --chat--light__color--1: #ffffff00;
-  --chat--light__color--2: #ffffff00;
+  --chat--light__color--1: #e4e9f000;
+  --chat--light__color--2: #e4e9f000;
   /* --chat--light__color--2-rgb: #{hexToRGB(#999999)}; */
-  --chat--light__color--3: #ffffff00;
-  --chat--light__border--1: #ffffff00;
-  --chat--light__border--2: #ffffff00;
-  --chat--light__hover--1: #ffffff00;
-  --chat--light__hover--2: #ffffff00;
-  --chat--light__hover--3: #ffffff00;
-  --chat--light__hover--4: #ffffff00;
+  --chat--light__color--3: #e4e9f000;
+  --chat--light__border--1: #e4e9f000;
+  --chat--light__border--2: #e4e9f000;
+  --chat--light__hover--1: #e4e9f000;
+  --chat--light__hover--2: #e4e9f000;
+  --chat--light__hover--3: #e4e9f000;
+  --chat--light__hover--4: #e4e9f000;
+
+  --chat--dark__background--1: #e4e9f000;
+  --chat--dark__background--2: #e4e9f000;
+  /* --chat--dark__background--2-rgb: #{hexToRGB(#2a2a39)}; */
+  /* // --chat--dark__background--3: ; */
+  --chat--dark__background--4: #e4e9f000;
+  /* --chat--dark__background--5: #{hexToRGB(#ef3a43)}; */
+  /* --chat--dark__background--6: #{rgba(#f0f3f7, 0.8)}; */
+  /* --chat--dark__color--1: #{rgba(#e4e4eb, 0.8)}; */
+  --chat--dark__color--2: #e4e9f000;
+  --chat--dark__color--3: #e4e9f000;
+  --chat--dark__border--1: #e4e9f000;
+  /* // --chat--dark__border--2: ; */
+  --chat--dark__hover--1: #e4e9f000;
+  --chat--dark__hover--2: #e4e9f000;
+  /* // --chat--dark__hover--3: ; */
+  --chat--dark__hover--4: #55e4e9f000770;
+  --chat--dark__hover--4-rgb: #{hexToRGB(#e4e9f000)};
 }
 
-/* .app-simple.light {
-  --app-background: #ffffff00;
-  --app-color: #ffffff00;
-  --app-avatar-background: #ffffff00;
-  --app-info-color: #ffffff00;
-  --app-info-border: #ffffff00;
-  --app-chat-background: #ffffff00;
-  --app-people-color: #ffffff00;
-  --app-people-active-color: #ffffff00;
-}
 
-.app-simple.dark {
-  --app-background: #ffffff00;
-  --app-color: #ffffff00;
-  --app-avatar-background: #ffffff00;
-  --app-info-color: #ffffff00;
-  --app-info-border: #ffffff00;
-  --app-chat-background: #ffffff00;
-  --app-people-color: #ffffff00;
-  --app-people-active-color: #ffffff00;
-} */
 
 /* body {
   color: #585858;

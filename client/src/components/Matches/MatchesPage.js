@@ -7,6 +7,7 @@ import { useQuery } from "@apollo/client";
 import { QUERY_ALL_USER, QUERY_ME } from "../../utils/queries";
 import Loader from "../Loader/Loader";
 import { Link } from "react-router-dom";
+import Background from "../Background/Background";
 
 const MatchesPage = () => {
   const { loading: loadme, data: profile } = useQuery(QUERY_ME);
@@ -79,10 +80,13 @@ const MatchesPage = () => {
               className="img_match"
               style={{ "--bg-image": `url("${match.url}")` }}
             ></div> */}
-            <h1>{match.profile.firstName} {match.profile.lastName}</h1>
+            <h1 style={{ backgroundColor: "rgba(0, 0, 0, .7)", width: '100% ', display:'flex', justifyContent:"space-around", alignItems: "baseline"}}>
+              <span style={{opacity: '100%', fontSize: "24px"}}>{match.profile.firstName} {match.profile.lastName}</span>
+              <span style={{fontSize: "20px"}}>Age: {match.profile.age}</span>
+            </h1>
             <p>
               <Link
-              className="btn btn-primary btn-block btn-squared"
+              // className="btn btn-primary btn-block btn-squared"
               to={`/profiles/${match._id}`}
             >
               <FaUserCircle size={40} />

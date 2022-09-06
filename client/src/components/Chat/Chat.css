@@ -155,7 +155,7 @@ h4 {
 
 .pn-msg-input__textarea {
   background-color: #e67a8d6e !important;
-  /* color: white; */
+  color: white !important;
 }
 
 .pn-channel {
@@ -176,7 +176,7 @@ h4 {
 
 .pn-msg-input--dark {
   background: #e67a8e00 !important;
-  color: white !important 
+  color: white 
 }
 
 /* .pn-msg-own {

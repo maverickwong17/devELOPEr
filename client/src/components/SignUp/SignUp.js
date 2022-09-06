@@ -12,8 +12,7 @@ import "./SignUp.css";
 
 const SignUp = () => {
   const [files, setFiles] = useState([]);
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
-
+  console.log(files);
   const [accountState, setAccountState] = useState({
     email: "",
     password: "",
@@ -30,7 +29,8 @@ const SignUp = () => {
     seeking: "",
     aboutme: "",
   });
-  const [addUser, { error, data }] = useMutation(ADD_USER);
+  const [addUser] = useMutation(ADD_USER);
+
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.map((file) => {
       const formData = new FormData();
@@ -45,9 +45,13 @@ const SignUp = () => {
         body: formData,
       })
         .then((response) => response.json())
-        .then((data) => setFiles((prevState) => [...prevState, data.url]));
+        .then((data) => {
+          console.log(files);
+          setFiles((prevState) => [...prevState, data.url]);
+        });
     });
   }, []);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   const handleAccountChange = (event) => {
     var { name, value } = event.target;

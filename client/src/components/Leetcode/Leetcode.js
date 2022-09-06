@@ -96,7 +96,7 @@ const Leetcode = () => {
   }, []);
   return (
     <>
- 
+
       <Row className="grid_l">
         <div style={{ height: "10%" }}>
           <Row>
@@ -218,6 +218,7 @@ const Leetcode = () => {
           to matching!
         </span>
       </div>
+
     </>
   );
 };

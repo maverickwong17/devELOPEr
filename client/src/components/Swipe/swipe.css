@@ -10,14 +10,15 @@
   /* display: flex;
   justify-content: center; */
   /* position: relative; */
-  /* width: 90%; */
+
+  /* width: 95%; */
   margin: 0 auto;
+  margin: 0 1rem;
 }
 .userImage {
   object-fit: cover;
+  height: 30%;
   border-radius: 0.75rem;
-  /* width: 100%; */
-  height: 466px;
 }
 /* if no image is present going ot render a blank block instead of the icon for file not found */
 .userImage:before {
@@ -52,46 +53,30 @@
   background-size: cover;
   background-position: 50%;
   white-space: nowrap;
+  height: 100%;
+  max-width: 50%;
+  padding: 1rem;
+  margin: 1rem;
 }
-.cards_section {
-  /* background: blue; */
-  width: 100%;
-  max-height: 80vh;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  position: relative;
-}
+
 .cardContainer {
   position: relative;
   width: 100%;
   height: 700px;
-  /* background-color: red; */
   display: flex;
   align-items: center;
-  /* margin: 0 auto; */
-  /* justify-content: center; */
-}
-.card {
-  height: 100%;
-  max-width: 50%;
-  padding: 1rem;
+  justify-content: center;
 }
 
 .cardContainer {
-  /* max-width: 30%; */
   position: relative;
   display: flex;
-
-  /* height: 600px; */
 }
 .card:hover {
   cursor: pointer;
 }
 .swipe {
   position: absolute;
-  /* background: blue; */
   width: 100%;
   display: flex;
   justify-content: center;
@@ -105,18 +90,18 @@
   display: none;
 }
 
-/* .buttons {
-} */
-.buttons .button {
+.buttons_swipe {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.buttons_swipe .button {
   display: flex;
   margin: 0;
-  /* box-sizing: border-box; */
   border: none;
   border-radius: 50%;
   background: #111111;
   border: 6px solid #ae303b;
-  /* box-shadow: 8px 8px 16px #000000, -4px -4px 12px #ae303b;
-  border-radius: 50%; */
   width: 75px;
   height: 75px;
   align-items: center;
@@ -124,12 +109,16 @@
   display: flex;
   color: #ae303b;
   justify-content: center;
-
-  /* border: 2px solid #ff5e51; */
 }
-.buttons .button:hover {
+
+.buttons_swipe .button:hover {
   box-shadow: inset 6px 6px 12px rgba(255, 255, 255, 0.1),
     inset -6px -6px 12px rgba(163, 14, 59, 0.3);
+}
+.name_location {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 }
 @media screen and (min-width: 800px) {
   .card {
@@ -144,6 +133,9 @@
 @media screen and (max-width: 550px) {
   .card {
     max-width: 100%;
+  }
+  .name_location {
+    flex-direction: column;
   }
 }
 @media screen and (max-width: 420px) {

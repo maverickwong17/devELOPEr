@@ -95,65 +95,58 @@ const SwipeCard = ({ profiles, currentUser }) => {
     <>
       <div className="cardContainer">
         {users.map((user, index) => (
-          <>
-            <TinderCard
-              ref={childRefs[index]}
-              className="swipe"
-              key={user.profile.firstName}
-              onSwipe={(dir) => swiped(dir, user, index)}
-              onCardLeftScreen={() => outOfFrame(user.profile.firstName, index)}
-              preventSwipe={["up", "down"]}
-            >
-              <div className="card">
-                <img
-                  src={user.profile.images[0]}
-                  alt={user.profile.firstName}
-                  className="userImage"
-                ></img>
+          <TinderCard
+            ref={childRefs[index]}
+            className="swipe"
+            key={user.profile.firstName}
+            onSwipe={(dir) => swiped(dir, user, index)}
+            onCardLeftScreen={() => outOfFrame(user.profile.firstName, index)}
+            preventSwipe={["up", "down"]}
+          >
+            <div className="card">
+              <img
+                src={user.profile.images[0]}
+                alt={user.profile.firstName}
+                className="userImage"
+              ></img>
 
-                <span
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "baseline",
-                  }}
-                >
-                  <h3>
-                    {user.profile.firstName} {user.profile.lastName},{" "}
-                    {user.profile.age}
-                  </h3>
-                  <h5>{user.profile.location}</h5>
-                </span>
-                <hr />
-                <div className="interest_section">
-                  {" "}
-                  <h4 style={{ color: "black" }}>Interests:</h4>
-                  {user.profile.interest.map((interest, index) => {
-                    return (
-                      <InterestButton
-                        disabled="true"
-                        interest={interest}
-                        key={index}
-                      />
-                    );
-                  })}
-                </div>
-
-                <hr />
-                <span
-                  style={{
-                    fontSize: "20px",
-                    whiteSpace: "pre-line",
-                  }}
-                >
-                  {user.profile.aboutme}
-                </span>
+              <span className="name_location">
+                <h3>
+                  {user.profile.firstName} {user.profile.lastName},{" "}
+                  {user.profile.age}
+                </h3>
+                <h5>{user.profile.location}</h5>
+              </span>
+              <hr />
+              <div className="interest_section">
+                {" "}
+                <h4 style={{ color: "black" }}>Interests:</h4>
+                {user.profile.interest.map((interest, index) => {
+                  return (
+                    <InterestButton
+                      disabled="true"
+                      interest={interest}
+                      key={index}
+                    />
+                  );
+                })}
               </div>
-            </TinderCard>
-          </>
+
+              <hr />
+              <span
+                style={{
+                  fontSize: "20px",
+                  display: "flex",
+                  whiteSpace: "pre-line",
+                }}
+              >
+                {user.profile.aboutme}
+              </span>
+            </div>
+          </TinderCard>
         ))}
       </div>
-      <div className="buttons">
+      <div className="buttons_swipe">
         <button className="button" onClick={() => swipe("left")}>
           <MdCancel size={45} />
         </button>
@@ -169,6 +162,7 @@ const SwipeCard = ({ profiles, currentUser }) => {
       ) : (
         ""
       )}
+      {/* </div> */}
     </>
   );
 };

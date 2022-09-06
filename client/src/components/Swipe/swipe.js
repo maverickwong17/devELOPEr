@@ -1,11 +1,5 @@
 import React, { useState, useMemo, useRef } from "react";
-import TinderCard from "react-tinder-card";
-// import "./swipeCard/swipe.css";
-import { AiFillHeart, AiOutlineInfoCircle } from "react-icons/ai";
-import { MdCancel } from "react-icons/md";
-import { FaUndo } from "react-icons/fa";
-import InterestButton from "../InterestButton/InterestButton";
-import data from "../../data/interestsJson";
+import { AiOutlineInfoCircle } from "react-icons/ai";
 import { Row } from "react-bootstrap";
 import { QUERY_ALL_USER, QUERY_ME } from "../../utils/queries";
 import SwipeCard from "./swipeCard/swipeCard";
@@ -51,9 +45,9 @@ function Swiper() {
       </div>
 
       <Row className="grid_swipe">
-        <div className="cards_section">
-          <SwipeCard profiles={data.users} />
-        </div>
+        {/* <div className="cards_section"> */}
+        <SwipeCard profiles={data.users} />
+        {/* </div> */}
       </Row>
     </>
   );

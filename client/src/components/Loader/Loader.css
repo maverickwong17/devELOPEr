@@ -1,9 +1,8 @@
 :root {
   --grey: #ccc;
-  --magenta: #a30e3b;
+  --pink_theme: #a30e3b;
 }
 .container_loader {
-  /* background: red; */
   height: 80vh;
   width: 100%;
   margin: 0 auto;
@@ -12,7 +11,7 @@
   align-items: center;
 }
 p > span {
-  color: var(--magenta);
+  color: var(--pink_theme);
 }
 
 #container {
@@ -24,25 +23,13 @@ p > span {
 
 #heart {
   width: 150px;
-  fill: var(--magenta);
-  /* fill: var(--grey); */
+  fill: var(--pink_theme);
   stroke-dasharray: 54;
   stroke-dashoffset: 54;
 }
 
 #heart.like {
   animation: 0.5s linear forwards beat;
-}
-
-#heart.unlike {
-  animation: 2s ease-out forwards unlike;
-}
-
-@keyframes like {
-  100% {
-    stroke-dashoffset: 0;
-    fill: var(--magenta);
-  }
 }
 
 @keyframes beat {

@@ -1,86 +1,68 @@
 import React from "react";
-
-import { FaUserCircle, FaRegCalendarAlt } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 import { RiHeartsFill } from "react-icons/ri";
 import { BsFillChatDotsFill } from "react-icons/bs";
 import { AiFillHome } from "react-icons/ai";
 import { BsFillTerminalFill } from "react-icons/bs";
 import "./Sidebar.css";
-
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip';
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 
 const Sidebar = () => {
   return (
     <>
       <div className="menu">
         <ul>
-          {/* {navLinks.map(({ url, name }) => ( */}
           <li>
             <OverlayTrigger
               placement="bottom"
-              overlay={
-                <Tooltip id={`tooltip-bottom`}>
-                    Home
-                </Tooltip>}
+              overlay={<Tooltip id={`tooltip-bottom`}>Home</Tooltip>}
             >
-            <a href="/swipe" className="header_a">
-              <AiFillHome />
-            </a>
+              <a href="/swipe" className="header_a">
+                <AiFillHome />
+              </a>
             </OverlayTrigger>
           </li>
           <li>
-          <OverlayTrigger
+            <OverlayTrigger
               placement="bottom"
-              overlay={
-                <Tooltip id={`tooltip-bottom`}>
-                    Profile
-                </Tooltip>}
+              overlay={<Tooltip id={`tooltip-bottom`}>Profile</Tooltip>}
             >
-            <a href="/profile" className="header_a">
-              <FaUserCircle />
-            </a>
+              <a href="/profile" className="header_a">
+                <FaUserCircle />
+              </a>
             </OverlayTrigger>
           </li>
           <li>
-          <OverlayTrigger
+            <OverlayTrigger
               placement="bottom"
-              overlay={
-                <Tooltip id={`tooltip-bottom`}>
-                    Matches
-                </Tooltip>}
+              overlay={<Tooltip id={`tooltip-bottom`}>Matches</Tooltip>}
             >
-            <a href="/matches" className="header_a">
-              <RiHeartsFill />
-            </a>
+              <a href="/matches" className="header_a">
+                <RiHeartsFill />
+              </a>
             </OverlayTrigger>
           </li>
 
           <li>
-          <OverlayTrigger
+            <OverlayTrigger
               placement="bottom"
-              overlay={
-                <Tooltip id={`tooltip-bottom`}>
-                    Chat
-                </Tooltip>}
+              overlay={<Tooltip id={`tooltip-bottom`}>Chat</Tooltip>}
             >
-            <a href="/chat" className="header_a">
-              <BsFillChatDotsFill />
-            </a>
+              <a href="/chat" className="header_a">
+                <BsFillChatDotsFill />
+              </a>
             </OverlayTrigger>
           </li>
 
           <li>
-          <OverlayTrigger
+            <OverlayTrigger
               placement="bottom"
-              overlay={
-                <Tooltip id={`tooltip-bottom`}>
-                    Leetcode
-                </Tooltip>}
+              overlay={<Tooltip id={`tooltip-bottom`}>Leetcode</Tooltip>}
             >
-            <a href="/leetcode" className="header_a">
-              <BsFillTerminalFill />
-            </a>
+              <a href="/leetcode" className="header_a">
+                <BsFillTerminalFill />
+              </a>
             </OverlayTrigger>
           </li>
         </ul>
@@ -91,8 +73,3 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
-//     <li>
-// <a href="/events">
-// <FaRegCalendarAlt />
-// </a>
-// </li>

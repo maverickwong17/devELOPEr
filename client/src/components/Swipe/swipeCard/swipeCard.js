@@ -13,10 +13,9 @@ import auth from "../../../utils/auth";
 import { useQuery } from "@apollo/client";
 
 const SwipeCard = ({ profiles, currentUser }) => {
-
   const { loading: load, data: me } = useQuery(QUERY_ME);
-  var myId = me.me._id
-  const users = profiles.filter(profiles => profiles._id !== myId);
+  var myId = me.me._id;
+  const users = profiles.filter((profiles) => profiles._id !== myId);
   const [addConnection, { error, userData }] = useMutation(ADD_CONNECTION);
   const [currentIndex, setCurrentIndex] = useState(users.length - 1);
   const [lastDirection, setLastDirection] = useState();
@@ -141,7 +140,14 @@ const SwipeCard = ({ profiles, currentUser }) => {
                 </div>
 
                 <hr />
-                <span style={{ fontSize: "20px" }}>{user.profile.aboutme}</span>
+                <span
+                  style={{
+                    fontSize: "20px",
+                    whiteSpace: "pre-line",
+                  }}
+                >
+                  {user.profile.aboutme}
+                </span>
               </div>
             </TinderCard>
           </>
@@ -168,3 +174,56 @@ const SwipeCard = ({ profiles, currentUser }) => {
 };
 
 export default SwipeCard;
+/**
+ * {/* <div className="card">
+                <img
+                  src={user.profile.images[0]}
+                  alt={user.profile.firstName}
+                  className="userImage"
+                ></img>
+<div class="photo-text">
+                    <div class="photo-name-and-age">
+                      <h2>Lorem</h2>
+                      <h2>21</h2>
+                    </div>
+                    <div class="photo-bio">
+                      <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Dolore, veritatis nobis esse perspiciatis delectus natus
+                        facilis. Aut officiis, quas repudiandae ea numquam, sint
+                        omnis provident nostrum voluptates cupiditate, similique
+                        ratione.
+                      </p>
+                    </div>
+                  </div>
+                <span
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "baseline",
+                  }}
+                >
+                  <h3>
+                    {user.profile.firstName} {user.profile.lastName},{" "}
+                    {user.profile.age}
+                  </h3>
+                  <h5>{user.profile.location}</h5>
+                </span>
+                <hr />
+                <div className="interest_section">
+                  {" "}
+                  <h4 style={{ color: "black" }}>Interests:</h4>
+                  {user.profile.interest.map((interest, index) => {
+                    return (
+                      <InterestButton
+                        disabled="true"
+                        interest={interest}
+                        key={index}
+                      />
+                    );
+                  })}
+                </div>
+
+                <hr />
+                <span style={{ fontSize: "20px" }}>{user.profile.aboutme}</span>
+              </div> */

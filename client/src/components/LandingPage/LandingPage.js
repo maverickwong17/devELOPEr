@@ -89,7 +89,7 @@ const LandingPage = () => {
           </SplideSlide>
           <SplideSlide>
             <img
-              src="https://pittnews.com/wp-content/uploads/2021/01/C_Cody-Ko_Via.jpg"
+             src="https://backend.artreview.com/wp-content/uploads/2021/11/Mark-Zuckerberg_Courtesy-Facebook.jpg"
               alt="Image 4"
               className="splideImg"
             />
@@ -110,14 +110,14 @@ const LandingPage = () => {
           </SplideSlide>
           <SplideSlide>
             <img
-              src="https://randomuser.me/api/portraits/men/4.jpg"
+              src="https://pittnews.com/wp-content/uploads/2021/01/C_Cody-Ko_Via.jpg"
               alt="Image 7"
               className="splideImg"
             />
           </SplideSlide>
           <SplideSlide>
             <img
-              src="https://randomuser.me/api/portraits/women/4.jpg"
+              src="https://i.insider.com/533c613becad04652e0a1aad?width=300&format=jpeg&auto=webp"
               alt="Image 8"
               className="splideImg"
             />

@@ -96,6 +96,7 @@ const Leetcode = () => {
   }, []);
   return (
     <>
+      <div className="lc_grid">
       <div className="info_section">
         <span>
           <AiOutlineInfoCircle size={30} />
@@ -216,7 +217,8 @@ const Leetcode = () => {
             </Button>
           </div>
         </Row>
-      </Row>
+        </Row>
+        </div>
     </>
   );
 };

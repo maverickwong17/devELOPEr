@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef } from "react";
+import React from "react";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { Row } from "react-bootstrap";
 import { QUERY_ALL_USER, QUERY_ME } from "../../utils/queries";

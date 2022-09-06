@@ -167,7 +167,7 @@ h4 {
 }
 
 .pn-channel--active {
-  background: #e67a8d6e;
+  background: #e67a8d6e !important;
 }
 
 .pn-channel:hover {
@@ -176,7 +176,7 @@ h4 {
 
 .pn-msg-input--dark {
   background: #e67a8e00 !important;
-  color: white
+  color: white !important 
 }
 
 /* .pn-msg-own {

@@ -68,13 +68,8 @@ const resolvers = {
       return { token, user };
     },
     addConnection: async (parent, body, context) => {
-      // console.log('Hi')
-      //   console.log("body", body);
-      // console.log(context.user)
       if (context.user) {
         const partner = await User.findOne(body);
-        //   console.log("partner", partner);
-        // console.log(partner._id.toString());
         if (context.user._id !== partner._id.toString()) {
           const user = await User.findOneAndUpdate(
             { _id: context.user._id },

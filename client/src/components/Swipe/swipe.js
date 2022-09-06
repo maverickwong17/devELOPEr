@@ -1,87 +1,55 @@
-import React, { useState } from "react";
-import TinderCard from "react-tinder-card";
+import React, { useState, useMemo, useRef } from "react";
+import { AiOutlineInfoCircle } from "react-icons/ai";
 import { Row } from "react-bootstrap";
-import InterestButton from "../InterestButton/InterestButton";
-import data from "../../data/interestsJson";
-
+import { QUERY_ALL_USER, QUERY_ME } from "../../utils/queries";
+import SwipeCard from "./swipeCard/swipeCard";
+import { useQuery } from "@apollo/client";
+import Loader from "../Loader/Loader";
 import "./swipe.css";
-const db = [
-  {
-    name: "Richard Hendricks",
-    url: "https://media.istockphoto.com/vectors/person-gray-photo-placeholder-man-vector-id1133765772?k=20&m=1133765772&s=612x612&w=0&h=2X073i6UQf9Z6NRxena3em12vhr7I7nromkZk4mfEmk=",
-  },
-  {
-    name: "Erlich Bachman",
-    url: "https://media.istockphoto.com/vectors/person-gray-photo-placeholder-man-vector-id1133765772?k=20&m=1133765772&s=612x612&w=0&h=2X073i6UQf9Z6NRxena3em12vhr7I7nromkZk4mfEmk=",
-  },
-  {
-    name: "Monica Hall",
-    url: "",
-  },
-  {
-    name: "Jared Dunn",
-    url: "",
-  },
-  {
-    name: "Dinesh Chugtai",
-    url: "https://media.istockphoto.com/vectors/person-gray-photo-placeholder-man-vector-id1133765772?k=20&m=1133765772&s=612x612&w=0&h=2X073i6UQf9Z6NRxena3em12vhr7I7nromkZk4mfEmk=",
-  },
-];
 
 function Swiper() {
-  // const get nearby users
-  const users = db;
-  const [lastDirection, setLastDirection] = useState();
-  const swiped = (direction, nameToDelete) => {
-    setLastDirection(direction);
-  };
-  const outOfFrame = (name) => {
-    console.log(name);
-  };
+  const { loading, data } = useQuery(QUERY_ALL_USER);
+  const { loading: loadme, data: profile } = useQuery(QUERY_ME);
+  const myprofile = profile?.me || {};
+  if (loading || loadme) {
+    return <Loader />;
+  }
+  if (!myprofile) {
+    return (
+      <h4>
+        You need to be logged in to see this. Use the navigation links above to
+        sign up or log in!
+      </h4>
+    );
+  }
 
   return (
-    // <>
-    <Row className="grid_swipe">
-      {/* <h1>Swipe left for No Right for yes</h1> */}
-      <div className="cards_section">
-        {/* <h1>React Tinder Card</h1> */}
-        <div className="cardContainer">
-          {users.map((user) => (
-            <TinderCard
-              className="swipe"
-              key={user.name}
-              onSwipe={(dir) => swiped(dir, user.name)}
-              onCardLeftScreen={() => outOfFrame(user.name)}
-            >
-              <div className="card">
-                <img src={user.url} alt={user.name} className="userImage"></img>
-                <h3>{user.name}, 23</h3>
-                <hr />
-                <div className="interest_section">
-                  {" "}
-                  {data.slice(0, 4).map((interest) => {
-                    return (
-                      <InterestButton
-                        disabled="true"
-                        icon={interest.icon}
-                        interest={interest.interest}
-                      />
-                    );
-                  })}
-                </div>
-                <hr />
-              </div>
-            </TinderCard>
-          ))}
-        </div>
-        {/* {lastDirection ? (
-            <h2 className="infoText">You swiped {lastDirection}</h2>
-          ) : (
-            <h2 className="infoText" />
-          )} */}
+    <>
+      <div
+        style={{
+          textAlign: "center",
+          color: "#999999",
+          margin: "1rem 0 ",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <span>
+          {" "}
+          <AiOutlineInfoCircle size={30} />{" "}
+        </span>
+        <span>Swipe Left (✘) or Right(✓)</span>
+        <span>
+          or use the buttons to potentially match with a fellow developer!
+        </span>
       </div>
-    </Row>
-    // </>
+
+      <Row className="grid_swipe">
+        {/* <div className="cards_section"> */}
+        <SwipeCard profiles={data.users} />
+        {/* </div> */}
+      </Row>
+    </>
   );
 }
 export default Swiper;

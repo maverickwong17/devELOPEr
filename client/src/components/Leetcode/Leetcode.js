@@ -1,17 +1,7 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 
-import {
-  Col,
-  Row,
-  Badge,
-  Button,
-  Container,
-  Dropdown,
-  Tabs,
-  Tab,
-} from "react-bootstrap";
-import { FiCode } from "react-icons/fi";
-import { FaCog, FaExclamationCircle, FaUserAlt } from "react-icons/fa";
+import { Row, Button, Tabs, Tab, Alert } from "react-bootstrap";
+import { FaCog } from "react-icons/fa";
 import { AiOutlineArrowRight, AiOutlineInfoCircle } from "react-icons/ai";
 import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
@@ -19,19 +9,24 @@ import { cpp } from "@codemirror/lang-cpp";
 import { java } from "@codemirror/lang-java";
 import { python } from "@codemirror/lang-python";
 import "./Leetcode.css";
-import Sidebar from "../Sidebar/Sidebar";
-import MediaQuery from "react-responsive";
+import algorithms from "../../data/algorithmsJson";
 const Leetcode = () => {
   const [key, setKey] = useState("input");
+  const [algoOfTheDay, setAlgoOfTheDay] = useState({});
   const [output, setOutput] = useState("");
   const [language_id, setLanguageId] = useState("63");
   const [user_input, setUserInput] = useState(`console.log("hello");`);
   const [loading, setLoading] = useState(false);
-  console.log(language_id, user_input);
+
+  /**
+   * runCodeHandler function
+   * POST request to judge0 to send input, encode input, GET json res of output and output accordingly
+   * @param {*} e
+   */
   const runCodeHandler = async (e) => {
+    e.preventDefault();
     setLoading(true);
     setKey("output");
-    e.preventDefault();
     const options = {
       method: "POST",
       headers: {
@@ -46,7 +41,6 @@ const Leetcode = () => {
       }),
     };
     function encode(str) {
-      console.log(btoa(unescape(encodeURIComponent(str || ""))));
       return btoa(unescape(encodeURIComponent(str || "")));
     }
     const response = await fetch(
@@ -54,7 +48,6 @@ const Leetcode = () => {
       options
     );
     const jsonResponse = await response.json();
-    console.log(jsonResponse);
     let jsonGetSolution = {
       status: { description: "Queue" },
       stderr: null,
@@ -81,38 +74,31 @@ const Leetcode = () => {
     }
     if (jsonGetSolution.stdout) {
       const output = atob(jsonGetSolution.stdout);
-      console.log("output", output);
       setOutput(output);
     } else if (jsonGetSolution.stderr) {
       const error = atob(jsonGetSolution.stderr);
-      console.log(error);
       setOutput(error);
     } else {
       const comp_error = atob(jsonGetSolution.compile_output);
-      console.log(comp_error);
       setOutput(comp_error);
     }
   };
   const onChange = useCallback((value, viewUpdate) => {
-    console.log("value:", value);
     setUserInput(value);
   }, []);
-
+  const getRandomQuestion = () => {
+    const algorithmOfTheDay =
+      algorithms[Math.floor(Math.random() * algorithms.length)];
+    setAlgoOfTheDay(algorithmOfTheDay);
+  };
+  useEffect(() => {
+    getRandomQuestion();
+  }, []);
   return (
     <>
-      <div
-        style={{
-          width: "100%",
-          textAlign: "center",
-          color: "#999999",
-          margin: "1rem 0 ",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
+      <div className="info_section">
         <span>
-          {" "}
-          <AiOutlineInfoCircle size={30} />{" "}
+          <AiOutlineInfoCircle size={30} />
         </span>
         <span>Toggle the Dropdown to change the programming language.</span>
         <span>
@@ -123,33 +109,25 @@ const Leetcode = () => {
       <Row className="grid_l">
         <div style={{ height: "10%" }}>
           <Row>
-            {" "}
-            <h3 style={{ color: "white" }}>Coding Challenge</h3>
-            <p style={{ color: "white" }}>
-              You are given two integer arrays nums1 and nums2, sorted in
-              non-decreasing order, and two integers m and n, representing the
-              number of elements in nums1 and nums2 respectively.\nMerge nums1
-              and nums2 into a single array sorted in non-decreasing order.\nThe
-              final sorted array should not be returned by the function, but
-              instead be stored inside the array nums1. To accommodate this,
-              nums1 has a length of m + n, where the first m elements denote the
-              elements that should be merged, and the last n elements are set to
-              0 and should be ignored. nums2 has a length of n.
-            </p>
-            {/* <hr style={{ fill: "white" }} /> */}
+            <span className="title_code">
+              <h3 style={{ color: "white" }}>Coding Challenge</h3>
+              <Alert
+                style={{ width: "fit-content" }}
+                variant={
+                  algoOfTheDay.level === "easy"
+                    ? "success"
+                    : algoOfTheDay.level === "medium"
+                    ? "warning"
+                    : "danger"
+                }
+              >
+                {algoOfTheDay.level}
+              </Alert>
+            </span>
+            <p style={{ color: "white" }}>{algoOfTheDay.question}</p>
           </Row>
           <Row style={{ height: "fit-content" }}>
-            {" "}
-            <div
-              style={{
-                display: "flex",
-                // background: "red",
-                justifyContent: "right",
-                alignItems: "center",
-                float: "right",
-                // background: "blue",
-              }}
-            >
+            <div className="dropdown_pl">
               <select
                 value={language_id}
                 onChange={(e) => {
@@ -157,7 +135,7 @@ const Leetcode = () => {
                   console.log(e.target.value);
                 }}
                 id="tags"
-                className="form-control form-inline mb-2 language input"
+                className=" form-inline mb-2 language input"
               >
                 <option value="63">JavaScript</option>
                 <option value="54">C++ </option>
@@ -167,7 +145,6 @@ const Leetcode = () => {
             </div>
           </Row>
         </div>
-        {/* <div className="line"></div> */}
         <Row className="code_grid">
           <Tabs
             defaultActiveKey="profile"
@@ -199,6 +176,8 @@ const Leetcode = () => {
                     ? javascript({ jsx: true })
                     : language_id === "54"
                     ? cpp()
+                    : language_id === "71"
+                    ? python()
                     : java()
                 }
                 onChange={onChange}
@@ -212,7 +191,6 @@ const Leetcode = () => {
                 value={loading ? "running submission..." : output ? output : ""}
                 readOnly="nocursor"
               ></CodeMirror>
-              {/* <Sonnet /> */}
             </Tab>
           </Tabs>
           <div className="buttons">
@@ -234,7 +212,6 @@ const Leetcode = () => {
               }}
               onClick={() => window.location.replace("/swipe")}
             >
-              {/* TODO: check to see if run btn has been run */}
               Submit <AiOutlineArrowRight />
             </Button>
           </div>

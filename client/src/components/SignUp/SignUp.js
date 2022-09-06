@@ -1,48 +1,17 @@
 import React, { useState, useCallback } from "react";
-import {
-  Form,
-  // Container,
-  Row,
-  Col,
-  Button,
-  // Dropdown,
-  // DropdownButton,
-} from "react-bootstrap";
+import { Form, Row, Col, Button } from "react-bootstrap";
 import { useDropzone } from "react-dropzone";
-
 import { useMutation } from "@apollo/client";
 import { ADD_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
-
 import InterestButton from "../InterestButton/InterestButton";
 import interest from "../../data/interestsJson";
 import MediaQuery from "react-responsive";
-// import cuid from "cuid";
-// import data from "../../data/interestsJson";
 import Slider from "@mui/material/Slider";
-
 import "./SignUp.css";
 
 const SignUp = () => {
   const [files, setFiles] = useState([]);
-  console.log(files);
-  const onDrop = useCallback((acceptedFiles) => {
-    acceptedFiles.map((file) => {
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("tags", `codeinfuse, medium, gist`);
-      formData.append("upload_preset", "jca5ahfc"); // Replace the preset name with your own
-      formData.append("api_key", "913953185515193"); // Replace API key with your own Cloudinary key
-      formData.append("timestamp", (Date.now() / 1000) | 0);
-      fetch("https://api.cloudinary.com/v1_1/dhuyyu7wp/image/upload", {
-        method: "POST",
-        headers: { "X-Requested-With": "XMLHttpRequest" },
-        body: formData,
-      })
-        .then((response) => response.json())
-        .then((data) => setFiles((prevState) => [...prevState, data.url]));
-    });
-  }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   const [accountState, setAccountState] = useState({
@@ -62,6 +31,23 @@ const SignUp = () => {
     aboutme: "",
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
+  const onDrop = useCallback((acceptedFiles) => {
+    acceptedFiles.map((file) => {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("tags", `codeinfuse, medium, gist`);
+      formData.append("upload_preset", "jca5ahfc");
+      formData.append("api_key", "913953185515193");
+      formData.append("timestamp", (Date.now() / 1000) | 0);
+      fetch("https://api.cloudinary.com/v1_1/dhuyyu7wp/image/upload", {
+        method: "POST",
+        headers: { "X-Requested-With": "XMLHttpRequest" },
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => setFiles((prevState) => [...prevState, data.url]));
+    });
+  }, []);
 
   const handleAccountChange = (event) => {
     var { name, value } = event.target;
@@ -69,7 +55,6 @@ const SignUp = () => {
       ...accountState,
       [name]: value,
     });
-    // console.log(accountState);
   };
 
   const handleChange = (event) => {
@@ -78,20 +63,16 @@ const SignUp = () => {
       ...formState,
       [name]: value,
     });
-    // console.log(formState);
   };
 
   const [ageRange, setAgeRange] = useState([21, 65]);
 
-  const handleAge = (event, Age) => {
+  const handleAge = (Age) => {
     setAgeRange(Age);
-    // console.log(ageRange)
   };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log("submit");
-    console.log(interestData);
     var interestArr = [];
     for (let i = 0; i < interestData.length; i++) {
       if (interestData[i].state) {
@@ -109,8 +90,6 @@ const SignUp = () => {
       },
     };
 
-    console.log(submit);
-
     try {
       const { data } = await addUser({
         variables: { ...submit },
@@ -119,7 +98,6 @@ const SignUp = () => {
       Auth.login(data.addUser.token);
       window.location.href("/leetcode");
     } catch (e) {
-      console.log(data);
       console.error(e);
     }
 
@@ -139,20 +117,14 @@ const SignUp = () => {
 
   var interestData = interest;
   const handleInterestArr = async (event) => {
-    // console.log('click interest')
     const click = event.target.innerText;
-    // console.log(click)
     const value = click.split(" ")[1];
-    console.log(value);
     const index = interestData.findIndex(function (interestData) {
       if (interestData.interest) {
-        // console.log('click texts')
-        return interestData.interest === value;
+        return interestData.interest === click;
       }
     });
-    console.log(index);
     interestData[index].state = !interestData[index].state;
-    console.log(interestData[index].state);
   };
 
   return (
@@ -217,7 +189,7 @@ const SignUp = () => {
                   value={formState.age}
                   onChange={handleChange}
                 />
-                {/* <input className="input" type="text" placeholder="Gender" /> */}
+
                 <select
                   style={{
                     display: "flex",
@@ -272,13 +244,11 @@ const SignUp = () => {
             <h4>Interests</h4>
             <div className="grid justify">
               {interestData.map((interest, index) => (
-                // return
                 <InterestButton
                   checkedState={index}
                   onClick={handleInterestArr}
                   value={interest.interest}
                   key={index}
-                  icon={interest.icon}
                   interest={interest.interest}
                   disabled={interest.state}
                 />
@@ -414,15 +384,3 @@ const SignUp = () => {
 };
 
 export default SignUp;
-//**
-// { "icon": "", "interest": "golf" },
-// { "icon": "", "interest": "running" },
-// { "icon": "", "interest": "soccer" },
-// { "icon": "", "interest": "dance" },
-// { "icon": "", "interest": "swimming" },
-// { "icon": "", "interest": "ice hockey" },
-// { "icon": "", "interest": "tennis" },
-// { "icon": "", "interest": "baseball" },
-// { "icon": "", "interest": "karate" },
-// { "icon": "", "interest": "fishing" },
-// { "icon": "", "interest": "skiing" } * /

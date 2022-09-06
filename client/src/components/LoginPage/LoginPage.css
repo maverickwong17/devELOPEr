@@ -1,29 +1,18 @@
 .login_container {
-  /* background-color: red; */
   height: 100%;
 }
 .login_form {
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(9px);
   width: 25%;
-
   padding: 1rem 2rem;
   border-radius: 16px;
-  /* border-bottom-left-radius: 16px;
-  height: fit-content; */
   display: flex;
-  /* top: -50%; */
   flex-direction: column;
-  /* margin: 0; */
-  /* padding: 0; */
   justify-content: center;
-  /* align-items: center; */
   margin: 0 auto;
   position: absolute;
-  /* top: 50%; */
   left: 50%;
-  /*
-  -webkit-transform: translate(-50%, -50%); */
   transform: translate(-50%);
 }
 h1,
@@ -34,40 +23,9 @@ h4 {
   padding: 0;
 }
 
-@-webkit-keyframes autofill {
-  to {
-    color: blue;
-    background: transparent;
-  }
-}
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  -webkit-animation: autofill 0s forwards;
-  animation: autofill 0s forwards;
-}
-
-@keyframes autofill {
-  100% {
-    background: transparent;
-    color: inherit;
-  }
-}
-
-@-webkit-keyframes autofill {
-  100% {
-    background: transparent;
-    color: inherit;
-  }
-}
-
 .login_form span {
   margin: 0;
   align-items: center;
-  /* background-color: red; */
-  /* display: flex; */
-  /* justify-content: ; */
 }
 .login_form p {
   display: flex;
@@ -78,47 +36,16 @@ input:-webkit-autofill:active {
 .side_text {
   font-weight: 250;
   margin: 4px 0;
-  /* font-size: 16px; */
 }
 .reset_btn {
   border: none;
   background: transparent;
   color: #a30e3b;
 }
-@keyframes autofill {
-  0%,
-  100% {
-    color: #666;
-    background: red;
-  }
-}
-@-webkit-keyframes autofill {
-  0%,
-  100% {
-    color: #666;
-    background: red;
-  }
-}
 
-input:-webkit-autofill {
-  -webkit-animation-delay: 1s; /* Safari support - any positive time runs instantly */
-  -webkit-animation-name: autofill;
-  -webkit-animation-fill-mode: both;
-  -webkit-background-color: red !important;
-}
-
-input:-webkit-autofill {
-  background: none;
-  /* -webkit-box-shadow: 0 0 0 50px white inset; */
-}
-input:autofill {
-  background: none;
-  /* -webkit-box-shadow: 0 0 0 50px white inset; */
-}
 .login_input {
   border: none;
   background: none;
-  /* backdrop-filter: blur(9px); */
   margin: 2px;
   padding: 16px 0;
   font-size: 16px;
@@ -133,9 +60,7 @@ input:autofill {
   border-bottom: 2px solid #a30e3b;
   outline: none;
 }
-/* .reset_btn:focus {
-  background: transparent;
-} */
+
 .reset_btn:hover,
 .reset_btn:focus {
   background: transparent;
@@ -145,33 +70,13 @@ input:autofill {
 .remember_me {
   padding: 10px 0;
   display: flex;
-
-  /* margin: 2px; */
 }
 
-input[type="checkbox"] {
-  /* border: 2px solid #e67a8d; */
-  appearance: none;
-  background-color: transparent;
-  margin: 0;
-  font: inherit;
-  color: #e67a8d;
-  width: 16px;
-  height: 16px;
-  border: 0.15em solid #e67a8d;
-  border-radius: 0.15em;
-  /* margin-right: 2px; */
-  margin-right: 5px;
-  transform: translateY(-0.075em);
-}
 input[type="checkbox"]:hover {
   cursor: pointer;
 }
 input[type="checkbox"]:checked {
-  /* border: 2px solid #e67a8d; */
-  /* content: "w"; */
   appearance: none;
-  /* background-color: #e67a8d; */
   margin: 0;
   font: inherit;
   color: #e67a8d;
@@ -179,12 +84,10 @@ input[type="checkbox"]:checked {
   height: 16px;
   border: 0.15em solid #e67a8d;
   border-radius: 0.15em;
-  /* margin-right: 2px; */
   margin-right: 5px;
   transform: translateY(-0.075em);
 }
 .signup_btn {
-  /* border: 2px solid #e67a8d; */
   background: transparent;
   border-radius: 72px;
   margin: 10px 0 32px 0;
@@ -218,29 +121,26 @@ input[type="checkbox"]:checked {
   -webkit-transform: perspective(1px) translateZ(0);
   transform: perspective(1px) translateZ(0);
   background-image: linear-gradient(-45deg, #b7224f, #a30e3b, #8f0027);
-  /* width: 125px; */
-  /* height: 125px; */
-  /* border-radius: 34%; */
   box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.4),
     -6px -6px 12px rgba(255, 255, 255, 1);
 }
 .signin_btn:hover,
 .signin_btn:focus {
-  /* -webkit-transform: translateY(2px);
-  transform: translateY(2px); */
   cursor: pointer;
   color: black;
-  /* cursor: pointer;
-  color: black;
-  background: #a30e3b;
-  box-shadow: inset 0px 0px 5px #ffffff;
-  outline: none; */
   border-radius: 83px;
   background: #a30e3b;
-  box-shadow: inset 8px 8px 16px #7f0b2e, inset -8px -8px 16px #c71148;
   box-shadow: inset 6px 6px 12px rgba(0, 0, 0, 0.3),
     inset -6px -6px 12px rgba(255, 255, 255, 0.2);
 }
+.login_form a {
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  color: black;
+}
+
 @media screen and (max-width: 1200px) {
   .login_form {
     width: 45%;
@@ -255,11 +155,4 @@ input[type="checkbox"]:checked {
   .login_form {
     width: 80%;
   }
-}
-.login_form a {
-  text-decoration: none;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  color: black;
 }

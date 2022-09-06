@@ -4,8 +4,6 @@
   border-radius: 16px;
   padding: 0 10px;
   margin: 8px;
-  /* width: 25%; */
-  /* height: 10%; */
 }
 .interest_btn span:first-child {
   padding-right: 4px;
@@ -18,5 +16,4 @@
 .interest_btn:disabled {
   background: #a30e3b;
   opacity: 1;
-  /* cursor: default; */
 }

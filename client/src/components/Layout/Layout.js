@@ -1,22 +1,20 @@
-import React, {useState , useEffect} from "react";
-import classes from "./Layout.module.css";
+import React, { useState, useEffect } from "react";
+import classes from "./Layout.css";
 import { useCallback } from "react";
 import { loadFull } from "tsparticles";
 import Particles from "react-tsparticles";
 import { ButtonGroup, ToggleButton } from "react-bootstrap";
 const Layout = (props) => {
-  
   const [checked, setChecked] = useState(true);
 
   const particlesInit = useCallback(async (engine) => {
     await loadFull(engine);
   }, []);
 
-  const particlesLoaded = useCallback(async (container) => { }, []);
+  const particlesLoaded = useCallback(async (container) => {}, []);
 
   return (
     <>
-      {/* // <div className={classes.layout}>{props.children}</div> */}
       <ButtonGroup className="mb-2 position-absolute bottom-0 end-0">
         <ToggleButton
           id="toggle-check"
@@ -30,13 +28,13 @@ const Layout = (props) => {
         </ToggleButton>
       </ButtonGroup>
       <Particles
-        className={classes.layout}
+        className="layout"
         id="tsparticles"
         init={particlesInit}
         loaded={particlesLoaded}
         options={{
-          fullScreen:{
-            enable:true
+          fullScreen: {
+            enable: true,
           },
           particles: {
             number: {
@@ -49,7 +47,7 @@ const Layout = (props) => {
             color: {
               value: "#A30E3B",
             },
-          
+
             opacity: {
               value: 0.5,
               random: false,
@@ -60,7 +58,7 @@ const Layout = (props) => {
                 sync: false,
               },
             },
-     
+
             line_linked: {
               enable: true,
               distance: 150,
@@ -82,49 +80,6 @@ const Layout = (props) => {
                 rotateY: 1200,
               },
             },
-            // },
-            // interactivity: {
-            //   detect_on: "canvas",
-            //   events: {
-            //     onhover: {
-            //       enable: false,
-            //       mode: "grab",
-            //     },
-            //     onclick: {
-            //       enable: false,
-            //       mode: "push",
-            //     },
-            //     resize: true,
-            //   },
-            // fullScreen: {
-            //   enable: true,
-            //   zIndex: -1000,
-            // },
-            // modes: {
-            //   grab: {
-            //     distance: 140,
-            //     line_linked: {
-            //       opacity: 1,
-            //     },
-            //   },
-            //   bubble: {
-            //     distance: 400,
-            //     size: 40,
-            //     duration: 2,
-            //     opacity: 8,
-            //     speed: 3,
-            //   },
-            //   repulse: {
-            //     distance: 200,
-            //     duration: 0.4,
-            //   },
-            //   push: {
-            //     particles_nb: 4,
-            //   },
-            //   remove: {
-            //     particles_nb: 2,
-            //   },
-            // },
           },
           detectRetina: true,
         }}
@@ -133,7 +88,5 @@ const Layout = (props) => {
     </>
   );
 };
-
-// return <div className={classes.layout}>{props.children}</div>;
 
 export default Layout;

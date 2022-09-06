@@ -3,13 +3,30 @@
 }
 .grid_l {
   background: rgba(00, 00, 00, 0.7);
-  /* height: 80vh; */
-  /* margin: 0 1rem; */
   margin: 0 auto;
   padding: 1rem;
   border-radius: 8px;
-  /* position: relative; */
   width: 95%;
+}
+.info_section {
+  width: 100%;
+  text-align: center;
+  color: #999999;
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.title_code {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dropdown_pl {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  float: right;
 }
 .buttons {
   display: flex;

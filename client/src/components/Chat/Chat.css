@@ -282,17 +282,27 @@ h4 {
   margin: 2px 8px 0 0;
 }
 
-#bg {
+#chatContainer {
   background: rgba(0, 0, 0, 0);
-  height: 100%;
+  height: 70%;
   overflow: hidden;
   padding: var(--msg-list__padding);
   position: relative;
   width: 100%;
 }
 
-.pn-msg-input{
+#messageContainer{
+  background: rgba(0, 0, 0, 0);
+  height: 100%;
+  overflow: hidden; 
+  padding: var(--msg-list__padding);
+  position: relative;
+  width: 100%;
+}
 
+#customInput{
+  background: rgba(0, 0, 0, 0);
+  padding: var(--msg-input__padding);
 }
 
 

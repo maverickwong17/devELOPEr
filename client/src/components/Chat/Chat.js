@@ -64,7 +64,7 @@ function DevChat() {
                     </div>
                 </MediaQuery>
 
-                <div className="chat pn-msg-list-scroller pn-msg-list--dark pn-msg-own ::-webkit-scrollbar ::placeholder pn-msg-input__textarea pn-msg-input-send pn-msg-input__send--active" id="bg">
+                <div className="chat pn-msg-list-scroller pn-msg-list--dark pn-msg-own ::-webkit-scrollbar ::placeholder pn-msg-input__textarea pn-msg-input-send pn-msg-input__send--active" id="chatContainer">
                     <div
                         className={`people ${showMembers ? "active" : ""}`}
                     >
@@ -76,13 +76,13 @@ function DevChat() {
                         <small>{currentChannel.description}</small>
                         <hr />
                     </div>
-                    <MessageList
+                    <MessageList id="messageContianer"
                         fetchMessages={10}
                     >
                         <TypingIndicator showAsMessage />
                     </MessageList>
                     {/* <hr /> */}
-                    <MessageInput typingIndicator onSend={(e) => (console.log(e.text))} />
+                    <MessageInput id="customInput" typingIndicator onSend={(e) => (console.log(e.text))} />
                 </div>
 
                 <div className={`members ${showMembers && "shown"}`}>

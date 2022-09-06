@@ -30,18 +30,18 @@ const LandingPage = () => {
           aria-label="My Favorite Images"
           options={{
             type: "loop",
-            gap: "1rem",
+            gap: "5rem",
             drag: "free",
             arrows: false,
             pagination: false,
             perPage: 2,
-            padding: "20%",
-            margin: "30%",
+            padding: "10%",
+            margin: "50%",
             autoScroll: {
               pauseOnHover: false,
               pauseOnFocus: false,
               rewind: false,
-              speed: 5,
+              speed: 2,
             },
             breakpoints: {
               2000: {
@@ -89,7 +89,7 @@ const LandingPage = () => {
           </SplideSlide>
           <SplideSlide>
             <img
-              src="https://pittnews.com/wp-content/uploads/2021/01/C_Cody-Ko_Via.jpg"
+             src="https://backend.artreview.com/wp-content/uploads/2021/11/Mark-Zuckerberg_Courtesy-Facebook.jpg"
               alt="Image 4"
               className="splideImg"
             />
@@ -110,14 +110,14 @@ const LandingPage = () => {
           </SplideSlide>
           <SplideSlide>
             <img
-              src="https://randomuser.me/api/portraits/men/4.jpg"
+              src="https://pittnews.com/wp-content/uploads/2021/01/C_Cody-Ko_Via.jpg"
               alt="Image 7"
               className="splideImg"
             />
           </SplideSlide>
           <SplideSlide>
             <img
-              src="https://randomuser.me/api/portraits/women/4.jpg"
+              src="https://i.insider.com/533c613becad04652e0a1aad?width=300&format=jpeg&auto=webp"
               alt="Image 8"
               className="splideImg"
             />

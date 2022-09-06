@@ -30,28 +30,28 @@ const LandingPage = () => {
           aria-label="My Favorite Images"
           options={{
             type: "loop",
-            gap: "8px",
+            gap: "1rem",
             drag: "free",
             arrows: false,
             pagination: false,
             perPage: 2,
             padding: "20%",
-            // margin: "30%",
+            margin: "30%",
             autoScroll: {
               pauseOnHover: false,
               pauseOnFocus: false,
               rewind: false,
-              speed: 0.5,
+              speed: 5,
             },
             breakpoints: {
               2000: {
-                perPage: 6,
+                perPage: 3,
               },
               1800: {
-                perPage: 3,
+                perPage: 0,
               },
-              1500: {
-                perPage: 3,
+              1550: {
+                perPage: 2,
               },
               900: {
                 perPage: 1,

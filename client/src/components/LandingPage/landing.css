@@ -50,32 +50,37 @@
   object-fit: cover;
   height: 700px;
 }
-
-/* @media screen and (min-width: 1700px) {
+/* @media screen and (min-width: 2000px) and (max-width: 1800px) {
   .splideImg {
-    width: 600px;
-    height: 1000px;
+    width: 500px;
+    height: 700px;
   }
 } */
-@media screen and (min-width: 1500px) {
-  .splideImg {
-    width: 400px;
-    height: 600px;
-  }
-}
-/* @media screen and (min-width: 1300px) {
+/* @media screen and (min-width: 1800px) {
   .splideImg {
     width: 350px;
     height: 500px;
   }
 } */
-/* @media screen and (min-width: 1100px) {
+/* @media screen and (min-width: 1500px) {
+  .splideImg {
+    width: 400px;
+    height: 600px;
+  }
+} */
+/* @media screen and (min-width: 1300px) {
+  .splideImg {
+    width: 350px;
+    height: 500px;
+  }
+}
+@media screen and (min-width: 1100px) {
   .splideImg {
     width: 300px;
     height: 400px;
   }
-}
-@media screen and (min-width: 900px) {
+} */
+/* @media screen and (min-width: 900px) {
   .splideImg {
     width: 300px;
     height: 400px;

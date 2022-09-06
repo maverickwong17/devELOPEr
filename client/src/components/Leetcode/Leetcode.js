@@ -1,18 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 
-import {
-  Col,
-  Row,
-  Badge,
-  Button,
-  Container,
-  Dropdown,
-  Tabs,
-  Tab,
-  Alert,
-} from "react-bootstrap";
-import { FiCode } from "react-icons/fi";
-import { FaCog, FaExclamationCircle, FaUserAlt } from "react-icons/fa";
+import { Row, Button, Tabs, Tab, Alert } from "react-bootstrap";
+import { FaCog } from "react-icons/fa";
 import { AiOutlineArrowRight, AiOutlineInfoCircle } from "react-icons/ai";
 import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
@@ -21,8 +10,6 @@ import { java } from "@codemirror/lang-java";
 import { python } from "@codemirror/lang-python";
 import "./Leetcode.css";
 import algorithms from "../../data/algorithmsJson";
-import Sidebar from "../Sidebar/Sidebar";
-import MediaQuery from "react-responsive";
 const Leetcode = () => {
   const [key, setKey] = useState("input");
   const [algoOfTheDay, setAlgoOfTheDay] = useState({});
@@ -30,11 +17,16 @@ const Leetcode = () => {
   const [language_id, setLanguageId] = useState("63");
   const [user_input, setUserInput] = useState(`console.log("hello");`);
   const [loading, setLoading] = useState(false);
-  console.log(language_id, user_input);
+
+  /**
+   * runCodeHandler function
+   * POST request to judge0 to send input, encode input, GET json res of output and output accordingly
+   * @param {*} e
+   */
   const runCodeHandler = async (e) => {
+    e.preventDefault();
     setLoading(true);
     setKey("output");
-    e.preventDefault();
     const options = {
       method: "POST",
       headers: {
@@ -49,7 +41,6 @@ const Leetcode = () => {
       }),
     };
     function encode(str) {
-      console.log(btoa(unescape(encodeURIComponent(str || ""))));
       return btoa(unescape(encodeURIComponent(str || "")));
     }
     const response = await fetch(
@@ -57,7 +48,6 @@ const Leetcode = () => {
       options
     );
     const jsonResponse = await response.json();
-    console.log(jsonResponse);
     let jsonGetSolution = {
       status: { description: "Queue" },
       stderr: null,
@@ -84,20 +74,16 @@ const Leetcode = () => {
     }
     if (jsonGetSolution.stdout) {
       const output = atob(jsonGetSolution.stdout);
-      console.log("output", output);
       setOutput(output);
     } else if (jsonGetSolution.stderr) {
       const error = atob(jsonGetSolution.stderr);
-      console.log(error);
       setOutput(error);
     } else {
       const comp_error = atob(jsonGetSolution.compile_output);
-      console.log(comp_error);
       setOutput(comp_error);
     }
   };
   const onChange = useCallback((value, viewUpdate) => {
-    console.log("value:", value);
     setUserInput(value);
   }, []);
   const getRandomQuestion = () => {
@@ -110,19 +96,9 @@ const Leetcode = () => {
   }, []);
   return (
     <>
-      <div
-        style={{
-          width: "100%",
-          textAlign: "center",
-          color: "#999999",
-          margin: "1rem 0 ",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
+      <div className="info_section">
         <span>
-          {" "}
-          <AiOutlineInfoCircle size={30} />{" "}
+          <AiOutlineInfoCircle size={30} />
         </span>
         <span>Toggle the Dropdown to change the programming language.</span>
         <span>
@@ -133,18 +109,8 @@ const Leetcode = () => {
       <Row className="grid_l">
         <div style={{ height: "10%" }}>
           <Row>
-            {" "}
-            <span
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <h3 style={{ color: "white" }}>
-                Coding Challenge {/* <span style={{ width: "fit-content" }}> */}
-                {/* </span> */}
-              </h3>
+            <span className="title_code">
+              <h3 style={{ color: "white" }}>Coding Challenge</h3>
               <Alert
                 style={{ width: "fit-content" }}
                 variant={
@@ -159,20 +125,9 @@ const Leetcode = () => {
               </Alert>
             </span>
             <p style={{ color: "white" }}>{algoOfTheDay.question}</p>
-            {/* <hr style={{ fill: "white" }} /> */}
           </Row>
           <Row style={{ height: "fit-content" }}>
-            {" "}
-            <div
-              style={{
-                display: "flex",
-                // background: "red",
-                justifyContent: "right",
-                alignItems: "center",
-                float: "right",
-                // background: "blue",
-              }}
-            >
+            <div className="dropdown_pl">
               <select
                 value={language_id}
                 onChange={(e) => {
@@ -180,7 +135,7 @@ const Leetcode = () => {
                   console.log(e.target.value);
                 }}
                 id="tags"
-                className="form-control form-inline mb-2 language input"
+                className=" form-inline mb-2 language input"
               >
                 <option value="63">JavaScript</option>
                 <option value="54">C++ </option>
@@ -190,7 +145,6 @@ const Leetcode = () => {
             </div>
           </Row>
         </div>
-        {/* <div className="line"></div> */}
         <Row className="code_grid">
           <Tabs
             defaultActiveKey="profile"
@@ -222,6 +176,8 @@ const Leetcode = () => {
                     ? javascript({ jsx: true })
                     : language_id === "54"
                     ? cpp()
+                    : language_id === "71"
+                    ? python()
                     : java()
                 }
                 onChange={onChange}
@@ -235,7 +191,6 @@ const Leetcode = () => {
                 value={loading ? "running submission..." : output ? output : ""}
                 readOnly="nocursor"
               ></CodeMirror>
-              {/* <Sonnet /> */}
             </Tab>
           </Tabs>
           <div className="buttons">
@@ -257,7 +212,6 @@ const Leetcode = () => {
               }}
               onClick={() => window.location.replace("/swipe")}
             >
-              {/* TODO: check to see if run btn has been run */}
               Submit <AiOutlineArrowRight />
             </Button>
           </div>

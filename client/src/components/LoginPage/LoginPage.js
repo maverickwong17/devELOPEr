@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import { Container, Form, Button } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import "./LoginPage.css";
-
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 
-const LoginPage = (props) => {
+const LoginPage = () => {
   const [formState, setFormState] = useState({ email: "", password: "" });
-  const [login, { error }] = useMutation(LOGIN_USER);
+  const [login] = useMutation(LOGIN_USER);
   const [errors, setErrors] = useState(null);
 
   const handleChange = (event) => {
@@ -32,17 +31,14 @@ const LoginPage = (props) => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
     try {
       const { data } = await login({
         variables: { ...formState },
       });
-      console.log(data.login.token);
       Auth.login(data.login.token);
       window.location.replace("/leetcode");
     } catch (e) {
       setErrors("Incorrect Credentials");
-      console.error(e);
     }
 
     setFormState({
@@ -52,9 +48,7 @@ const LoginPage = (props) => {
   };
 
   return (
-    // <> className="login_container">
     <Form className="login_form" onSubmit={handleFormSubmit}>
-      {/* <span> */}
       <h2>Welcome Back</h2>
       <h4 className="side_text">Sign In to continue</h4>
       <input
@@ -86,9 +80,7 @@ const LoginPage = (props) => {
       <a href="/signup" type="button" className="signup_btn">
         SIGN UP
       </a>
-      {/* </span> */}
     </Form>
-    // </Container>
   );
 };
 

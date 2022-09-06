@@ -7,6 +7,7 @@ import { useQuery } from "@apollo/client";
 import { QUERY_ALL_USER, QUERY_ME } from "../../utils/queries";
 import Loader from "../Loader/Loader";
 import { Link } from "react-router-dom";
+import Background from "../Background/Background";
 
 const MatchesPage = () => {
   const { loading: loadme, data: profile } = useQuery(QUERY_ME);

@@ -154,8 +154,8 @@ h4 {
 }
 
 .pn-msg-input__textarea {
-  background-color: #e67a8d6e;
-  /* color: white; */
+  background-color: #e67a8d6e !important;
+  color: white !important;
 }
 
 .pn-channel {
@@ -167,7 +167,7 @@ h4 {
 }
 
 .pn-channel--active {
-  background: #e67a8d6e;
+  background: #e67a8d6e !important;
 }
 
 .pn-channel:hover {
@@ -175,8 +175,8 @@ h4 {
 }
 
 .pn-msg-input--dark {
-  background: #e67a8e00;
-  color: white
+  background: #e67a8e00 !important;
+  color: white 
 }
 
 /* .pn-msg-own {
@@ -205,7 +205,7 @@ h4 {
 }
 
 .pn-msg-list--dark {
-  background-color: #dbe67a00;
+  background-color: #dbe67a00 !important;
   color: black;
   border: 5px white;
 }
@@ -222,7 +222,7 @@ h4 {
 }
 
 .pn-msg-input__send--active {
-  color: #e67a8ed0
+  color: #e67a8ed0 !important
 }
 
 .app-simple .members {
@@ -281,6 +281,25 @@ h4 {
 .people span {
   margin: 2px 8px 0 0;
 }
+
+#chatContainer {
+  background: rgba(0, 0, 0, 0);
+  height: 70%;
+  overflow: hidden;
+  padding: var(--msg-list__padding);
+  position: relative;
+  width: 100%;
+}
+
+.pn-msg-list pn-msg-list--dark{
+  background: rgba(0, 0, 0, 0);
+}
+
+#customInput{
+  background: rgba(0, 0, 0, 0);
+  padding: var(--msg-input__padding);
+}
+
 
 @media (max-width: 950px) {
 

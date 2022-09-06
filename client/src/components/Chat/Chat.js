@@ -76,8 +76,9 @@ function DevChat() {
                         <small>{currentChannel.description}</small>
                         <hr />
                     </div>
-                    <MessageList id="messageContianer"
+                    <MessageList
                         fetchMessages={10}
+                        id="messageContainer"
                     >
                         <TypingIndicator showAsMessage />
                     </MessageList>

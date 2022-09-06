@@ -1,21 +1,15 @@
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
-import HomePage from "../home/homepage";
 import "@splidejs/react-splide/css";
 
-// or other themes
-// import '@splidejs/react-splide/css/skyblue';
-// import '@splidejs/react-splide/css/sea-green';
 import "./landing.css";
 const LandingPage = () => {
   return (
-    // <Container className="">
     <div className="landingContainer">
       <Row className="align-items-center mx-auto ">
-        {/* <Col> */}
         <div className="tag">
           <h1>Where They Always Promise To Callback()</h1>
           <Link className=" btn matchBtn" to={"/signup"}>
@@ -23,8 +17,6 @@ const LandingPage = () => {
           </Link>
         </div>
       </Row>
-      {/* </Col> */}
-      {/* <Col> */}
       <Row className="splide_section">
         <Splide
           aria-label="My Favorite Images"
@@ -122,16 +114,9 @@ const LandingPage = () => {
               className="splideImg"
             />
           </SplideSlide>
-          {/* <SplideSlide> ....map if wanted */}
         </Splide>
       </Row>
-      {/* </Row> */}
-      {/* <Row>
-          <Col></Col>
-          <Col></Col>
-        </Row> */}
     </div>
-    // </Container>
   );
 };
 

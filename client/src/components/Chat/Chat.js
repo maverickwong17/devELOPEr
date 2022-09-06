@@ -12,7 +12,6 @@ import {
 import { useQuery } from "@apollo/client";
 import { QUERY_ME } from "../../utils/queries";
 import MediaQuery from "react-responsive";
-import Loader from "../Loader/Loader";
 import "./Chat.css";
 
 import rawUsers from "../../data/chat-data/users.json";
@@ -25,7 +24,6 @@ const allChannelIds = [...directChannelList].map((c) => c.id);
 function DevChat() {
     const { loading, data: profile } = useQuery(QUERY_ME);
     const myprofile = profile?.me || {};
-    // console.log(myprofile.profile.images[0])
 
     const pubnub = usePubNub();
     const [showMembers, setShowMembers] = useState(false);

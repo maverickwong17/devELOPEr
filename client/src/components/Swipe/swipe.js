@@ -25,6 +25,13 @@ function Swiper() {
 
   return (
     <>
+   
+      <Row className="grid_swipe">
+        {/* <div className="cards_section"> */}
+        <SwipeCard profiles={data.users} />
+        {/* </div> */}
+      </Row>
+
       <div
         style={{
           textAlign: "center",
@@ -44,13 +51,7 @@ function Swiper() {
         </span>
       </div>
 
-      <Row className="grid_swipe">
-        {/* <div className="cards_section"> */}
-        <SwipeCard profiles={data.users} />
-        {/* </div> */}
-      </Row>
     </>
   );
 }
-
 export default Swiper;

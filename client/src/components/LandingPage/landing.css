@@ -46,9 +46,9 @@
   border-radius: 15px;
   /* width: 100%; */
   /* width: 250px; */
-  width: 500px;
+  width: 30em;
   object-fit: cover;
-  height: 700px;
+  height: 40em;
 }
 /* @media screen and (min-width: 2000px) and (max-width: 1800px) {
   .splideImg {

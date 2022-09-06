@@ -33,9 +33,9 @@
   --chat--dark__hover--1: #e4e9f000;
   --chat--dark__hover--2: #e4e9f000;
   /* // --chat--dark__hover--3: ; */
-  --chat--dark__hover--4: #e4e9f000;
+  --chat--dark__hover--4: #55e4e9f000770;
   /* --chat--dark__hover--4-rgb: #{hexToRGB(#e4e9f000)}; */
-  --msg-list__background: #e4e9f000
+  --msg-list__background: #e4e9f000;
 }
 
 
@@ -47,7 +47,7 @@
 .app-simple {
   /* color: var(--app-color); */
   display: flex;
-  height: 80vh;
+  height: 100vh;
   overflow: hidden;
   /* color: black */
 }

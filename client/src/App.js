@@ -16,6 +16,7 @@ import Loader from "./components/Loader/Loader";
 import DevChatWrap from "./components/Chat/DevChatWrap";
 import { Col, Row } from "react-bootstrap";
 import MediaQuery from "react-responsive";
+import newC from "./components/Comp/newC";
 
 import {
   ApolloClient,

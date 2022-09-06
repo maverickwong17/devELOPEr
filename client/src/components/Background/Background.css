@@ -1,14 +1,8 @@
 .background {
-  /* background: red; */
   position: absolute;
   width: 100%;
-
-  /* position: absolute; */
-  /* height: 90vh; */
   z-index: 1;
 }
 :root {
   width: 100%;
-  /* position: absolute; */
-  /* height: 100vh; */
 }

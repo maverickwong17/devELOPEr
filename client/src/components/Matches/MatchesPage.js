@@ -15,7 +15,7 @@ const MatchesPage = () => {
   const { loading: loadall, data: userData } = useQuery(QUERY_ALL_USER);
   const myprofile = profile?.me || {};
   const allUsers = userData || [];
-  const userArr = allUsers.users
+  const userArr = allUsers.users;
   if (loadme || loadall) {
     return <Loader />;
   }
@@ -29,43 +29,43 @@ const MatchesPage = () => {
     );
   }
 
-  const myId = myprofile._id
+  const myId = myprofile._id;
   // console.log("my profile", myprofile);
   // console.log("profile id", myId);
   // console.log("All Users", userArr);
 
-  var connections = myprofile.connections
+  var connections = myprofile.connections;
   var connectionsArr = connections.map(({ _id }) => _id);
   // console.log("my connections:", connections);
   // console.log("my connections id:", connectionsArr);
-  var map = function(array){
-    var output = []
-    for(let i=0; i<array.length; i++){
+  var map = function (array) {
+    var output = [];
+    for (let i = 0; i < array.length; i++) {
       // console.log(array[i])
       // console.log(array[i]._id)
-      var myArr = connectionsArr.includes(array[i]._id)
+      var myArr = connectionsArr.includes(array[i]._id);
       // console.log(array[i].profile.firstName,"in my connections", myArr)
-      var userConnectArr = array[i].connections
+      var userConnectArr = array[i].connections;
       // console.log(array[i].profile.firstName, `connections array`, userConnectArr)
-      var inUserCon = false
-        for(let j=0; j < userConnectArr.length; j++){
-          var conID = userConnectArr[j]._id
-          // console.log(conID)
-          if(myId === conID){
-            inUserCon = true
-          }
-          // console.log(`I am in ${array[i].profile.firstName} connections`, inUserCon)
-          // console.log(myArr, inUserCon)
+      var inUserCon = false;
+      for (let j = 0; j < userConnectArr.length; j++) {
+        var conID = userConnectArr[j]._id;
+        // console.log(conID)
+        if (myId === conID) {
+          inUserCon = true;
         }
-        if(myArr && inUserCon){
-          // console.log("match made")
-          output.push(array[i])
-        }
+        // console.log(`I am in ${array[i].profile.firstName} connections`, inUserCon)
+        // console.log(myArr, inUserCon)
+      }
+      if (myArr && inUserCon) {
+        // console.log("match made")
+        output.push(array[i]);
+      }
     }
-    console.log(output)
-    return output
-  }
-  var matches = map(userArr)
+    console.log(output);
+    return output;
+  };
+  var matches = map(userArr);
 
   return (
     <Row className="grid_matches">
@@ -74,24 +74,22 @@ const MatchesPage = () => {
           <div
             key={index}
             className="card_match"
-            style={{ "--bg-image": `url("${match.profile.images[0]}")` }}
+            style={{
+              "--bg-image": `url("${match.profile.images[0]}")`,
+              objectPosition: "50% 50%",
+            }}
           >
-            {/* <div
-              className="img_match"
-              style={{ "--bg-image": `url("${match.url}")` }}
-            ></div> */}
             <h1 style={{ backgroundColor: "rgba(0, 0, 0, .7)", width: '100% ', display:'flex', justifyContent:"space-around", alignItems: "baseline"}}>
               <span style={{opacity: '100%', fontSize: "24px"}}>{match.profile.firstName} {match.profile.lastName}</span>
               <span style={{fontSize: "20px"}}>Age: {match.profile.age}</span>
             </h1>
             <p>
-              <Link
-              // className="btn btn-primary btn-block btn-squared"
-              to={`/profiles/${match._id}`}
-            >
-              <FaUserCircle size={40} />
-            </Link>
-              <AiFillMessage size={40} />
+              <Link to={`/profiles/${match._id}`}>
+                <FaUserCircle size={40} />
+              </Link>
+              <Link to={`/chat`}>
+                <AiFillMessage size={40} />
+              </Link>
             </p>
           </div>
         ))}

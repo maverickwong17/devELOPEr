@@ -10,6 +10,7 @@ import { ReactComponent as LinkedIn } from "../assets/svg/linkedin.svg";
 import MediaQuery from "react-responsive";
 import "./Profile.css";
 import Loader from "../Loader/Loader";
+import { AiOutlineGithub, AiOutlineLinkedin } from "react-icons/ai";
 
 const Profile = () => {
   const { _id: userParam } = useParams();
@@ -17,7 +18,7 @@ const Profile = () => {
     variables: { id: userParam },
   });
   // console.log( userParam )
-  console.log({loading, data})
+  console.log({ loading, data });
   const user = data?.me?.profile || data?.user?.profile || {};
 
   if (loading) {
@@ -25,11 +26,7 @@ const Profile = () => {
   }
 
   if (!user) {
-    return (
-      <h4>
-        Please login.
-      </h4>
-    );
+    return <h4>Please login.</h4>;
   }
   // console.log(user);
   let interests = user.interest;
@@ -39,21 +36,19 @@ const Profile = () => {
     return (
       <>
         <h3 className="">About Me</h3>
-        <p>
-          {user.aboutme}
-        </p>
+        <p>{user.aboutme}</p>
         <h3 className="">Interests</h3>
         <div>
           <InterestList interests={interests} />
         </div>
-        <div>
+        <div style={{ margin: "10px 0 " }}>
           <a
             href={`https://github.com/${user.github}`}
             target="_blank"
             rel="noreferrer noopener"
             className="container profileLinkButtons"
           >
-            <Github />
+            <AiOutlineGithub size={40} />
           </a>
           <a
             href={`https://www.linkedin.com/in/${user.linkedin}`}
@@ -61,7 +56,7 @@ const Profile = () => {
             rel="noreferrer noopener"
             className="container profileLinkButtons"
           >
-            <LinkedIn />
+            <AiOutlineLinkedin size={40} />
           </a>
         </div>
       </>
@@ -102,9 +97,7 @@ const Profile = () => {
         </div>
       </Row>
       <Row className="profileHeader2">
-        <span className="job">
-          {`${user.job}`}
-        </span>
+        <span className="job">{`${user.job}`}</span>
         <span className="city">{`${user.location}`}</span>
       </Row>
       <Row>
@@ -121,7 +114,6 @@ const Profile = () => {
           {renderProfileInfo()}
         </MediaQuery>
       </Row>
-
     </Row>
   );
 };

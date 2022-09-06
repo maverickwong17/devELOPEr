@@ -96,16 +96,7 @@ const Leetcode = () => {
   }, []);
   return (
     <>
-      <div className="info_section">
-        <span>
-          <AiOutlineInfoCircle size={30} />
-        </span>
-        <span>Toggle the Dropdown to change the programming language.</span>
-        <span>
-          Hit 'Run' when you are ready to run your code and 'Submit' to move on
-          to matching!
-        </span>
-      </div>
+ 
       <Row className="grid_l">
         <div style={{ height: "10%" }}>
           <Row>
@@ -217,6 +208,16 @@ const Leetcode = () => {
           </div>
         </Row>
       </Row>
+      <div className="info_section">
+        <span>
+          <AiOutlineInfoCircle size={30} />
+        </span>
+        <span>Toggle the Dropdown to change the programming language.</span>
+        <span>
+          Hit 'Run' when you are ready to run your code and 'Submit' to move on
+          to matching!
+        </span>
+      </div>
     </>
   );
 };

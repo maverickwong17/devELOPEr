@@ -282,6 +282,20 @@ h4 {
   margin: 2px 8px 0 0;
 }
 
+#bg {
+  background: rgba(0, 0, 0, 0);
+  height: 100%;
+  overflow: hidden;
+  padding: var(--msg-list__padding);
+  position: relative;
+  width: 100%;
+}
+
+.pn-msg-input{
+
+}
+
+
 @media (max-width: 950px) {
 
   .app-simple .channels,

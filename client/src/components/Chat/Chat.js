@@ -64,7 +64,7 @@ function DevChat() {
                     </div>
                 </MediaQuery>
 
-                <div className="chat pn-msg-own ::-webkit-scrollbar ::placeholder">
+                <div className="chat pn-msg-list-scroller pn-msg-list--dark pn-msg-own ::-webkit-scrollbar ::placeholder pn-msg-input__textarea pn-msg-input-send pn-msg-input__send--active" id="bg">
                     <div
                         className={`people ${showMembers ? "active" : ""}`}
                     >

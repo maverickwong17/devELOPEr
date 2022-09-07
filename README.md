@@ -114,8 +114,38 @@ return (
 The renderProfileInfo function returns part of the JSX for the profile page. It pulls key values from the user object to render the relevant data to the page. Below that function is the main profile page JSX, which calls the renderProfileInfo function.
 
 ```javascript
+const runCodeHandler = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setKey("output");
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-RapidAPI-Key": process.env.REACT_APP_RAPID_API_KEY,
+        "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
+      },
+      body: JSON.stringify({
+        language_id: language_id,
+        source_code: encode(user_input),
+        stdin: encode(""),
+      }),
+    };
+    function encode(str) {
+      return btoa(unescape(encodeURIComponent(str || "")));
+    }
+    const response = await fetch(
+      "https://judge0-ce.p.rapidapi.com/submissions?base64_encoded=true&fields=*",
+      options
+    );
+```
+The 'runCodeHandler' function allows the user inputted source code to be compiled based on the language chosen. The response is then fetched with a POST request and is outputted onto the page with an error or successful output.
+
+```javascript
 
 ```
+
+
 
 
 

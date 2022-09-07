@@ -15,6 +15,7 @@ This app is a dating app tailored to software engineers.
 ## Table of Contents
 - [Description](#description)
 - [Deployed Link](#deployed-link)
+- [Installation](#installation)
 - [Usage](#usage)
 - [Features](#features)
 - [Tests](#tests)
@@ -23,6 +24,14 @@ This app is a dating app tailored to software engineers.
 - [Questions](#questions)
 - [License](#license)
 
+---
+## Installation
+
+Clone/Fork repository. To install necessary dependencies, run the following command: `npm i`
+
+To test the features of the application, run the comman `npm run seed` to seed you database with sample data
+
+To run the application when a rebuild is necessary, run the following command: `npm run develop`
 ---
 ## Usage
 
@@ -132,6 +141,35 @@ const runCodeHandler = async (e) => {
 The 'runCodeHandler' function allows the user inputted source code to be compiled based on the language chosen. The response is then fetched with a POST request and is outputted onto the page with an error or successful output.
 
 ```javascript
+const myId = myprofile._id;
+var connections = myprofile.connections;
+var connectionsArr = connections.map(({ _id }) => _id);
+var map = function (array) {
+  var output = [];
+  for (let i = 0; i < array.length; i++) {
+    var myArr = connectionsArr.includes(array[i]._id);
+    var userConnectArr = array[i].connections;
+    var inUserCon = false;
+    for (let j = 0; j < userConnectArr.length; j++) {
+      var conID = userConnectArr[j]._id;
+      if (myId === conID) {
+        inUserCon = true;
+      }
+    }
+    if (myArr && inUserCon) {
+      output.push(array[i]);
+    }
+  }
+  console.log(output);
+  return output;
+};
+var matches = map(userArr);
+```
+The "map" function checks the logged in user's connection array and compares it to all user's connection arrays.
+It basically just checks if "You" are in my connection array and "I" am in your connection array.
+If both of these conditions are true, then push to the output array to use.
+
+```javascript
 
 ```
 
@@ -150,6 +188,16 @@ There are no tests for this app.
 * [PubNub](https://www.pubnub.com/docs/)
 * [React Tinder](https://www.npmjs.com/package/react-tinder-card)
 * [Splide](https://splidejs.com/)
+* [Nodejs](https://nodejs.org/dist/latest-v16.x/docs/api/)
+* [Express](https://www.npmjs.com/package/express)
+* [MongoDB](https://www.mongodb.com/)
+* [Mongoose](https://mongoosejs.com/)
+* [Apollo GraphQL](https://www.apollographql.com/)
+* [Bcrypt](https://www.npmjs.com/package/bcrypt)
+* [JSON Web Token](https://www.npmjs.com/package/jsonwebtoken)
+* [JWT-decode](https://www.npmjs.com/package/jwt-decode)
+* [React](https://reactjs.org/)
+* [Bootstrap](https://getbootstrap.com/)
 
 ---
 ## Credits
@@ -161,14 +209,14 @@ devELOPEr logo credited to Luke Hillman [GitHub](https://github.com/lshillman) [
 ---
 ## Questions
 If you have any additional questions, feel free to reach out.
-| **Phillip Besse**                                        |  **Matt Fiaschetti**                                       | **Kavya Mandla**                                               | **Maverick Wong**                                              |
+| **Phillip Besse**                                       |  **Matt Fiaschetti**                                       | **Kavya Mandla**                                               | **Maverick Wong**                                              |
 | ------------------------------------------------------- | ---------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
 | - [Github](https://github.com/pdbesse)                  | - [Github](https://github.com/fiaschettima)                | - [Github](https://github.com/smandla)                         | - [Github](https://github.com/maverickwong17)                  |
 | - [LinkedIn](https://www.linkedin.com/in/phillipbesse/) | - [LinkedIn](https://www.linkedin.com/in/fiaschettimatt/)  | - [LinkedIn](https://www.linkedin.com/in/srikavya-mandla/)     | - [LinkedIn](https://www.linkedin.com/in/maverick-wong/)     
 
 ---
 ## License
-devELOPEr is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+devELOPEr is licensed under the [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT).
 
 Copyright 2022 Phillip Besse, Matt Fiaschetti, Kavya Mandla, and Maverick Wong
 

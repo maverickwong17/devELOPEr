@@ -15,6 +15,7 @@ This app is a dating app tailored to software engineers.
 ## Table of Contents
 - [Description](#description)
 - [Deployed Link](#deployed-link)
+- [Installation](#installation)
 - [Usage](#usage)
 - [Features](#features)
 - [Tests](#tests)
@@ -23,6 +24,15 @@ This app is a dating app tailored to software engineers.
 - [Questions](#questions)
 - [License](#license)
 
+---
+## Installation
+
+Clone repository and run on local machine
+To install necessary dependencies, run the following command: `npm i`
+
+To test the features of the application, run the comman `npm run seed` to seed you database with sample data
+
+To run the application when a rebuild is necessary, run the following command: `npm run develop`
 ---
 ## Usage
 
@@ -120,6 +130,16 @@ There are no tests for this app.
 * [PubNub](https://www.pubnub.com/docs/)
 * [React Tinder](https://www.npmjs.com/package/react-tinder-card)
 * [Splide](https://splidejs.com/)
+* [Nodejs](https://nodejs.org/dist/latest-v16.x/docs/api/)
+* [Express](https://www.npmjs.com/package/express)
+* [MongoDB](https://www.mongodb.com/)
+* [Mongoose](https://mongoosejs.com/)
+* [Apollo GraphQL](https://www.apollographql.com/)
+* [Bcrypt](https://www.npmjs.com/package/bcrypt)
+* [JSON Web Token](https://www.npmjs.com/package/jsonwebtoken)
+* [JWT-decode](https://www.npmjs.com/package/jwt-decode)
+* [React](https://reactjs.org/)
+* [Bootstrap](https://getbootstrap.com/)
 
 ---
 ## Credits
@@ -131,14 +151,14 @@ devELOPEr logo credited to Luke Hillman [GitHub](https://github.com/lshillman) [
 ---
 ## Questions
 If you have any additional questions, feel free to reach out.
-| **Phillip Besse**                                        |  **Matt Fiaschetti**                                       | **Kavya Mandla**                                               | **Maverick Wong**                                              |
+| **Phillip Besse**                                       |  **Matt Fiaschetti**                                       | **Kavya Mandla**                                               | **Maverick Wong**                                              |
 | ------------------------------------------------------- | ---------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
 | - [Github](https://github.com/pdbesse)                  | - [Github](https://github.com/fiaschettima)                | - [Github](https://github.com/smandla)                         | - [Github](https://github.com/maverickwong17)                  |
 | - [LinkedIn](https://www.linkedin.com/in/phillipbesse/) | - [LinkedIn](https://www.linkedin.com/in/fiaschettimatt/)  | - [LinkedIn](https://www.linkedin.com/in/srikavya-mandla/)     | - [LinkedIn](https://www.linkedin.com/in/maverick-wong/)     
 
 ---
 ## License
-devELOPEr is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+devELOPEr is licensed under the [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT).
 
 Copyright 2022 Phillip Besse, Matt Fiaschetti, Kavya Mandla, and Maverick Wong
 

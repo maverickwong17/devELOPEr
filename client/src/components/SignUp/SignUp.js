@@ -80,7 +80,7 @@ const SignUp = () => {
     var interestArr = [];
     for (let i = 0; i < interestData.length; i++) {
       if (interestData[i].state) {
-        interestArr.push(`${interestData[i].icon} ${interestData[i].interest}`);
+        interestArr.push(interestData[i].interest);
       }
     }
 
@@ -122,7 +122,6 @@ const SignUp = () => {
   var interestData = interest;
   const handleInterestArr = async (event) => {
     const click = event.target.innerText;
-    const value = click.split(" ")[1];
     const index = interestData.findIndex(function (interestData) {
       if (interestData.interest) {
         return interestData.interest === click;
@@ -286,6 +285,7 @@ const SignUp = () => {
                   </option>
                 </select>
               </Form>
+              <h4>Between the Age of ...</h4>
               <Slider
                 min={18}
                 size="large"

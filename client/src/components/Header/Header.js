@@ -11,9 +11,15 @@ const Header = () => {
   };
   return (
     <div className="header">
+      {Auth.loggedIn() ? (
       <a href="/swipe" className="logo">
         <Logo />
       </a>
+      ):(
+      <a href="/" className="logo">
+        <Logo />
+      </a>
+      )}
       {Auth.loggedIn() ? (
         <a href="/signin" className="sign_in" onClick={logoutHandler}>
           sign out

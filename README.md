@@ -26,9 +26,87 @@ This app is a dating app tailored to software engineers.
 ---
 ## Usage
 
+The user can either sign up if the user does not already have an account, or can sign in if they do already have an account. Upon sign in, the user is presented with a daily Leetcode challenge.
+
+The user can pick the profile page button to view their own profile. 
+
+If the user clicks on the matches page button, the user will see user cards for any user they have a mutual connection with.
+
+If the user clicks the home button, the user will be presented with cards to swipe right or left on.
+
+The chat page will allow the user to private message with any user they have a mutual connection with.
 
 ---
 ## Features
+
+```javascript
+const renderProfileInfo = () => {
+    return (
+      <>
+        <h3 className="">About Me</h3>
+        <p>{user.aboutme}</p>
+        <h3 className="">Interests</h3>
+        <div>
+          <InterestList interests={interests} />
+        </div>
+        <div style={{ margin: "10px 0 " }}>
+          <a
+            href={`https://github.com/${user.github}`}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="container profileLinkButtons"
+          >
+            <AiOutlineGithub size={40} />
+          </a>
+          <a
+            href={`https://www.linkedin.com/in/${user.linkedin}`}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="container profileLinkButtons"
+          >
+            <AiOutlineLinkedin size={40} />
+          </a>
+        </div>
+      </>
+    );
+  };
+
+return (
+    <Row className="profileContainer">
+      <Row className="profileHeader">
+        <div>
+          <h2 className="h2">
+            {`${user.firstName}`} <span>{`${user.age}`}</span>
+          </h2>
+        </div>
+      </Row>
+      <Row className="profileHeader2">
+        <span className="job">{`${user.job}`}</span>
+        <span className="city">{`${user.location}`}</span>
+      </Row>
+      <Row>
+        <MediaQuery minWidth={900}>
+          <Col l={{ order: 1 }} className="containerLeftColumn">
+            {renderProfileInfo()}
+          </Col>
+          <Col l={{ order: 2 }} className="containerRightColumn">
+            {renderImages()}
+          </Col>
+        </MediaQuery>
+        <MediaQuery maxWidth={900}>
+          {renderImages()}
+          {renderProfileInfo()}
+        </MediaQuery>
+      </Row>
+    </Row>
+  );
+```
+The renderProfileInfo function returns part of the JSX for the profile page. It pulls key values from the user object to render the relevant data to the page. Below that function is the main profile page JSX, which calls the renderProfileInfo function.
+
+```javascript
+
+```
+
 
 
 

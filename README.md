@@ -27,8 +27,7 @@ This app is a dating app tailored to software engineers.
 ---
 ## Installation
 
-Clone repository and run on local machine
-To install necessary dependencies, run the following command: `npm i`
+Clone/Fork repository. To install necessary dependencies, run the following command: `npm i`
 
 To test the features of the application, run the comman `npm run seed` to seed you database with sample data
 
@@ -140,6 +139,35 @@ const runCodeHandler = async (e) => {
     );
 ```
 The 'runCodeHandler' function allows the user inputted source code to be compiled based on the language chosen. The response is then fetched with a POST request and is outputted onto the page with an error or successful output.
+
+```javascript
+const myId = myprofile._id;
+var connections = myprofile.connections;
+var connectionsArr = connections.map(({ _id }) => _id);
+var map = function (array) {
+  var output = [];
+  for (let i = 0; i < array.length; i++) {
+    var myArr = connectionsArr.includes(array[i]._id);
+    var userConnectArr = array[i].connections;
+    var inUserCon = false;
+    for (let j = 0; j < userConnectArr.length; j++) {
+      var conID = userConnectArr[j]._id;
+      if (myId === conID) {
+        inUserCon = true;
+      }
+    }
+    if (myArr && inUserCon) {
+      output.push(array[i]);
+    }
+  }
+  console.log(output);
+  return output;
+};
+var matches = map(userArr);
+```
+The "map" function checks the logged in user's connection array and compares it to all user's connection arrays.
+It basically just checks if "You" are in my connection array and "I" am in your connection array.
+If both of these conditions are true, then push to the output array to use.
 
 ```javascript
 

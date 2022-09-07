@@ -1,7 +1,7 @@
 import "./App.css";
 import React from "react";
 import Auth from "./utils/auth";
-import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import Header from "./components/Header/Header";
 import Background from "./components/Background/Background";
@@ -16,7 +16,7 @@ import Loader from "./components/Loader/Loader";
 import DevChatWrap from "./components/Chat/DevChatWrap";
 import { Col, Row } from "react-bootstrap";
 import MediaQuery from "react-responsive";
-import newC from "./components/Comp/newC";
+
 
 import {
   ApolloClient,
@@ -41,8 +41,6 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
-// import { isRequiredArgument } from "graphql";
-// const isSmall = useMediaQuery({ query: "(max-width: 1275px)" });
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),

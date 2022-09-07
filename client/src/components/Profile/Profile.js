@@ -15,7 +15,6 @@ const Profile = () => {
   const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
     variables: { id: userParam },
   });
-  // console.log( userParam )
   console.log({ loading, data });
   const user = data?.me?.profile || data?.user?.profile || {};
 
@@ -26,10 +25,9 @@ const Profile = () => {
   if (!user) {
     return <h4>Please login.</h4>;
   }
-  // console.log(user);
   let interests = user.interest;
   let images = user.images;
-  // console.log(interests)
+
   const renderProfileInfo = () => {
     return (
       <>
@@ -69,7 +67,6 @@ const Profile = () => {
           900: 2,
           1200: 3,
           2100: 4,
-          // 1400: 5,
         }}
       >
         <Masonry className="masonry_grid">

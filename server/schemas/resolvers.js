@@ -7,16 +7,16 @@ const dateScalar = new GraphQLScalarType({
   name: "Date",
   description: "Date custom scalar type",
   serialize(value) {
-    return value.getTime(); // Convert outgoing Date to integer for JSON
+    return value.getTime();
   },
   parseValue(value) {
-    return new Date(value); // Convert incoming integer to Date
+    return new Date(value);
   },
   parseLiteral(ast) {
     if (ast.kind === Kind.INT) {
-      return new Date(parseInt(ast.value, 10)); // Convert hard-coded AST string to integer and then to Date
+      return new Date(parseInt(ast.value, 10));
     }
-    return null; // Invalid hard-coded value (not an integer)
+    return null;
   },
 });
 
@@ -33,7 +33,6 @@ const resolvers = {
       return Message.find();
     },
     me: async (parent, args, context) => {
-      // console.log("me");
       if (context.user) {
         return await User.findOne({ _id: context.user._id })
           .populate("connections")

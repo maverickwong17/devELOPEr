@@ -17,7 +17,7 @@
 }
 .userImage {
   object-fit: cover;
-  height: 30%;
+  height: 25rem;
   border-radius: 0.75rem;
 }
 /* if no image is present going ot render a blank block instead of the icon for file not found */

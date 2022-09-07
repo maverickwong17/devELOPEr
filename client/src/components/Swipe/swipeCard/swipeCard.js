@@ -40,7 +40,7 @@ const SwipeCard = ({ profiles, currentUser }) => {
   const canSwipe = currentIndex >= 0;
 
   const swiped = async (direction, user, index) => {
-    console.log("USER ID", user._id);
+ 
     setLastDirection(direction);
     updateCurrentIndex(index - 1);
     if (direction === "left") {

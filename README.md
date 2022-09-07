@@ -170,9 +170,36 @@ It basically just checks if "You" are in my connection array and "I" am in your 
 If both of these conditions are true, then push to the output array to use.
 
 ```javascript
-
+  const swiped = async (direction, user, index) => {
+ 
+    setLastDirection(direction);
+    updateCurrentIndex(index - 1);
+    if (direction === "left") {
+      return;
+    }
+    if (direction === "right") {
+      try {
+        await addConnection({
+          variables: { id: user._id },
+        });
+        console.log("right");
+      } catch (error) {
+        console.log(JSON.stringify(error));
+      }
+    }
+  };
+//
+ {users.map((user, index) => (
+          <TinderCard
+            ref={childRefs[index]}
+            className="swipe"
+            key={user.profile.firstName}
+            onSwipe={(dir) => swiped(dir, user, index)}
+            onCardLeftScreen={() => outOfFrame(user.profile.firstName, index)}
+            preventSwipe={["up", "down"]}
+          >
 ```
-
+The code snippet above is showing the swiped function being used on each individual tinder card. The card is generated and given a function to handle onSwipe actions. This function will then take the user direction and index and update the current page and current user based on the direction the card was swiped.
 
 
 

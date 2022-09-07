@@ -44,7 +44,6 @@ const profileSchema = new Schema(
         },
         seeking:{
             type: String,
-            // required: true
         },
         aboutme: {
             type: String

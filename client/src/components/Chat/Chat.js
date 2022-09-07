@@ -80,7 +80,6 @@ function DevChat() {
                     >
                         <TypingIndicator showAsMessage />
                     </MessageList>
-                    {/* <hr /> */}
                     <MessageInput id="customInput" typingIndicator onSend={(e) => (console.log(e.text))} />
                 </div>
 

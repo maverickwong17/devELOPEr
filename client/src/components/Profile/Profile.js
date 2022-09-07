@@ -1,12 +1,10 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
-import { Navigate, useParams } from "react-router-dom";
-import { Col, Row, Container, Button } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import { Col, Row } from "react-bootstrap";
 import { QUERY_USER, QUERY_ME } from "../../utils/queries";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import InterestList from "./InterestList";
-import { ReactComponent as Github } from "../assets/svg/github.svg";
-import { ReactComponent as LinkedIn } from "../assets/svg/linkedin.svg";
 import MediaQuery from "react-responsive";
 import "./Profile.css";
 import Loader from "../Loader/Loader";

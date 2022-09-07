@@ -1,7 +1,7 @@
 import React from 'react'
 import  Swiper  from '../Swipe/swipe'
 import { Col, Container, Row } from "react-bootstrap";
-import { useMutation, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import Loader from '../Loader/Loader';
 import { QUERY_ALL_USER, QUERY_ME } from "../../utils/queries";
 

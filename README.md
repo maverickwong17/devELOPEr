@@ -6,7 +6,7 @@ This app is a dating app tailored to software engineers.
 
 ---
 ### Deployed Link
-[Deployed Link](https://dev-eloper.herokuapp.com/)
+[Deployed Link](https://dev-elopers.herokuapp.com/)
 
 ---
 ### Badges
